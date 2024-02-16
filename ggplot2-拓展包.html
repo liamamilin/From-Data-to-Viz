@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 ggplot2 拓展包 | From Data to Viz</title>
+  <meta name="description" content="R语言数据可视化相关数据" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 ggplot2 拓展包 | From Data to Viz" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="R语言数据可视化相关数据" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 ggplot2 拓展包 | From Data to Viz" />
+  
+  <meta name="twitter:description" content="R语言数据可视化相关数据" />
+  
+
+<meta name="author" content="米霖" />
+
+
+<meta name="date" content="2024-01-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="r-语言可视化核心包.html"/>
+<link rel="next" href="parts.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="libs/d3-bundle-5.16.0/d3-bundle.min.js"></script>
+<script src="libs/d3-lasso-0.0.5/d3-lasso.min.js"></script>
+<script src="libs/save-svg-as-png-1.4.17/save-svg-as-png.min.js"></script>
+<script src="libs/flatbush-4.0.0/flatbush.min.js"></script>
+<link href="libs/ggiraphjs-0.4.6/ggiraphjs.min.css" rel="stylesheet" />
+<script src="libs/ggiraphjs-0.4.6/ggiraphjs.min.js"></script>
+<script src="libs/girafe-binding-0.8.8/girafe.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">From Data to Viz</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> url: your book url like https://bookdown.org/yihui/bookdown</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#从数据到图形"><i class="fa fa-check"></i><b>1.1</b> 从数据到图形</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#numeric"><i class="fa fa-check"></i><b>1.1.1</b> Numeric</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#categoric"><i class="fa fa-check"></i><b>1.1.2</b> Categoric</a></li>
+<li class="chapter" data-level="1.1.3" data-path="index.html"><a href="index.html#numeric-catogoric"><i class="fa fa-check"></i><b>1.1.3</b> Numeric &amp; Catogoric</a></li>
+<li class="chapter" data-level="1.1.4" data-path="index.html"><a href="index.html#network"><i class="fa fa-check"></i><b>1.1.4</b> Network</a></li>
+<li class="chapter" data-level="1.1.5" data-path="index.html"><a href="index.html#times-series"><i class="fa fa-check"></i><b>1.1.5</b> Times Series</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html"><i class="fa fa-check"></i><b>2</b> R 语言可视化核心包</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#ggplot2"><i class="fa fa-check"></i><b>2.1</b> ggplot2</a></li>
+<li class="chapter" data-level="2.2" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#基础使用"><i class="fa fa-check"></i><b>2.2</b> 基础使用</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#安装和加载"><i class="fa fa-check"></i><b>2.2.1</b> 安装和加载</a></li>
+<li class="chapter" data-level="2.2.2" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#创建一个简单的图形"><i class="fa fa-check"></i><b>2.2.2</b> 创建一个简单的图形</a></li>
+<li class="chapter" data-level="2.2.3" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#添加图层"><i class="fa fa-check"></i><b>2.2.3</b> 添加图层</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#高级使用"><i class="fa fa-check"></i><b>2.3</b> 高级使用</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#自定义主题"><i class="fa fa-check"></i><b>2.3.1</b> 自定义主题</a></li>
+<li class="chapter" data-level="2.3.2" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#多统计图形"><i class="fa fa-check"></i><b>2.3.2</b> 多统计图形</a></li>
+<li class="chapter" data-level="2.3.3" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#调整图形细节"><i class="fa fa-check"></i><b>2.3.3</b> 调整图形细节</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#plotly"><i class="fa fa-check"></i><b>2.4</b> plotly</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#安装和设置"><i class="fa fa-check"></i><b>2.4.1</b> 安装和设置</a></li>
+<li class="chapter" data-level="2.4.2" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#基础图表创建"><i class="fa fa-check"></i><b>2.4.2</b> 基础图表创建</a></li>
+<li class="chapter" data-level="2.4.3" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#基础图表创建-1"><i class="fa fa-check"></i><b>2.4.3</b> 基础图表创建</a></li>
+<li class="chapter" data-level="2.4.4" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#交互式数据可视化"><i class="fa fa-check"></i><b>2.4.4</b> 交互式数据可视化</a></li>
+<li class="chapter" data-level="2.4.5" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#高级自定义和优化技术"><i class="fa fa-check"></i><b>2.4.5</b> 高级自定义和优化技术</a></li>
+<li class="chapter" data-level="2.4.6" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#高级交互功能"><i class="fa fa-check"></i><b>2.4.6</b> 高级交互功能</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#patchwork"><i class="fa fa-check"></i><b>2.5</b> patchwork</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#简介与安装"><i class="fa fa-check"></i><b>2.5.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="2.5.2" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#基本用法"><i class="fa fa-check"></i><b>2.5.2</b> 基本用法</a></li>
+<li class="chapter" data-level="2.5.3" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#高级布局"><i class="fa fa-check"></i><b>2.5.3</b> 高级布局</a></li>
+<li class="chapter" data-level="2.5.4" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#添加注释和共享图例"><i class="fa fa-check"></i><b>2.5.4</b> 添加注释和共享图例</a></li>
+<li class="chapter" data-level="2.5.5" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#实战示例"><i class="fa fa-check"></i><b>2.5.5</b> 实战示例</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#hrbrthemes"><i class="fa fa-check"></i><b>2.6</b> hrbrthemes</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#简介与安装-1"><i class="fa fa-check"></i><b>2.6.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="2.6.2" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#基本使用"><i class="fa fa-check"></i><b>2.6.2</b> 基本使用</a></li>
+<li class="chapter" data-level="2.6.3" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#高级定制"><i class="fa fa-check"></i><b>2.6.3</b> 高级定制</a></li>
+<li class="chapter" data-level="2.6.4" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#实战示例-1"><i class="fa fa-check"></i><b>2.6.4</b> 实战示例</a></li>
+<li class="chapter" data-level="2.6.5" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#注意事项"><i class="fa fa-check"></i><b>2.6.5</b> 注意事项</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html"><i class="fa fa-check"></i><b>3</b> ggplot2 拓展包</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#ggstatsplot"><i class="fa fa-check"></i><b>3.1</b> ggstatsplot</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#简介与安装-2"><i class="fa fa-check"></i><b>3.1.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="3.1.2" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#基本用法-1"><i class="fa fa-check"></i><b>3.1.2</b> 基本用法</a></li>
+<li class="chapter" data-level="3.1.3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#特色功能"><i class="fa fa-check"></i><b>3.1.3</b> 特色功能</a></li>
+<li class="chapter" data-level="3.1.4" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#高级定制-1"><i class="fa fa-check"></i><b>3.1.4</b> 高级定制</a></li>
+<li class="chapter" data-level="3.1.5" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#实战示例-2"><i class="fa fa-check"></i><b>3.1.5</b> 实战示例</a></li>
+<li class="chapter" data-level="3.1.6" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#注意事项-1"><i class="fa fa-check"></i><b>3.1.6</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#gghighlight"><i class="fa fa-check"></i><b>3.2</b> gghighlight</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#简介与安装-3"><i class="fa fa-check"></i><b>3.2.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="3.2.2" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#基本使用方法"><i class="fa fa-check"></i><b>3.2.2</b> 基本使用方法</a></li>
+<li class="chapter" data-level="3.2.3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#高亮多个系列"><i class="fa fa-check"></i><b>3.2.3</b> 高亮多个系列</a></li>
+<li class="chapter" data-level="3.2.4" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#高级定制-2"><i class="fa fa-check"></i><b>3.2.4</b> 高级定制</a></li>
+<li class="chapter" data-level="3.2.5" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#实战示例-3"><i class="fa fa-check"></i><b>3.2.5</b> 实战示例</a></li>
+<li class="chapter" data-level="3.2.6" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#注意事项-2"><i class="fa fa-check"></i><b>3.2.6</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#ggpattern"><i class="fa fa-check"></i><b>3.3</b> ggpattern</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#简介与安装-4"><i class="fa fa-check"></i><b>3.3.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="3.3.2" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#基本使用方法-1"><i class="fa fa-check"></i><b>3.3.2</b> 基本使用方法</a></li>
+<li class="chapter" data-level="3.3.3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#图案属性定制"><i class="fa fa-check"></i><b>3.3.3</b> 图案属性定制</a></li>
+<li class="chapter" data-level="3.3.4" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#高级应用"><i class="fa fa-check"></i><b>3.3.4</b> 高级应用</a></li>
+<li class="chapter" data-level="3.3.5" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#实战示例-4"><i class="fa fa-check"></i><b>3.3.5</b> 实战示例</a></li>
+<li class="chapter" data-level="3.3.6" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#注意事项-3"><i class="fa fa-check"></i><b>3.3.6</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#geomtextpath"><i class="fa fa-check"></i><b>3.4</b> geomtextpath</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#简介与安装-5"><i class="fa fa-check"></i><b>3.4.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="3.4.2" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#基本使用方法-2"><i class="fa fa-check"></i><b>3.4.2</b> 基本使用方法</a></li>
+<li class="chapter" data-level="3.4.3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#文本属性定制"><i class="fa fa-check"></i><b>3.4.3</b> 文本属性定制</a></li>
+<li class="chapter" data-level="3.4.4" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#高级应用-1"><i class="fa fa-check"></i><b>3.4.4</b> 高级应用</a></li>
+<li class="chapter" data-level="3.4.5" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#实战示例-5"><i class="fa fa-check"></i><b>3.4.5</b> 实战示例</a></li>
+<li class="chapter" data-level="3.4.6" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#注意事项-4"><i class="fa fa-check"></i><b>3.4.6</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#gganimate"><i class="fa fa-check"></i><b>3.5</b> gganimate</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#简介与安装-6"><i class="fa fa-check"></i><b>3.5.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="3.5.2" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#基本使用方法-3"><i class="fa fa-check"></i><b>3.5.2</b> 基本使用方法</a></li>
+<li class="chapter" data-level="3.5.3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#时间轴和标签"><i class="fa fa-check"></i><b>3.5.3</b> 时间轴和标签</a></li>
+<li class="chapter" data-level="3.5.4" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#高级定制-3"><i class="fa fa-check"></i><b>3.5.4</b> 高级定制</a></li>
+<li class="chapter" data-level="3.5.5" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#输出和保存动画"><i class="fa fa-check"></i><b>3.5.5</b> 输出和保存动画</a></li>
+<li class="chapter" data-level="3.5.6" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#注意事项-5"><i class="fa fa-check"></i><b>3.5.6</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#ggiraph"><i class="fa fa-check"></i><b>3.6</b> ggiraph</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#简介与安装-7"><i class="fa fa-check"></i><b>3.6.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="3.6.2" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#基本使用方法-4"><i class="fa fa-check"></i><b>3.6.2</b> 基本使用方法</a></li>
+<li class="chapter" data-level="3.6.3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#增强交互性"><i class="fa fa-check"></i><b>3.6.3</b> 增强交互性</a></li>
+<li class="chapter" data-level="3.6.4" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#高级功能"><i class="fa fa-check"></i><b>3.6.4</b> 高级功能</a></li>
+<li class="chapter" data-level="3.6.5" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#实战示例-6"><i class="fa fa-check"></i><b>3.6.5</b> 实战示例</a></li>
+<li class="chapter" data-level="3.6.6" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#注意事项-6"><i class="fa fa-check"></i><b>3.6.6</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#esquisse"><i class="fa fa-check"></i><b>3.7</b> esquisse</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#简介与安装-8"><i class="fa fa-check"></i><b>3.7.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="3.7.2" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#启动esquisse界面"><i class="fa fa-check"></i><b>3.7.2</b> 启动<code>esquisse</code>界面</a></li>
+<li class="chapter" data-level="3.7.3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#创建图形"><i class="fa fa-check"></i><b>3.7.3</b> 创建图形</a></li>
+<li class="chapter" data-level="3.7.4" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#导出和使用代码"><i class="fa fa-check"></i><b>3.7.4</b> 导出和使用代码</a></li>
+<li class="chapter" data-level="3.7.5" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#esquisse与shiny集成"><i class="fa fa-check"></i><b>3.7.5</b> <code>esquisse</code>与Shiny集成</a></li>
+<li class="chapter" data-level="3.7.6" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#注意事项-7"><i class="fa fa-check"></i><b>3.7.6</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#ggthemes"><i class="fa fa-check"></i><b>3.8</b> ggthemes</a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#简介与安装-9"><i class="fa fa-check"></i><b>3.8.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="3.8.2" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#基本使用方法-5"><i class="fa fa-check"></i><b>3.8.2</b> 基本使用方法</a></li>
+<li class="chapter" data-level="3.8.3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#流行主题介绍"><i class="fa fa-check"></i><b>3.8.3</b> 流行主题介绍</a></li>
+<li class="chapter" data-level="3.8.4" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#自定义和扩展"><i class="fa fa-check"></i><b>3.8.4</b> 自定义和扩展</a></li>
+<li class="chapter" data-level="3.8.5" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#实战示例-7"><i class="fa fa-check"></i><b>3.8.5</b> 实战示例</a></li>
+<li class="chapter" data-level="3.8.6" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#注意事项-8"><i class="fa fa-check"></i><b>3.8.6</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#ggbump"><i class="fa fa-check"></i><b>3.9</b> ggbump</a>
+<ul>
+<li class="chapter" data-level="3.9.1" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#简介与安装-10"><i class="fa fa-check"></i><b>3.9.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="3.9.2" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#基本使用方法-6"><i class="fa fa-check"></i><b>3.9.2</b> 基本使用方法</a></li>
+<li class="chapter" data-level="3.9.3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#自定义图表"><i class="fa fa-check"></i><b>3.9.3</b> 自定义图表</a></li>
+<li class="chapter" data-level="3.9.4" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#高级功能-1"><i class="fa fa-check"></i><b>3.9.4</b> 高级功能</a></li>
+<li class="chapter" data-level="3.9.5" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#注意事项-9"><i class="fa fa-check"></i><b>3.9.5</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="3.10" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#ggtext"><i class="fa fa-check"></i><b>3.10</b> ggtext</a>
+<ul>
+<li class="chapter" data-level="3.10.1" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#简介与安装-11"><i class="fa fa-check"></i><b>3.10.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="3.10.2" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#基本使用方法-7"><i class="fa fa-check"></i><b>3.10.2</b> 基本使用方法</a></li>
+<li class="chapter" data-level="3.10.3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#增强文本表现力"><i class="fa fa-check"></i><b>3.10.3</b> 增强文本表现力</a></li>
+<li class="chapter" data-level="3.10.4" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#实战示例-8"><i class="fa fa-check"></i><b>3.10.4</b> 实战示例</a></li>
+<li class="chapter" data-level="3.10.5" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#注意事项-10"><i class="fa fa-check"></i><b>3.10.5</b> 注意事项</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="parts.html"><a href="parts.html"><i class="fa fa-check"></i><b>4</b> Parts</a></li>
+<li class="chapter" data-level="5" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html"><i class="fa fa-check"></i><b>5</b> Footnotes and citations</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#footnotes"><i class="fa fa-check"></i><b>5.1</b> Footnotes</a></li>
+<li class="chapter" data-level="5.2" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#citations"><i class="fa fa-check"></i><b>5.2</b> Citations</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="blocks.html"><a href="blocks.html"><i class="fa fa-check"></i><b>6</b> Blocks</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="blocks.html"><a href="blocks.html#equations"><i class="fa fa-check"></i><b>6.1</b> Equations</a></li>
+<li class="chapter" data-level="6.2" data-path="blocks.html"><a href="blocks.html#theorems-and-proofs"><i class="fa fa-check"></i><b>6.2</b> Theorems and proofs</a></li>
+<li class="chapter" data-level="6.3" data-path="blocks.html"><a href="blocks.html#callout-blocks"><i class="fa fa-check"></i><b>6.3</b> Callout blocks</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="sharing-your-book.html"><a href="sharing-your-book.html"><i class="fa fa-check"></i><b>7</b> Sharing your book</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="sharing-your-book.html"><a href="sharing-your-book.html#publishing"><i class="fa fa-check"></i><b>7.1</b> Publishing</a></li>
+<li class="chapter" data-level="7.2" data-path="sharing-your-book.html"><a href="sharing-your-book.html#pages"><i class="fa fa-check"></i><b>7.2</b> 404 pages</a></li>
+<li class="chapter" data-level="7.3" data-path="sharing-your-book.html"><a href="sharing-your-book.html#metadata-for-sharing"><i class="fa fa-check"></i><b>7.3</b> Metadata for sharing</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/liamamilin" target="blank">From Data to Viz</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">From Data to Viz</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="ggplot2-拓展包" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> ggplot2 拓展包<a href="ggplot2-拓展包.html#ggplot2-拓展包" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><img src="ggplot_extension.jpg" /></p>
+<div id="ggstatsplot" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> ggstatsplot<a href="ggplot2-拓展包.html#ggstatsplot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><code>ggstatsplot</code>是一个增强版的<code>ggplot2</code>包，专为统计分析而设计，提供了一种便捷的方式来创建包含统计测试结果的图形。这个包非常适合那些希望在数据可视化中直接集成统计分析结果的用户，从而使得数据解读更加直观和有效。在这篇教程中，我们将探讨<code>ggstatsplot</code>的基本用法、特色功能以及如何将其应用于数据分析中。</p>
+<div id="简介与安装-2" class="section level3 hasAnchor" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> 简介与安装<a href="ggplot2-拓展包.html#简介与安装-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="ggstatsplot简介" class="section level4 hasAnchor" number="3.1.1.1">
+<h4><span class="header-section-number">3.1.1.1</span> <code>ggstatsplot</code>简介<a href="ggplot2-拓展包.html#ggstatsplot简介" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>ggstatsplot</code>通过结合<code>ggplot2</code>图形美学和统计测试功能，提供了一种强大且直观的方法来探索和呈现数据中的统计关系。它自动计算统计测试并将结果直接添加到图表中，极大地简化了统计分析的流程。</p>
+</div>
+<div id="安装ggstatsplot" class="section level4 hasAnchor" number="3.1.1.2">
+<h4><span class="header-section-number">3.1.1.2</span> 安装<code>ggstatsplot</code><a href="ggplot2-拓展包.html#安装ggstatsplot" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>ggstatsplot</code>可以通过CRAN安装，或者安装开发版本以获取最新功能。</p>
+<pre><code># 从CRAN安装
+install.packages(&quot;ggstatsplot&quot;)
+
+# 或者安装开发版本
+if (!require(remotes)) install.packages(&quot;remotes&quot;)
+remotes::install_github(&quot;IndrajeetPatil/ggstatsplot&quot;)</code></pre>
+</div>
+</div>
+<div id="基本用法-1" class="section level3 hasAnchor" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> 基本用法<a href="ggplot2-拓展包.html#基本用法-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="创建包含统计注释的图表" class="section level4 hasAnchor" number="3.1.2.1">
+<h4><span class="header-section-number">3.1.2.1</span> 创建包含统计注释的图表<a href="ggplot2-拓展包.html#创建包含统计注释的图表" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>ggstatsplot</code>的核心功能是创建包含统计测试结果的图表。以下是一个简单的示例，展示如何使用<code>gghistostats</code>来创建一个包含t测试结果的直方图。</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="ggplot2-拓展包.html#cb2-1" tabindex="-1"></a><span class="fu">library</span>(ggstatsplot)</span></code></pre></div>
+<pre><code>## You can cite this package as:
+##      Patil, I. (2021). Visualizations with statistical details: The &#39;ggstatsplot&#39; approach.
+##      Journal of Open Source Software, 6(61), 3167, doi:10.21105/joss.03167</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="ggplot2-拓展包.html#cb4-1" tabindex="-1"></a><span class="co"># 创建一个包含t测试结果的直方图</span></span>
+<span id="cb4-2"><a href="ggplot2-拓展包.html#cb4-2" tabindex="-1"></a><span class="fu">gghistostats</span>(<span class="at">data =</span> mtcars, <span class="at">x =</span> mpg)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+</div>
+<div id="支持的统计测试和图形类型" class="section level4 hasAnchor" number="3.1.2.2">
+<h4><span class="header-section-number">3.1.2.2</span> 支持的统计测试和图形类型<a href="ggplot2-拓展包.html#支持的统计测试和图形类型" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>ggstatsplot</code>支持多种统计测试（如t测试、ANOVA、相关性测试等）和图形类型（如直方图、散点图、箱线图等），允许用户根据数据类型和分析目标选择合适的函数。</p>
+</div>
+</div>
+<div id="特色功能" class="section level3 hasAnchor" number="3.1.3">
+<h3><span class="header-section-number">3.1.3</span> 特色功能<a href="ggplot2-拓展包.html#特色功能" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="分组分析和多重比较" class="section level4 hasAnchor" number="3.1.3.1">
+<h4><span class="header-section-number">3.1.3.1</span> 分组分析和多重比较<a href="ggplot2-拓展包.html#分组分析和多重比较" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>ggstatsplot</code>支持分组分析，可以轻松地对数据进行分组并进行多重比较。</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="ggplot2-拓展包.html#cb5-1" tabindex="-1"></a><span class="co"># 使用ggbetweenstats进行分组比较</span></span>
+<span id="cb5-2"><a href="ggplot2-拓展包.html#cb5-2" tabindex="-1"></a><span class="fu">ggbetweenstats</span>(<span class="at">data =</span> mtcars, <span class="at">x =</span> cyl, <span class="at">y =</span> mpg, <span class="at">pairwise.comparisons =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+</div>
+<div id="添加趋势线和置信区间" class="section level4 hasAnchor" number="3.1.3.2">
+<h4><span class="header-section-number">3.1.3.2</span> 添加趋势线和置信区间<a href="ggplot2-拓展包.html#添加趋势线和置信区间" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>对于散点图，<code>ggstatsplot</code>可以自动添加趋势线和置信区间，帮助用户更好地理解数据之间的关系。</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="ggplot2-拓展包.html#cb6-1" tabindex="-1"></a><span class="co"># 使用ggscatterstats添加趋势线</span></span>
+<span id="cb6-2"><a href="ggplot2-拓展包.html#cb6-2" tabindex="-1"></a><span class="fu">ggscatterstats</span>(<span class="at">data =</span> mtcars, <span class="at">x =</span> wt, <span class="at">y =</span> mpg)</span></code></pre></div>
+<pre><code>## Registered S3 method overwritten by &#39;ggside&#39;:
+##   method from   
+##   +.gg   ggplot2</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
+</div>
+<div id="高级定制-1" class="section level3 hasAnchor" number="3.1.4">
+<h3><span class="header-section-number">3.1.4</span> 高级定制<a href="ggplot2-拓展包.html#高级定制-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="修改主题和标签" class="section level4 hasAnchor" number="3.1.4.1">
+<h4><span class="header-section-number">3.1.4.1</span> 修改主题和标签<a href="ggplot2-拓展包.html#修改主题和标签" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>ggstatsplot</code>允许用户自定义图形的主题和标签，以适应不同的展示需求。</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="ggplot2-拓展包.html#cb9-1" tabindex="-1"></a><span class="co"># 自定义主题和标签</span></span>
+<span id="cb9-2"><a href="ggplot2-拓展包.html#cb9-2" tabindex="-1"></a><span class="fu">ggscatterstats</span>(</span>
+<span id="cb9-3"><a href="ggplot2-拓展包.html#cb9-3" tabindex="-1"></a>  <span class="at">data =</span> mtcars,</span>
+<span id="cb9-4"><a href="ggplot2-拓展包.html#cb9-4" tabindex="-1"></a>  <span class="at">x =</span> wt,</span>
+<span id="cb9-5"><a href="ggplot2-拓展包.html#cb9-5" tabindex="-1"></a>  <span class="at">y =</span> mpg,</span>
+<span id="cb9-6"><a href="ggplot2-拓展包.html#cb9-6" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">&quot;汽车重量与油耗的关系&quot;</span>,</span>
+<span id="cb9-7"><a href="ggplot2-拓展包.html#cb9-7" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">&quot;重量&quot;</span>,</span>
+<span id="cb9-8"><a href="ggplot2-拓展包.html#cb9-8" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">&quot;每加仑行驶英里数&quot;</span>,</span>
+<span id="cb9-9"><a href="ggplot2-拓展包.html#cb9-9" tabindex="-1"></a>  <span class="at">theme =</span> <span class="fu">theme_minimal</span>()</span>
+<span id="cb9-10"><a href="ggplot2-拓展包.html#cb9-10" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+</div>
+<div id="自定义统计测试和消息" class="section level4 hasAnchor" number="3.1.4.2">
+<h4><span class="header-section-number">3.1.4.2</span> 自定义统计测试和消息<a href="ggplot2-拓展包.html#自定义统计测试和消息" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>用户可以通过参数设置自定义统计测试和在图表中显示的消息。</p>
+</div>
+</div>
+<div id="实战示例-2" class="section level3 hasAnchor" number="3.1.5">
+<h3><span class="header-section-number">3.1.5</span> 实战示例<a href="ggplot2-拓展包.html#实战示例-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>让我们通过一个实战示例来展示如何使用<code>ggstatsplot</code>进行数据分析。</p>
+<p>假设我们想要分析<code>mtcars</code>数据集中汽车的重量（<code>wt</code>）和每加仑行驶英里数（<code>mpg</code>）之间的关系，并考虑汽缸数（<code>cyl</code>）作为分组变量。</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="ggplot2-拓展包.html#cb11-1" tabindex="-1"></a><span class="co"># 对每个汽缸数分组，分析重量和油耗的关系</span></span>
+<span id="cb11-2"><a href="ggplot2-拓展包.html#cb11-2" tabindex="-1"></a><span class="fu">ggbetweenstats</span>(</span>
+<span id="cb11-3"><a href="ggplot2-拓展包.html#cb11-3" tabindex="-1"></a>  <span class="at">data =</span> mtcars,</span>
+<span id="cb11-4"><a href="ggplot2-拓展包.html#cb11-4" tabindex="-1"></a>  <span class="at">x =</span> cyl,</span>
+<span id="cb11-5"><a href="ggplot2-拓展包.html#cb11-5" tabindex="-1"></a>  <span class="at">y =</span> mpg,</span>
+<span id="cb11-6"><a href="ggplot2-拓展包.html#cb11-6" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">&quot;汽缸数&quot;</span>,</span>
+<span id="cb11-7"><a href="ggplot2-拓展包.html#cb11-7" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">&quot;每加仑行驶英里数&quot;</span>,</span>
+<span id="cb11-8"><a href="ggplot2-拓展包.html#cb11-8" tabindex="-1"></a>  <span class="at">title =</span> <span class="st">&quot;不同汽缸数下的油耗分析&quot;</span>,</span>
+<span id="cb11-9"><a href="ggplot2-拓展包.html#cb11-9" tabindex="-1"></a>  <span class="at">pairwise.comparisons =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb11-10"><a href="ggplot2-拓展包.html#cb11-10" tabindex="-1"></a>  <span class="at">pairwise.annotation =</span> <span class="st">&quot;p.value&quot;</span></span>
+<span id="cb11-11"><a href="ggplot2-拓展包.html#cb11-11" tabindex="-1"></a>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+</div>
+<div id="注意事项-1" class="section level3 hasAnchor" number="3.1.6">
+<h3><span class="header-section-number">3.1.6</span> 注意事项<a href="ggplot2-拓展包.html#注意事项-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><strong>数据准备和检查</strong>：在使用<code>ggstatsplot</code>之前，确保数据已经被适当清洗和处理。检查是否有缺失值或异常值，这些都可能影响统计测试的结果。</li>
+<li><strong>包的更新和社区支持</strong>：<code>ggstatsplot</code>是一个活跃开发的包，建议定期检查并更新到最新版本以获得改进和新功能。如遇到问题，可以参考官方文档或在GitHub上寻求社区支持。</li>
+</ul>
+</div>
+</div>
+<div id="gghighlight" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> gghighlight<a href="ggplot2-拓展包.html#gghighlight" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><code>gghighlight</code>是一个非常实用的R包，用于<code>ggplot2</code>图表中高亮显示特定的数据点或数据系列，使得在展示复杂数据时，观众能够迅速聚焦于关键信息。本教程将带你了解<code>gghighlight</code>的基本使用方法、如何高亮显示数据、以及高级定制技巧，以便你能够在数据可视化项目中更有效地使用这个工具。</p>
+<div id="简介与安装-3" class="section level3 hasAnchor" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> 简介与安装<a href="ggplot2-拓展包.html#简介与安装-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="gghighlight简介" class="section level4 hasAnchor" number="3.2.1.1">
+<h4><span class="header-section-number">3.2.1.1</span> <code>gghighlight</code>简介<a href="ggplot2-拓展包.html#gghighlight简介" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>gghighlight</code>通过提供简单直观的语法，使得在<code>ggplot2</code>创建的图表中高亮显示特定数据变得轻而易举。它可以应用于任何<code>ggplot2</code>图表，包括散点图、线图、柱状图等。</p>
+</div>
+<div id="安装gghighlight" class="section level4 hasAnchor" number="3.2.1.2">
+<h4><span class="header-section-number">3.2.1.2</span> 安装<code>gghighlight</code><a href="ggplot2-拓展包.html#安装gghighlight" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>gghighlight</code>可以通过CRAN安装，使用以下命令：</p>
+<pre><code>install.packages(&quot;gghighlight&quot;)</code></pre>
+</div>
+</div>
+<div id="基本使用方法" class="section level3 hasAnchor" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> 基本使用方法<a href="ggplot2-拓展包.html#基本使用方法" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="使用gghighlight高亮数据点" class="section level4 hasAnchor" number="3.2.2.1">
+<h4><span class="header-section-number">3.2.2.1</span> 使用<code>gghighlight</code>高亮数据点<a href="ggplot2-拓展包.html#使用gghighlight高亮数据点" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>一旦安装了<code>gghighlight</code>，你就可以在<code>ggplot2</code>图表中使用它来高亮特定的数据点。这里是一个简单的例子，展示如何在散点图中高亮显示特定条件的点。</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="ggplot2-拓展包.html#cb13-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb13-2"><a href="ggplot2-拓展包.html#cb13-2" tabindex="-1"></a><span class="fu">library</span>(gghighlight)</span>
+<span id="cb13-3"><a href="ggplot2-拓展包.html#cb13-3" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="ggplot2-拓展包.html#cb13-4" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb13-5"><a href="ggplot2-拓展包.html#cb13-5" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb13-6"><a href="ggplot2-拓展包.html#cb13-6" tabindex="-1"></a>  <span class="fu">gghighlight</span>(mpg <span class="sc">&gt;</span> <span class="dv">25</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>这段代码会生成一个散点图，并高亮显示那些每加仑行驶英里数（mpg）大于25的点。</p>
+</div>
+<div id="设置高亮条件" class="section level4 hasAnchor" number="3.2.2.2">
+<h4><span class="header-section-number">3.2.2.2</span> 设置高亮条件<a href="ggplot2-拓展包.html#设置高亮条件" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>gghighlight</code>允许你通过逻辑表达式设置高亮条件，这让你能够灵活地定义哪些数据点应该被高亮显示。</p>
+</div>
+</div>
+<div id="高亮多个系列" class="section level3 hasAnchor" number="3.2.3">
+<h3><span class="header-section-number">3.2.3</span> 高亮多个系列<a href="ggplot2-拓展包.html#高亮多个系列" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="高亮显示多个数据系列" class="section level4 hasAnchor" number="3.2.3.1">
+<h4><span class="header-section-number">3.2.3.1</span> 高亮显示多个数据系列<a href="ggplot2-拓展包.html#高亮显示多个数据系列" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>在处理线图或柱状图时，<code>gghighlight</code>同样能够高亮显示满足特定条件的多个数据系列。</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="ggplot2-拓展包.html#cb14-1" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> gear, <span class="at">y =</span> mpg, <span class="at">group =</span> cyl, <span class="at">color =</span> <span class="fu">as.factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb14-2"><a href="ggplot2-拓展包.html#cb14-2" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb14-3"><a href="ggplot2-拓展包.html#cb14-3" tabindex="-1"></a>  <span class="fu">gghighlight</span>(<span class="fu">max</span>(mpg) <span class="sc">&gt;</span> <span class="dv">30</span>)</span></code></pre></div>
+<pre><code>## label_key: cyl</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>此代码将在线图中高亮显示那些最大mpg值大于30的汽缸（cyl）组。</p>
+</div>
+<div id="使用逻辑条件进行高亮" class="section level4 hasAnchor" number="3.2.3.2">
+<h4><span class="header-section-number">3.2.3.2</span> 使用逻辑条件进行高亮<a href="ggplot2-拓展包.html#使用逻辑条件进行高亮" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>你可以使用复杂的逻辑条件来精确控制哪些系列或数据点被高亮。</p>
+</div>
+</div>
+<div id="高级定制-2" class="section level3 hasAnchor" number="3.2.4">
+<h3><span class="header-section-number">3.2.4</span> 高级定制<a href="ggplot2-拓展包.html#高级定制-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="自定义高亮样式" class="section level4 hasAnchor" number="3.2.4.1">
+<h4><span class="header-section-number">3.2.4.1</span> 自定义高亮样式<a href="ggplot2-拓展包.html#自定义高亮样式" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>gghighlight</code>支持自定义高亮样式，包括颜色、大小和形状等。这可以通过<code>gghighlight</code>的参数来实现。</p>
+<pre><code>gghighlight(mpg &gt; 25, label_key = wt, high_col = &quot;red&quot;)</code></pre>
+<p>此代码将高亮显示mpg大于25的点，并将高亮点的颜色设置为红色。</p>
+</div>
+<div id="高亮标签和注释" class="section level4 hasAnchor" number="3.2.4.2">
+<h4><span class="header-section-number">3.2.4.2</span> 高亮标签和注释<a href="ggplot2-拓展包.html#高亮标签和注释" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>gghighlight</code>还支持在高亮的数据点旁添加标签，使得图表更加信息丰富和易于理解。</p>
+<pre><code>gghighlight(mpg &gt; 25, label_key = wt, use_direct_label = TRUE)</code></pre>
+</div>
+</div>
+<div id="实战示例-3" class="section level3 hasAnchor" number="3.2.5">
+<h3><span class="header-section-number">3.2.5</span> 实战示例<a href="ggplot2-拓展包.html#实战示例-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>让我们通过一个实战示例来展示如何在数据分析中综合应用<code>gghighlight</code>。</p>
+<p>假设我们想要分析<code>mtcars</code>数据集中，哪些车型在重量（wt）和每加仑行驶英里数（mpg）上表现出色。我们将创建一个散点图，并高亮显示那些重量低于平均值同时mpg高于平均值的车型。</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="ggplot2-拓展包.html#cb18-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb18-2"><a href="ggplot2-拓展包.html#cb18-2" tabindex="-1"></a><span class="fu">library</span>(gghighlight)</span>
+<span id="cb18-3"><a href="ggplot2-拓展包.html#cb18-3" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="ggplot2-拓展包.html#cb18-4" tabindex="-1"></a><span class="co"># 计算平均重量和平均mpg</span></span>
+<span id="cb18-5"><a href="ggplot2-拓展包.html#cb18-5" tabindex="-1"></a>avg_wt <span class="ot">&lt;-</span> <span class="fu">mean</span>(mtcars<span class="sc">$</span>wt)</span>
+<span id="cb18-6"><a href="ggplot2-拓展包.html#cb18-6" tabindex="-1"></a>avg_mpg <span class="ot">&lt;-</span> <span class="fu">mean</span>(mtcars<span class="sc">$</span>mpg)</span>
+<span id="cb18-7"><a href="ggplot2-拓展包.html#cb18-7" tabindex="-1"></a></span>
+<span id="cb18-8"><a href="ggplot2-拓展包.html#cb18-8" tabindex="-1"></a><span class="co"># 将行名添加为新列</span></span>
+<span id="cb18-9"><a href="ggplot2-拓展包.html#cb18-9" tabindex="-1"></a>mtcars<span class="sc">$</span>carname <span class="ot">&lt;-</span> <span class="fu">rownames</span>(mtcars)</span>
+<span id="cb18-10"><a href="ggplot2-拓展包.html#cb18-10" tabindex="-1"></a></span>
+<span id="cb18-11"><a href="ggplot2-拓展包.html#cb18-11" tabindex="-1"></a><span class="co"># 创建散点图并使用gghighlight高亮特定点</span></span>
+<span id="cb18-12"><a href="ggplot2-拓展包.html#cb18-12" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb18-13"><a href="ggplot2-拓展包.html#cb18-13" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb18-14"><a href="ggplot2-拓展包.html#cb18-14" tabindex="-1"></a>    <span class="fu">gghighlight</span>(wt <span class="sc">&lt;</span> avg_wt <span class="sc">&amp;</span> mpg <span class="sc">&gt;</span> avg_mpg, <span class="at">label_key =</span> carname)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>这个例子不仅高亮了特定的车型，而且还在每个高亮点旁边添加了车型名称作为标签，使得图表的信息传达更为直观和有效。</p>
+</div>
+<div id="注意事项-2" class="section level3 hasAnchor" number="3.2.6">
+<h3><span class="header-section-number">3.2.6</span> 注意事项<a href="ggplot2-拓展包.html#注意事项-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>在使用<code>gghighlight</code>时，确保已经加载了<code>ggplot2</code>包。</li>
+<li>考虑到图表的可读性，避免在一个图表中高亮过多的数据点或系列。</li>
+<li>利用<code>gghighlight</code>的定制参数调整高亮样式，以适应你的图表设计需求。</li>
+</ul>
+<p>通过本教程，你应该能够开始使用<code>gghighlight</code>来增强你的<code>ggplot2</code>图表，使关键数据更加突出。无论是数据探索、报告撰写还是学术发表，<code>gghighlight</code>都是一个极佳的工具，能够帮助你更有效地传达数据故事。</p>
+</div>
+</div>
+<div id="ggpattern" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> ggpattern<a href="ggplot2-拓展包.html#ggpattern" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><code>ggpattern</code>是一个为<code>ggplot2</code>图形添加图案填充功能的R包。它扩展了<code>ggplot2</code>的功能，允许用户为几何对象（如柱状图的条形、饼图的扇形、箱线图的箱体等）添加不同的图案，从而增强图形的视觉表现力和信息传达能力。这篇教程将介绍<code>ggpattern</code>的安装、基本使用方法、高级定制技巧，以及如何将其应用于数据可视化项目中。</p>
+<div id="简介与安装-4" class="section level3 hasAnchor" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> 简介与安装<a href="ggplot2-拓展包.html#简介与安装-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="ggpattern简介" class="section level4 hasAnchor" number="3.3.1.1">
+<h4><span class="header-section-number">3.3.1.1</span> <code>ggpattern</code>简介<a href="ggplot2-拓展包.html#ggpattern简介" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>ggpattern</code>通过提供一系列图案填充选项，增强了<code>ggplot2</code>图表的表现力，特别适用于需要通过图案来区分不同数据系列或类别的场景。</p>
+</div>
+<div id="安装ggpattern" class="section level4 hasAnchor" number="3.3.1.2">
+<h4><span class="header-section-number">3.3.1.2</span> 安装<code>ggpattern</code><a href="ggplot2-拓展包.html#安装ggpattern" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>ggpattern</code>可以通过CRAN安装，或者从GitHub安装最新版本。</p>
+<pre><code># 从CRAN安装
+install.packages(&quot;ggpattern&quot;)
+
+# 或者从GitHub安装最新版本
+if (!require(remotes)) install.packages(&quot;remotes&quot;)
+remotes::install_github(&quot;coolbutuseless/ggpattern&quot;)</code></pre>
+</div>
+</div>
+<div id="基本使用方法-1" class="section level3 hasAnchor" number="3.3.2">
+<h3><span class="header-section-number">3.3.2</span> 基本使用方法<a href="ggplot2-拓展包.html#基本使用方法-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="在ggplot2图形中添加图案" class="section level4 hasAnchor" number="3.3.2.1">
+<h4><span class="header-section-number">3.3.2.1</span> 在<code>ggplot2</code>图形中添加图案<a href="ggplot2-拓展包.html#在ggplot2图形中添加图案" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>使用<code>ggpattern</code>非常简单，只需要在<code>ggplot2</code>图层中添加<code>geom_*_pattern()</code>函数即可，其中<code>*</code>代表不同的几何对象类型，如<code>bar</code>、<code>col</code>、<code>fill</code>等。</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="ggplot2-拓展包.html#cb20-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb20-2"><a href="ggplot2-拓展包.html#cb20-2" tabindex="-1"></a><span class="fu">library</span>(ggpattern)</span>
+<span id="cb20-3"><a href="ggplot2-拓展包.html#cb20-3" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="ggplot2-拓展包.html#cb20-4" tabindex="-1"></a><span class="co"># 创建一个简单的柱状图并添加条纹图案</span></span>
+<span id="cb20-5"><a href="ggplot2-拓展包.html#cb20-5" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="fu">factor</span>(cyl), <span class="at">fill =</span> <span class="fu">factor</span>(gear))) <span class="sc">+</span></span>
+<span id="cb20-6"><a href="ggplot2-拓展包.html#cb20-6" tabindex="-1"></a>  <span class="fu">geom_bar_pattern</span>(<span class="at">stat =</span> <span class="st">&quot;count&quot;</span>, <span class="at">pattern =</span> <span class="st">&#39;stripe&#39;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+</div>
+<div id="支持的图案类型" class="section level4 hasAnchor" number="3.3.2.2">
+<h4><span class="header-section-number">3.3.2.2</span> 支持的图案类型<a href="ggplot2-拓展包.html#支持的图案类型" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>ggpattern</code>支持多种图案类型，包括条纹、网格、点、斜线、十字、星形等。</p>
+</div>
+</div>
+<div id="图案属性定制" class="section level3 hasAnchor" number="3.3.3">
+<h3><span class="header-section-number">3.3.3</span> 图案属性定制<a href="ggplot2-拓展包.html#图案属性定制" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="自定义图案样式" class="section level4 hasAnchor" number="3.3.3.1">
+<h4><span class="header-section-number">3.3.3.1</span> 自定义图案样式<a href="ggplot2-拓展包.html#自定义图案样式" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>你可以自定义图案的颜色、大小、角度等属性，以适应图表的设计需求。</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="ggplot2-拓展包.html#cb21-1" tabindex="-1"></a><span class="co"># 自定义图案样式</span></span>
+<span id="cb21-2"><a href="ggplot2-拓展包.html#cb21-2" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="fu">factor</span>(cyl), <span class="at">fill =</span> <span class="fu">factor</span>(gear))) <span class="sc">+</span></span>
+<span id="cb21-3"><a href="ggplot2-拓展包.html#cb21-3" tabindex="-1"></a>  <span class="fu">geom_bar_pattern</span>(</span>
+<span id="cb21-4"><a href="ggplot2-拓展包.html#cb21-4" tabindex="-1"></a>    <span class="at">stat =</span> <span class="st">&quot;count&quot;</span>,</span>
+<span id="cb21-5"><a href="ggplot2-拓展包.html#cb21-5" tabindex="-1"></a>    <span class="at">pattern =</span> <span class="st">&#39;crosshatch&#39;</span>,</span>
+<span id="cb21-6"><a href="ggplot2-拓展包.html#cb21-6" tabindex="-1"></a>    <span class="at">pattern_angle =</span> <span class="dv">45</span>,</span>
+<span id="cb21-7"><a href="ggplot2-拓展包.html#cb21-7" tabindex="-1"></a>    <span class="at">pattern_density =</span> <span class="fl">0.1</span>,</span>
+<span id="cb21-8"><a href="ggplot2-拓展包.html#cb21-8" tabindex="-1"></a>    <span class="at">pattern_spacing =</span> <span class="fl">0.02</span>,</span>
+<span id="cb21-9"><a href="ggplot2-拓展包.html#cb21-9" tabindex="-1"></a>    <span class="at">pattern_color =</span> <span class="st">&quot;black&quot;</span></span>
+<span id="cb21-10"><a href="ggplot2-拓展包.html#cb21-10" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+</div>
+<div id="调整图案参数" class="section level4 hasAnchor" number="3.3.3.2">
+<h4><span class="header-section-number">3.3.3.2</span> 调整图案参数<a href="ggplot2-拓展包.html#调整图案参数" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>通过调整<code>pattern_*</code>参数，可以微调图案的具体表现，如图案间距、图案线宽等。</p>
+</div>
+</div>
+<div id="高级应用" class="section level3 hasAnchor" number="3.3.4">
+<h3><span class="header-section-number">3.3.4</span> 高级应用<a href="ggplot2-拓展包.html#高级应用" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="结合颜色和图案使用" class="section level4 hasAnchor" number="3.3.4.1">
+<h4><span class="header-section-number">3.3.4.1</span> 结合颜色和图案使用<a href="ggplot2-拓展包.html#结合颜色和图案使用" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>ggpattern</code>允许在同一图形中结合使用颜色和图案，增加数据的区分度。</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="ggplot2-拓展包.html#cb22-1" tabindex="-1"></a><span class="co"># 结合颜色和图案</span></span>
+<span id="cb22-2"><a href="ggplot2-拓展包.html#cb22-2" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(cyl), <span class="at">fill =</span> <span class="fu">factor</span>(vs))) <span class="sc">+</span></span>
+<span id="cb22-3"><a href="ggplot2-拓展包.html#cb22-3" tabindex="-1"></a>  <span class="fu">geom_bar_pattern</span>(</span>
+<span id="cb22-4"><a href="ggplot2-拓展包.html#cb22-4" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">pattern =</span> <span class="fu">factor</span>(gear)),</span>
+<span id="cb22-5"><a href="ggplot2-拓展包.html#cb22-5" tabindex="-1"></a>    <span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>,</span>
+<span id="cb22-6"><a href="ggplot2-拓展包.html#cb22-6" tabindex="-1"></a>    <span class="at">pattern_fill =</span> <span class="st">&quot;black&quot;</span>,</span>
+<span id="cb22-7"><a href="ggplot2-拓展包.html#cb22-7" tabindex="-1"></a>    <span class="at">pattern_density =</span> <span class="fl">0.2</span></span>
+<span id="cb22-8"><a href="ggplot2-拓展包.html#cb22-8" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+</div>
+<div id="图案与数据映射" class="section level4 hasAnchor" number="3.3.4.2">
+<h4><span class="header-section-number">3.3.4.2</span> 图案与数据映射<a href="ggplot2-拓展包.html#图案与数据映射" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>图案属性也可以映射到数据变量上，以动态展示数据特征。</p>
+</div>
+</div>
+<div id="实战示例-4" class="section level3 hasAnchor" number="3.3.5">
+<h3><span class="header-section-number">3.3.5</span> 实战示例<a href="ggplot2-拓展包.html#实战示例-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>让我们通过一个实战示例来展示如何在数据可视化项目中综合应用<code>ggpattern</code>。</p>
+<p>假设我们需要对某个数据集进行分类展示，并希望通过不同的图案来区分各个类别。</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="ggplot2-拓展包.html#cb23-1" tabindex="-1"></a><span class="co"># 使用iris数据集</span></span>
+<span id="cb23-2"><a href="ggplot2-拓展包.html#cb23-2" tabindex="-1"></a><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(<span class="at">x =</span> Species, <span class="at">y =</span> Sepal.Length, <span class="at">fill =</span> Species)) <span class="sc">+</span></span>
+<span id="cb23-3"><a href="ggplot2-拓展包.html#cb23-3" tabindex="-1"></a>  <span class="fu">geom_boxplot_pattern</span>(</span>
+<span id="cb23-4"><a href="ggplot2-拓展包.html#cb23-4" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">pattern =</span> Species),</span>
+<span id="cb23-5"><a href="ggplot2-拓展包.html#cb23-5" tabindex="-1"></a>    <span class="at">pattern_density =</span> <span class="fl">0.1</span>,</span>
+<span id="cb23-6"><a href="ggplot2-拓展包.html#cb23-6" tabindex="-1"></a>    <span class="at">pattern_spacing =</span> <span class="fl">0.02</span>,</span>
+<span id="cb23-7"><a href="ggplot2-拓展包.html#cb23-7" tabindex="-1"></a>    <span class="at">pattern_key_scale_factor =</span> <span class="fl">0.8</span></span>
+<span id="cb23-8"><a href="ggplot2-拓展包.html#cb23-8" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb23-9"><a href="ggplot2-拓展包.html#cb23-9" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;lightblue&quot;</span>, <span class="st">&quot;lightpink&quot;</span>, <span class="st">&quot;lightgreen&quot;</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>这个例子使用了箱线图来展示不同物种花萼长度的分布，并通过不同的图案和颜色区分物种。</p>
+</div>
+<div id="注意事项-3" class="section level3 hasAnchor" number="3.3.6">
+<h3><span class="header-section-number">3.3.6</span> 注意事项<a href="ggplot2-拓展包.html#注意事项-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><strong>兼容性问题</strong>：<code>ggpattern</code>的某些功能可能与最新的<code>ggplot2</code>版本或其他<code>ggplot2</code>扩展包存在兼容性问题，建议检查相关文档和GitHub issues。</li>
+<li><strong>性能考量</strong>：使用复杂图案填充时，特别是在处理大型数据集或图形时，<code>ggpattern</code>可能会影响图形的渲染性能。</li>
+</ul>
+</div>
+</div>
+<div id="geomtextpath" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> geomtextpath<a href="ggplot2-拓展包.html#geomtextpath" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><code>geomtextpath</code>是一个R包，它为<code>ggplot2</code>提供了一种独特的功能：能够让文本沿着路径排列，这意味着你可以将文本沿着曲线或直线等图形元素渲染出来。这种功能在需要强调特定数据轨迹或在图表中添加创意注释时非常有用。本教程将引导你了解如何安装<code>geomtextpath</code>包、基本使用方法、以及如何通过高级定制来增强你的数据可视化作品。</p>
+<div id="简介与安装-5" class="section level3 hasAnchor" number="3.4.1">
+<h3><span class="header-section-number">3.4.1</span> 简介与安装<a href="ggplot2-拓展包.html#简介与安装-5" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="geomtextpath简介" class="section level4 hasAnchor" number="3.4.1.1">
+<h4><span class="header-section-number">3.4.1.1</span> <code>geomtextpath</code>简介<a href="ggplot2-拓展包.html#geomtextpath简介" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>geomtextpath</code>通过允许文本沿着路径排列，为数据可视化添加了新的维度。这对于展示时间序列数据、强调特定趋势线或在图表上创造性地添加注释尤为有用。</p>
+</div>
+<div id="安装geomtextpath" class="section level4 hasAnchor" number="3.4.1.2">
+<h4><span class="header-section-number">3.4.1.2</span> 安装<code>geomtextpath</code><a href="ggplot2-拓展包.html#安装geomtextpath" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>geomtextpath</code>可以通过CRAN安装，也可以从GitHub安装最新版本以获得最新的功能和修复。</p>
+<pre><code># 从CRAN安装
+install.packages(&quot;geomtextpath&quot;)
+
+# 或从GitHub安装最新版本
+if (!require(remotes)) install.packages(&quot;remotes&quot;)
+remotes::install_github(&quot;AllanCameron/geomtextpath&quot;)</code></pre>
+</div>
+</div>
+<div id="基本使用方法-2" class="section level3 hasAnchor" number="3.4.2">
+<h3><span class="header-section-number">3.4.2</span> 基本使用方法<a href="ggplot2-拓展包.html#基本使用方法-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="在ggplot2图形中应用geom_textpath" class="section level4 hasAnchor" number="3.4.2.1">
+<h4><span class="header-section-number">3.4.2.1</span> 在<code>ggplot2</code>图形中应用<code>geom_textpath()</code><a href="ggplot2-拓展包.html#在ggplot2图形中应用geom_textpath" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>geomtextpath</code>包主要通过<code>geom_textpath()</code>函数工作，这个函数类似于<code>ggplot2</code>中的<code>geom_text()</code>，但允许文本沿预定义的路径排列。</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="ggplot2-拓展包.html#cb25-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb25-2"><a href="ggplot2-拓展包.html#cb25-2" tabindex="-1"></a><span class="fu">library</span>(geomtextpath)</span>
+<span id="cb25-3"><a href="ggplot2-拓展包.html#cb25-3" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="ggplot2-拓展包.html#cb25-4" tabindex="-1"></a><span class="co"># 示例数据</span></span>
+<span id="cb25-5"><a href="ggplot2-拓展包.html#cb25-5" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">y =</span> <span class="fu">sin</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>), <span class="at">label =</span> <span class="st">&quot;Hello World&quot;</span>)</span>
+<span id="cb25-6"><a href="ggplot2-拓展包.html#cb25-6" tabindex="-1"></a></span>
+<span id="cb25-7"><a href="ggplot2-拓展包.html#cb25-7" tabindex="-1"></a><span class="co"># 创建带有文本路径的图形</span></span>
+<span id="cb25-8"><a href="ggplot2-拓展包.html#cb25-8" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">label =</span> label)) <span class="sc">+</span></span>
+<span id="cb25-9"><a href="ggplot2-拓展包.html#cb25-9" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb25-10"><a href="ggplot2-拓展包.html#cb25-10" tabindex="-1"></a>  <span class="fu">geom_textpath</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+</div>
+<div id="支持的路径类型和文本定位" class="section level4 hasAnchor" number="3.4.2.2">
+<h4><span class="header-section-number">3.4.2.2</span> 支持的路径类型和文本定位<a href="ggplot2-拓展包.html#支持的路径类型和文本定位" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>geom_textpath()</code>支持各种路径类型（如直线、曲线等），并允许调整文本的位置和方向以适应路径的形状。</p>
+</div>
+</div>
+<div id="文本属性定制" class="section level3 hasAnchor" number="3.4.3">
+<h3><span class="header-section-number">3.4.3</span> 文本属性定制<a href="ggplot2-拓展包.html#文本属性定制" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="自定义文本样式" class="section level4 hasAnchor" number="3.4.3.1">
+<h4><span class="header-section-number">3.4.3.1</span> 自定义文本样式<a href="ggplot2-拓展包.html#自定义文本样式" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>可以通过<code>geom_textpath()</code>中的参数自定义文本的字体、大小、颜色等属性，以匹配图表的整体设计风格。</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="ggplot2-拓展包.html#cb26-1" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">label =</span> label)) <span class="sc">+</span></span>
+<span id="cb26-2"><a href="ggplot2-拓展包.html#cb26-2" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb26-3"><a href="ggplot2-拓展包.html#cb26-3" tabindex="-1"></a>  <span class="fu">geom_textpath</span>(<span class="at">size =</span> <span class="dv">5</span>, <span class="at">colour =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">fontface =</span> <span class="st">&quot;italic&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+</div>
+<div id="控制文本方向和排列" class="section level4 hasAnchor" number="3.4.3.2">
+<h4><span class="header-section-number">3.4.3.2</span> 控制文本方向和排列<a href="ggplot2-拓展包.html#控制文本方向和排列" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>geom_textpath()</code>允许控制文本的方向和沿路径的排列方式，确保文本的可读性和美观性。</p>
+</div>
+</div>
+<div id="高级应用-1" class="section level3 hasAnchor" number="3.4.4">
+<h3><span class="header-section-number">3.4.4</span> 高级应用<a href="ggplot2-拓展包.html#高级应用-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="在复杂路径上应用文本" class="section level4 hasAnchor" number="3.4.4.1">
+<h4><span class="header-section-number">3.4.4.1</span> 在复杂路径上应用文本<a href="ggplot2-拓展包.html#在复杂路径上应用文本" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>geom_textpath()</code>特别适用于在复杂路径（如地理轨迹、函数图形等）上添加文本注释。</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="ggplot2-拓展包.html#cb27-1" tabindex="-1"></a><span class="co"># 创建一个复杂路径的示例</span></span>
+<span id="cb27-2"><a href="ggplot2-拓展包.html#cb27-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, <span class="at">y =</span> <span class="fu">sin</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>) <span class="sc">*</span> <span class="fu">cos</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>), <span class="at">label =</span> <span class="fu">rep</span>(<span class="st">&quot;Complex Path&quot;</span>, <span class="dv">100</span>))</span>
+<span id="cb27-3"><a href="ggplot2-拓展包.html#cb27-3" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="ggplot2-拓展包.html#cb27-4" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">label =</span> label)) <span class="sc">+</span></span>
+<span id="cb27-5"><a href="ggplot2-拓展包.html#cb27-5" tabindex="-1"></a>  <span class="fu">geom_textpath</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+</div>
+<div id="结合其他ggplot2元素使用" class="section level4 hasAnchor" number="3.4.4.2">
+<h4><span class="header-section-number">3.4.4.2</span> 结合其他<code>ggplot2</code>元素使用<a href="ggplot2-拓展包.html#结合其他ggplot2元素使用" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>geom_textpath()</code>可以与<code>ggplot2</code>中的其他几何对象和注释工具一起使用，以创建信息丰富且视觉吸引的图表。</p>
+</div>
+</div>
+<div id="实战示例-5" class="section level3 hasAnchor" number="3.4.5">
+<h3><span class="header-section-number">3.4.5</span> 实战示例<a href="ggplot2-拓展包.html#实战示例-5" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>让我们通过一个实战示例来演示如何在数据可视化项目中综合应用<code>geomtextpath</code>。</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="ggplot2-拓展包.html#cb28-1" tabindex="-1"></a><span class="co"># 示例数据：时间序列</span></span>
+<span id="cb28-2"><a href="ggplot2-拓展包.html#cb28-2" tabindex="-1"></a>time_series <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb28-3"><a href="ggplot2-拓展包.html#cb28-3" tabindex="-1"></a>  <span class="at">time =</span> <span class="fu">seq.Date</span>(<span class="at">from =</span> <span class="fu">as.Date</span>(<span class="st">&quot;2020-01-01&quot;</span>), <span class="at">to =</span> <span class="fu">as.Date</span>(<span class="st">&quot;2020-12-31&quot;</span>), <span class="at">by =</span> <span class="st">&quot;month&quot;</span>),</span>
+<span id="cb28-4"><a href="ggplot2-拓展包.html#cb28-4" tabindex="-1"></a>  <span class="at">value =</span> <span class="fu">sin</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>),</span>
+<span id="cb28-5"><a href="ggplot2-拓展包.html#cb28-5" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">&quot;Trend&quot;</span></span>
+<span id="cb28-6"><a href="ggplot2-拓展包.html#cb28-6" tabindex="-1"></a>)</span>
+<span id="cb28-7"><a href="ggplot2-拓展包.html#cb28-7" tabindex="-1"></a></span>
+<span id="cb28-8"><a href="ggplot2-拓展包.html#cb28-8" tabindex="-1"></a><span class="co"># 绘制时间序列趋势并添加文本路径注释</span></span>
+<span id="cb28-9"><a href="ggplot2-拓展包.html#cb28-9" tabindex="-1"></a><span class="fu">ggplot</span>(time_series, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> value, <span class="at">label =</span> label)) <span class="sc">+</span></span>
+<span id="cb28-10"><a href="ggplot2-拓展包.html#cb28-10" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb28-11"><a href="ggplot2-拓展包.html#cb28-11" tabindex="-1"></a>  <span class="fu">geom_textpath</span>(<span class="at">vjust =</span> <span class="sc">-</span><span class="dv">1</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p>这个例子展示了如何在一个时间序列数据上绘制趋势线，并使用<code>geom_textpath()</code>在趋势线上方添加注释，强调整体趋势。</p>
+</div>
+<div id="注意事项-4" class="section level3 hasAnchor" number="3.4.6">
+<h3><span class="header-section-number">3.4.6</span> 注意事项<a href="ggplot2-拓展包.html#注意事项-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><strong>性能和兼容性考虑</strong>：在处理大型数据集或复杂图形时，<code>geomtextpath</code>可能会影响图形的渲染性能。同时，确保它与你的<code>ggplot2</code>版本兼容。</li>
+<li><strong>设计建议</strong>：虽然<code>geomtextpath</code>为数据可视化提供了新的可能性，但需要谨慎使用文本路径，确保图表的清晰性和可读性不被牺牲。</li>
+</ul>
+</div>
+</div>
+<div id="gganimate" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> gganimate<a href="ggplot2-拓展包.html#gganimate" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><code>gganimate</code>是一个扩展了<code>ggplot2</code>的R包，使得创建动态可视化变得简单直接。它允许用户将<code>ggplot2</code>图形转换为动画，通过时间或其他变量的变化来展示数据的动态过程。本教程将指导你了解<code>gganimate</code>的安装、基本使用方法、如何创建动画、以及如何自定义动画以增强数据故事的表达。</p>
+<div id="简介与安装-6" class="section level3 hasAnchor" number="3.5.1">
+<h3><span class="header-section-number">3.5.1</span> 简介与安装<a href="ggplot2-拓展包.html#简介与安装-6" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="gganimate简介" class="section level4 hasAnchor" number="3.5.1.1">
+<h4><span class="header-section-number">3.5.1.1</span> <code>gganimate</code>简介<a href="ggplot2-拓展包.html#gganimate简介" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>gganimate</code>通过添加时间维度或其他变量的变化，为<code>ggplot2</code>图形带来了新的生命。无论是展示数据随时间的变化，还是比较不同条件下的数据分布，<code>gganimate</code>都能以动画的形式直观展现。</p>
+</div>
+<div id="安装gganimate" class="section level4 hasAnchor" number="3.5.1.2">
+<h4><span class="header-section-number">3.5.1.2</span> 安装<code>gganimate</code><a href="ggplot2-拓展包.html#安装gganimate" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>gganimate</code>可以通过CRAN安装，这是最简单的安装方法。</p>
+<pre><code>install.packages(&quot;gganimate&quot;)</code></pre>
+</div>
+</div>
+<div id="基本使用方法-3" class="section level3 hasAnchor" number="3.5.2">
+<h3><span class="header-section-number">3.5.2</span> 基本使用方法<a href="ggplot2-拓展包.html#基本使用方法-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="创建第一个动画" class="section level4 hasAnchor" number="3.5.2.1">
+<h4><span class="header-section-number">3.5.2.1</span> 创建第一个动画<a href="ggplot2-拓展包.html#创建第一个动画" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>让我们从一个简单的示例开始，展示如何将静态<code>ggplot2</code>图形转换为动画。</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="ggplot2-拓展包.html#cb30-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb30-2"><a href="ggplot2-拓展包.html#cb30-2" tabindex="-1"></a><span class="fu">library</span>(gganimate)</span>
+<span id="cb30-3"><a href="ggplot2-拓展包.html#cb30-3" tabindex="-1"></a><span class="fu">library</span>(transformr)</span>
+<span id="cb30-4"><a href="ggplot2-拓展包.html#cb30-4" tabindex="-1"></a></span>
+<span id="cb30-5"><a href="ggplot2-拓展包.html#cb30-5" tabindex="-1"></a><span class="co"># 示例数据</span></span>
+<span id="cb30-6"><a href="ggplot2-拓展包.html#cb30-6" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb30-7"><a href="ggplot2-拓展包.html#cb30-7" tabindex="-1"></a>  <span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,</span>
+<span id="cb30-8"><a href="ggplot2-拓展包.html#cb30-8" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">rnorm</span>(<span class="dv">10</span>),</span>
+<span id="cb30-9"><a href="ggplot2-拓展包.html#cb30-9" tabindex="-1"></a>  <span class="at">time =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="at">each =</span> <span class="dv">5</span>)</span>
+<span id="cb30-10"><a href="ggplot2-拓展包.html#cb30-10" tabindex="-1"></a>)</span>
+<span id="cb30-11"><a href="ggplot2-拓展包.html#cb30-11" tabindex="-1"></a></span>
+<span id="cb30-12"><a href="ggplot2-拓展包.html#cb30-12" tabindex="-1"></a><span class="co"># 创建动画</span></span>
+<span id="cb30-13"><a href="ggplot2-拓展包.html#cb30-13" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
+<span id="cb30-14"><a href="ggplot2-拓展包.html#cb30-14" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb30-15"><a href="ggplot2-拓展包.html#cb30-15" tabindex="-1"></a>  <span class="fu">transition_time</span>(time)</span>
+<span id="cb30-16"><a href="ggplot2-拓展包.html#cb30-16" tabindex="-1"></a></span>
+<span id="cb30-17"><a href="ggplot2-拓展包.html#cb30-17" tabindex="-1"></a><span class="co"># 查看动画</span></span>
+<span id="cb30-18"><a href="ggplot2-拓展包.html#cb30-18" tabindex="-1"></a><span class="fu">animate</span>(p)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-17-1.gif" /><!-- --></p>
+</div>
+<div id="使用transition_函数" class="section level4 hasAnchor" number="3.5.2.2">
+<h4><span class="header-section-number">3.5.2.2</span> 使用<code>transition_*</code>函数<a href="ggplot2-拓展包.html#使用transition_函数" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>gganimate</code>提供了多种<code>transition_*</code>函数，如<code>transition_time()</code>、<code>transition_states()</code>等，用于控制动画的变化方式。</p>
+</div>
+</div>
+<div id="时间轴和标签" class="section level3 hasAnchor" number="3.5.3">
+<h3><span class="header-section-number">3.5.3</span> 时间轴和标签<a href="ggplot2-拓展包.html#时间轴和标签" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="添加时间轴" class="section level4 hasAnchor" number="3.5.3.1">
+<h4><span class="header-section-number">3.5.3.1</span> 添加时间轴<a href="ggplot2-拓展包.html#添加时间轴" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>使用<code>transition_time()</code>时，<code>gganimate</code>会自动在动画中添加一个时间轴，显示当前帧对应的时间或状态。</p>
+</div>
+<div id="使用labs自定义动画标签" class="section level4 hasAnchor" number="3.5.3.2">
+<h4><span class="header-section-number">3.5.3.2</span> 使用<code>labs()</code>自定义动画标签<a href="ggplot2-拓展包.html#使用labs自定义动画标签" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>可以使用<code>labs()</code>函数来添加或自定义动画的标题、轴标签等文本元素，增强动画的信息表达。</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="ggplot2-拓展包.html#cb31-1" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&#39;Time: {frame_time}&#39;</span>, <span class="at">x =</span> <span class="st">&#39;X axis&#39;</span>, <span class="at">y =</span> <span class="st">&#39;Y axis&#39;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-18-1.gif" /><!-- --></p>
+</div>
+</div>
+<div id="高级定制-3" class="section level3 hasAnchor" number="3.5.4">
+<h3><span class="header-section-number">3.5.4</span> 高级定制<a href="ggplot2-拓展包.html#高级定制-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="控制动画速度和持续时间" class="section level4 hasAnchor" number="3.5.4.1">
+<h4><span class="header-section-number">3.5.4.1</span> 控制动画速度和持续时间<a href="ggplot2-拓展包.html#控制动画速度和持续时间" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>使用<code>animate()</code>函数的参数，如<code>fps</code>（每秒帧数）、<code>duration</code>（持续时间）等，来控制动画的播放速度和总持续时间。</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="ggplot2-拓展包.html#cb32-1" tabindex="-1"></a><span class="fu">animate</span>(p, <span class="at">fps =</span> <span class="dv">10</span>, <span class="at">duration =</span> <span class="dv">5</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-19-1.gif" /><!-- --></p>
+</div>
+<div id="使用shadow_mark添加轨迹" class="section level4 hasAnchor" number="3.5.4.2">
+<h4><span class="header-section-number">3.5.4.2</span> 使用<code>shadow_mark()</code>添加轨迹<a href="ggplot2-拓展包.html#使用shadow_mark添加轨迹" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>shadow_mark()</code>函数可以在动画中为元素添加轨迹，展示其变化过程。</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="ggplot2-拓展包.html#cb33-1" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">shadow_mark</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-20-1.gif" /><!-- --></p>
+</div>
+</div>
+<div id="输出和保存动画" class="section level3 hasAnchor" number="3.5.5">
+<h3><span class="header-section-number">3.5.5</span> 输出和保存动画<a href="ggplot2-拓展包.html#输出和保存动画" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="输出格式选择" class="section level4 hasAnchor" number="3.5.5.1">
+<h4><span class="header-section-number">3.5.5.1</span> 输出格式选择<a href="ggplot2-拓展包.html#输出格式选择" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>gganimate</code>支持多种输出格式，如GIF、mp4视频等。可以通过<code>animate()</code>函数的<code>renderer</code>参数来指定。</p>
+<pre><code>animate(p, renderer = gifski_renderer())</code></pre>
+</div>
+<div id="保存动画" class="section level4 hasAnchor" number="3.5.5.2">
+<h4><span class="header-section-number">3.5.5.2</span> 保存动画<a href="ggplot2-拓展包.html#保存动画" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>使用<code>anim_save()</code>函数可以将动画保存到文件中。</p>
+<pre><code>anim_save(&quot;my_animation.gif&quot;, animation = last_animation())</code></pre>
+</div>
+</div>
+<div id="注意事项-5" class="section level3 hasAnchor" number="3.5.6">
+<h3><span class="header-section-number">3.5.6</span> 注意事项<a href="ggplot2-拓展包.html#注意事项-5" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><strong>性能考量</strong>：创建复杂的动画或处理大数据集时，<code>gganimate</code>可能会消耗较多计算资源。尽量优化数据和图形元素以提升性能。</li>
+<li><strong>动画的设计原则</strong>：在设计动画时，保持简洁明了，避免过多的视觉元素或过快的变化速度，以确保信息能够有效传达。</li>
+</ul>
+</div>
+</div>
+<div id="ggiraph" class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> ggiraph<a href="ggplot2-拓展包.html#ggiraph" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><code>ggiraph</code>是一个R包，它允许你创建交互式的<code>ggplot2</code>图形。通过<code>ggiraph</code>，你可以为图形元素（如点、线、条形等）添加悬停文本、点击事件或任何形式的交互功能，这使得数据探索和呈现更加动态和互动。本教程将介绍<code>ggiraph</code>的安装、基本使用方法、如何添加交互性以及一些高级功能，以帮助你提升数据可视化项目的交互性。</p>
+<div id="简介与安装-7" class="section level3 hasAnchor" number="3.6.1">
+<h3><span class="header-section-number">3.6.1</span> 简介与安装<a href="ggplot2-拓展包.html#简介与安装-7" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="ggiraph简介" class="section level4 hasAnchor" number="3.6.1.1">
+<h4><span class="header-section-number">3.6.1.1</span> <code>ggiraph</code>简介<a href="ggplot2-拓展包.html#ggiraph简介" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>ggiraph</code>是<code>ggplot2</code>图形的一个扩展，使得在网页上展示的图形可以具有交互性。它通过<code>htmlwidget</code>技术实现，非常适用于R Markdown文档、Jupyter笔记本和Shiny应用。</p>
+</div>
+<div id="安装ggiraph" class="section level4 hasAnchor" number="3.6.1.2">
+<h4><span class="header-section-number">3.6.1.2</span> 安装<code>ggiraph</code><a href="ggplot2-拓展包.html#安装ggiraph" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>ggiraph</code>可以通过CRAN安装，确保你的R环境已经安装了<code>ggplot2</code>。</p>
+<pre><code>install.packages(&quot;ggiraph&quot;)</code></pre>
+</div>
+</div>
+<div id="基本使用方法-4" class="section level3 hasAnchor" number="3.6.2">
+<h3><span class="header-section-number">3.6.2</span> 基本使用方法<a href="ggplot2-拓展包.html#基本使用方法-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="从ggplot到ggiraph" class="section level4 hasAnchor" number="3.6.2.1">
+<h4><span class="header-section-number">3.6.2.1</span> 从<code>ggplot</code>到<code>ggiraph</code><a href="ggplot2-拓展包.html#从ggplot到ggiraph" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>将一个<code>ggplot2</code>图形转换为交互式图形的过程非常直接。首先创建一个<code>ggplot</code>对象，然后使用<code>ggiraph</code>的函数替换<code>ggplot2</code>中的几何对象，如使用<code>geom_point_interactive()</code>代替<code>geom_point()</code>。</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="ggplot2-拓展包.html#cb37-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb37-2"><a href="ggplot2-拓展包.html#cb37-2" tabindex="-1"></a><span class="fu">library</span>(ggiraph)</span>
+<span id="cb37-3"><a href="ggplot2-拓展包.html#cb37-3" tabindex="-1"></a></span>
+<span id="cb37-4"><a href="ggplot2-拓展包.html#cb37-4" tabindex="-1"></a><span class="co"># 创建ggplot图形</span></span>
+<span id="cb37-5"><a href="ggplot2-拓展包.html#cb37-5" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg, <span class="at">tooltip =</span> <span class="fu">rownames</span>(mtcars))) <span class="sc">+</span></span>
+<span id="cb37-6"><a href="ggplot2-拓展包.html#cb37-6" tabindex="-1"></a>  <span class="fu">geom_point_interactive</span>()</span>
+<span id="cb37-7"><a href="ggplot2-拓展包.html#cb37-7" tabindex="-1"></a></span>
+<span id="cb37-8"><a href="ggplot2-拓展包.html#cb37-8" tabindex="-1"></a><span class="co"># 转换为交互式图形</span></span>
+<span id="cb37-9"><a href="ggplot2-拓展包.html#cb37-9" tabindex="-1"></a><span class="fu">girafe</span>(<span class="at">ggobj =</span> p)</span></code></pre></div>
+<div class="girafe html-widget html-fill-item" id="htmlwidget-83de0dfa58f951c756bf" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-83de0dfa58f951c756bf">{"x":{"html":"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' class='ggiraph-svg' role='img' id='svg_fe38d440_3980_47a7_a1c1_62101da4af4a' viewBox='0 0 504 360'>\n <defs id='svg_fe38d440_3980_47a7_a1c1_62101da4af4a_defs'>\n  <clipPath id='svg_fe38d440_3980_47a7_a1c1_62101da4af4a_c1'>\n   <rect x='0' y='0' width='504' height='360'/>\n  <\/clipPath>\n  <clipPath id='svg_fe38d440_3980_47a7_a1c1_62101da4af4a_c2'>\n   <rect x='33.27' y='5.48' width='465.25' height='322.79'/>\n  <\/clipPath>\n <\/defs>\n <g id='svg_fe38d440_3980_47a7_a1c1_62101da4af4a_rootg' class='ggiraph-svg-rootg'>\n  <g clip-path='url(#svg_fe38d440_3980_47a7_a1c1_62101da4af4a_c1)'>\n   <rect x='0' y='0' width='504' height='360' fill='#FFFFFF' fill-opacity='1' stroke='#FFFFFF' stroke-opacity='1' stroke-width='0.75' stroke-linejoin='round' stroke-linecap='round' class='ggiraph-svg-bg'/>\n   <rect x='0' y='0' width='504' height='360' fill='#FFFFFF' fill-opacity='1' stroke='#FFFFFF' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='round'/>\n  <\/g>\n  <g clip-path='url(#svg_fe38d440_3980_47a7_a1c1_62101da4af4a_c2)'>\n   <rect x='33.27' y='5.48' width='465.25' height='322.79' fill='#EBEBEB' fill-opacity='1' stroke='none'/>\n   <polyline points='33.27,287.37 498.52,287.37' fill='none' stroke='#FFFFFF' stroke-opacity='1' stroke-width='0.53' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='33.27,224.94 498.52,224.94' fill='none' stroke='#FFFFFF' stroke-opacity='1' stroke-width='0.53' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='33.27,162.50 498.52,162.50' fill='none' stroke='#FFFFFF' stroke-opacity='1' stroke-width='0.53' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='33.27,100.07 498.52,100.07' fill='none' stroke='#FFFFFF' stroke-opacity='1' stroke-width='0.53' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='33.27,37.63 498.52,37.63' fill='none' stroke='#FFFFFF' stroke-opacity='1' stroke-width='0.53' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='53.01,328.27 53.01,5.48' fill='none' stroke='#FFFFFF' stroke-opacity='1' stroke-width='0.53' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='161.16,328.27 161.16,5.48' fill='none' stroke='#FFFFFF' stroke-opacity='1' stroke-width='0.53' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='269.30,328.27 269.30,5.48' fill='none' stroke='#FFFFFF' stroke-opacity='1' stroke-width='0.53' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='377.45,328.27 377.45,5.48' fill='none' stroke='#FFFFFF' stroke-opacity='1' stroke-width='0.53' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='485.59,328.27 485.59,5.48' fill='none' stroke='#FFFFFF' stroke-opacity='1' stroke-width='0.53' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='33.27,318.59 498.52,318.59' fill='none' stroke='#FFFFFF' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='33.27,256.15 498.52,256.15' fill='none' stroke='#FFFFFF' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='33.27,193.72 498.52,193.72' fill='none' stroke='#FFFFFF' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='33.27,131.29 498.52,131.29' fill='none' stroke='#FFFFFF' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='33.27,68.85 498.52,68.85' fill='none' stroke='#FFFFFF' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='33.27,6.42 498.52,6.42' fill='none' stroke='#FFFFFF' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='107.08,328.27 107.08,5.48' fill='none' stroke='#FFFFFF' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='215.23,328.27 215.23,5.48' fill='none' stroke='#FFFFFF' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='323.37,328.27 323.37,5.48' fill='none' stroke='#FFFFFF' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='431.52,328.27 431.52,5.48' fill='none' stroke='#FFFFFF' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <circle id='svg_fe38d440_3980_47a7_a1c1_62101da4af4a_e1' cx='174.13' cy='181.23' r='1.47pt' fill='#000000' fill-opacity='1' stroke='#000000' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='Mazda RX4'/>\n   <circle id='svg_fe38d440_3980_47a7_a1c1_62101da4af4a_e2' cx='201.71' cy='181.23' r='1.47pt' fill='#000000' fill-opacity='1' stroke='#000000' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='Mazda RX4 Wag'/>\n   <circle id='svg_fe38d440_3980_47a7_a1c1_62101da4af4a_e3' cx='141.69' cy='158.76' r='1.47pt' fill='#000000' fill-opacity='1' stroke='#000000' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='Datsun 710'/>\n   <circle id='svg_fe38d440_3980_47a7_a1c1_62101da4af4a_e4' cx='238.48' cy='176.24' r='1.47pt' fill='#000000' fill-opacity='1' stroke='#000000' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='Hornet 4 Drive'/>\n   <circle id='svg_fe38d440_3980_47a7_a1c1_62101da4af4a_e5' cx='262.81' cy='209.95' r='1.47pt' fill='#000000' fill-opacity='1' stroke='#000000' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='Hornet Sportabout'/>\n   <circle id='svg_fe38d440_3980_47a7_a1c1_62101da4af4a_e6' cx='264.97' cy='217.44' r='1.47pt' fill='#000000' fill-opacity='1' stroke='#000000' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='Valiant'/>\n   <circle id='svg_fe38d440_3980_47a7_a1c1_62101da4af4a_e7' cx='276.87' cy='264.9' r='1.47pt' fill='#000000' fill-opacity='1' stroke='#000000' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='Duster 360'/>\n   <circle id='svg_fe38d440_3980_47a7_a1c1_62101da4af4a_e8' cx='235.78' cy='138.78' r='1.47pt' fill='#000000' fill-opacity='1' stroke='#000000' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='Merc 240D'/>\n   <circle id='svg_fe38d440_3980_47a7_a1c1_62101da4af4a_e9' cx='231.45' cy='158.76' r='1.47pt' fill='#000000' fill-opacity='1' stroke='#000000' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='Merc 230'/>\n   <circle id='svg_fe38d440_3980_47a7_a1c1_62101da4af4a_e10' cx='262.81' cy='203.71' r='1.47pt' fill='#000000' fill-opacity='1' stroke='#000000' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='Merc 280'/>\n   <circle id='svg_fe38d440_3980_47a7_a1c1_62101da4af4a_e11' cx='262.81' cy='221.19' r='1.47pt' fill='#000000' fill-opacity='1' stroke='#000000' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='Merc 280C'/>\n   <circle id='svg_fe38d440_3980_47a7_a1c1_62101da4af4a_e12' cx='330.94' cy='238.67' r='1.47pt' fill='#000000' fill-opacity='1' stroke='#000000' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='Merc 450SE'/>\n   <circle id='svg_fe38d440_3980_47a7_a1c1_62101da4af4a_e13' cx='294.17' cy='227.43' r='1.47pt' fill='#000000' fill-opacity='1' stroke='#000000' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='Merc 450SL'/>\n   <circle id='svg_fe38d440_3980_47a7_a1c1_62101da4af4a_e14' cx='299.58' cy='253.66' r='1.47pt' fill='#000000' fill-opacity='1' stroke='#000000' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='Merc 450SLC'/>\n   <circle id='svg_fe38d440_3980_47a7_a1c1_62101da4af4a_e15' cx='458.56' cy='313.59' r='1.47pt' fill='#000000' fill-opacity='1' stroke='#000000' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='Cadillac Fleetwood'/>\n   <circle id='svg_fe38d440_3980_47a7_a1c1_62101da4af4a_e16' cx='477.37' cy='313.59' r='1.47pt' fill='#000000' fill-opacity='1' stroke='#000000' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='Lincoln Continental'/>\n   <circle id='svg_fe38d440_3980_47a7_a1c1_62101da4af4a_e17' cx='468.83' cy='259.9' r='1.47pt' fill='#000000' fill-opacity='1' stroke='#000000' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='Chrysler Imperial'/>\n   <circle id='svg_fe38d440_3980_47a7_a1c1_62101da4af4a_e18' cx='128.71' cy='38.88' r='1.47pt' fill='#000000' fill-opacity='1' stroke='#000000' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='Fiat 128'/>\n   <circle id='svg_fe38d440_3980_47a7_a1c1_62101da4af4a_e19' cx='65.45' cy='63.86' r='1.47pt' fill='#000000' fill-opacity='1' stroke='#000000' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='Honda Civic'/>\n   <circle id='svg_fe38d440_3980_47a7_a1c1_62101da4af4a_e20' cx='89.24' cy='20.15' r='1.47pt' fill='#000000' fill-opacity='1' stroke='#000000' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='Toyota Corolla'/>\n   <circle id='svg_fe38d440_3980_47a7_a1c1_62101da4af4a_e21' cx='157.37' cy='174.99' r='1.47pt' fill='#000000' fill-opacity='1' stroke='#000000' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='Toyota Corona'/>\n   <circle id='svg_fe38d440_3980_47a7_a1c1_62101da4af4a_e22' cx='271.46' cy='249.91' r='1.47pt' fill='#000000' fill-opacity='1' stroke='#000000' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='Dodge Challenger'/>\n   <circle id='svg_fe38d440_3980_47a7_a1c1_62101da4af4a_e23' cx='262.27' cy='253.66' r='1.47pt' fill='#000000' fill-opacity='1' stroke='#000000' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='AMC Javelin'/>\n   <circle id='svg_fe38d440_3980_47a7_a1c1_62101da4af4a_e24' cx='306.07' cy='277.38' r='1.47pt' fill='#000000' fill-opacity='1' stroke='#000000' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='Camaro Z28'/>\n   <circle id='svg_fe38d440_3980_47a7_a1c1_62101da4af4a_e25' cx='306.61' cy='203.71' r='1.47pt' fill='#000000' fill-opacity='1' stroke='#000000' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='Pontiac Firebird'/>\n   <circle id='svg_fe38d440_3980_47a7_a1c1_62101da4af4a_e26' cx='100.05' cy='102.57' r='1.47pt' fill='#000000' fill-opacity='1' stroke='#000000' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='Fiat X1-9'/>\n   <circle id='svg_fe38d440_3980_47a7_a1c1_62101da4af4a_e27' cx='122.22' cy='118.8' r='1.47pt' fill='#000000' fill-opacity='1' stroke='#000000' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='Porsche 914-2'/>\n   <circle id='svg_fe38d440_3980_47a7_a1c1_62101da4af4a_e28' cx='54.42' cy='63.86' r='1.47pt' fill='#000000' fill-opacity='1' stroke='#000000' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='Lotus Europa'/>\n   <circle id='svg_fe38d440_3980_47a7_a1c1_62101da4af4a_e29' cx='233.61' cy='246.16' r='1.47pt' fill='#000000' fill-opacity='1' stroke='#000000' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='Ford Pantera L'/>\n   <circle id='svg_fe38d440_3980_47a7_a1c1_62101da4af4a_e30' cx='190.35' cy='197.47' r='1.47pt' fill='#000000' fill-opacity='1' stroke='#000000' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='Ferrari Dino'/>\n   <circle id='svg_fe38d440_3980_47a7_a1c1_62101da4af4a_e31' cx='276.87' cy='256.15' r='1.47pt' fill='#000000' fill-opacity='1' stroke='#000000' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='Maserati Bora'/>\n   <circle id='svg_fe38d440_3980_47a7_a1c1_62101da4af4a_e32' cx='191.44' cy='176.24' r='1.47pt' fill='#000000' fill-opacity='1' stroke='#000000' stroke-opacity='1' stroke-width='0.71' stroke-linejoin='round' stroke-linecap='round' title='Volvo 142E'/>\n  <\/g>\n  <g clip-path='url(#svg_fe38d440_3980_47a7_a1c1_62101da4af4a_c1)'>\n   <text x='18.54' y='321.74' font-size='6.6pt' font-family='Helvetica' fill='#4D4D4D' fill-opacity='1'>10<\/text>\n   <text x='18.54' y='259.31' font-size='6.6pt' font-family='Helvetica' fill='#4D4D4D' fill-opacity='1'>15<\/text>\n   <text x='18.54' y='196.87' font-size='6.6pt' font-family='Helvetica' fill='#4D4D4D' fill-opacity='1'>20<\/text>\n   <text x='18.54' y='134.44' font-size='6.6pt' font-family='Helvetica' fill='#4D4D4D' fill-opacity='1'>25<\/text>\n   <text x='18.54' y='72' font-size='6.6pt' font-family='Helvetica' fill='#4D4D4D' fill-opacity='1'>30<\/text>\n   <text x='18.54' y='9.57' font-size='6.6pt' font-family='Helvetica' fill='#4D4D4D' fill-opacity='1'>35<\/text>\n   <polyline points='30.53,318.59 33.27,318.59' fill='none' stroke='#333333' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='30.53,256.15 33.27,256.15' fill='none' stroke='#333333' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='30.53,193.72 33.27,193.72' fill='none' stroke='#333333' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='30.53,131.29 33.27,131.29' fill='none' stroke='#333333' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='30.53,68.85 33.27,68.85' fill='none' stroke='#333333' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='30.53,6.42 33.27,6.42' fill='none' stroke='#333333' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='107.08,331.01 107.08,328.27' fill='none' stroke='#333333' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='215.23,331.01 215.23,328.27' fill='none' stroke='#333333' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='323.37,331.01 323.37,328.27' fill='none' stroke='#333333' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <polyline points='431.52,331.01 431.52,328.27' fill='none' stroke='#333333' stroke-opacity='1' stroke-width='1.07' stroke-linejoin='round' stroke-linecap='butt'/>\n   <text x='104.63' y='339.5' font-size='6.6pt' font-family='Helvetica' fill='#4D4D4D' fill-opacity='1'>2<\/text>\n   <text x='212.78' y='339.5' font-size='6.6pt' font-family='Helvetica' fill='#4D4D4D' fill-opacity='1'>3<\/text>\n   <text x='320.93' y='339.5' font-size='6.6pt' font-family='Helvetica' fill='#4D4D4D' fill-opacity='1'>4<\/text>\n   <text x='429.07' y='339.5' font-size='6.6pt' font-family='Helvetica' fill='#4D4D4D' fill-opacity='1'>5<\/text>\n   <text x='260.4' y='352.09' font-size='8.25pt' font-family='Helvetica'>wt<\/text>\n   <text transform='translate(13.37,177.58) rotate(-90.00)' font-size='8.25pt' font-family='Helvetica'>mpg<\/text>\n  <\/g>\n <\/g>\n<\/svg>","js":null,"uid":"svg_fe38d440_3980_47a7_a1c1_62101da4af4a","ratio":1.4,"settings":{"tooltip":{"css":".tooltip_SVGID_ { padding:5px;background:black;color:white;border-radius:2px;text-align:left; ; position:absolute;pointer-events:none;z-index:999;}","placement":"doc","opacity":0.9,"offx":10,"offy":10,"use_cursor_pos":true,"use_fill":false,"use_stroke":false,"delay_over":200,"delay_out":500},"hover":{"css":".hover_data_SVGID_ { fill:orange;stroke:black;cursor:pointer; }\ntext.hover_data_SVGID_ { stroke:none;fill:orange; }\ncircle.hover_data_SVGID_ { fill:orange;stroke:black; }\nline.hover_data_SVGID_, polyline.hover_data_SVGID_ { fill:none;stroke:orange; }\nrect.hover_data_SVGID_, polygon.hover_data_SVGID_, path.hover_data_SVGID_ { fill:orange;stroke:none; }\nimage.hover_data_SVGID_ { stroke:orange; }","reactive":true,"nearest_distance":null},"hover_inv":{"css":""},"hover_key":{"css":".hover_key_SVGID_ { fill:orange;stroke:black;cursor:pointer; }\ntext.hover_key_SVGID_ { stroke:none;fill:orange; }\ncircle.hover_key_SVGID_ { fill:orange;stroke:black; }\nline.hover_key_SVGID_, polyline.hover_key_SVGID_ { fill:none;stroke:orange; }\nrect.hover_key_SVGID_, polygon.hover_key_SVGID_, path.hover_key_SVGID_ { fill:orange;stroke:none; }\nimage.hover_key_SVGID_ { stroke:orange; }","reactive":true},"hover_theme":{"css":".hover_theme_SVGID_ { fill:orange;stroke:black;cursor:pointer; }\ntext.hover_theme_SVGID_ { stroke:none;fill:orange; }\ncircle.hover_theme_SVGID_ { fill:orange;stroke:black; }\nline.hover_theme_SVGID_, polyline.hover_theme_SVGID_ { fill:none;stroke:orange; }\nrect.hover_theme_SVGID_, polygon.hover_theme_SVGID_, path.hover_theme_SVGID_ { fill:orange;stroke:none; }\nimage.hover_theme_SVGID_ { stroke:orange; }","reactive":true},"select":{"css":".select_data_SVGID_ { fill:red;stroke:black;cursor:pointer; }\ntext.select_data_SVGID_ { stroke:none;fill:red; }\ncircle.select_data_SVGID_ { fill:red;stroke:black; }\nline.select_data_SVGID_, polyline.select_data_SVGID_ { fill:none;stroke:red; }\nrect.select_data_SVGID_, polygon.select_data_SVGID_, path.select_data_SVGID_ { fill:red;stroke:none; }\nimage.select_data_SVGID_ { stroke:red; }","type":"multiple","only_shiny":true,"selected":[]},"select_inv":{"css":""},"select_key":{"css":".select_key_SVGID_ { fill:red;stroke:black;cursor:pointer; }\ntext.select_key_SVGID_ { stroke:none;fill:red; }\ncircle.select_key_SVGID_ { fill:red;stroke:black; }\nline.select_key_SVGID_, polyline.select_key_SVGID_ { fill:none;stroke:red; }\nrect.select_key_SVGID_, polygon.select_key_SVGID_, path.select_key_SVGID_ { fill:red;stroke:none; }\nimage.select_key_SVGID_ { stroke:red; }","type":"single","only_shiny":true,"selected":[]},"select_theme":{"css":".select_theme_SVGID_ { fill:red;stroke:black;cursor:pointer; }\ntext.select_theme_SVGID_ { stroke:none;fill:red; }\ncircle.select_theme_SVGID_ { fill:red;stroke:black; }\nline.select_theme_SVGID_, polyline.select_theme_SVGID_ { fill:none;stroke:red; }\nrect.select_theme_SVGID_, polygon.select_theme_SVGID_, path.select_theme_SVGID_ { fill:red;stroke:none; }\nimage.select_theme_SVGID_ { stroke:red; }","type":"single","only_shiny":true,"selected":[]},"zoom":{"min":1,"max":1,"duration":300},"toolbar":{"position":"topright","pngname":"diagram","tooltips":null,"hidden":[],"delay_over":200,"delay_out":500},"sizing":{"rescale":true,"width":1}}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="添加交互元素" class="section level4 hasAnchor" number="3.6.2.2">
+<h4><span class="header-section-number">3.6.2.2</span> 添加交互元素<a href="ggplot2-拓展包.html#添加交互元素" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>通过在<code>aes</code>中添加<code>tooltip</code>参数，你可以为每个点添加悬停文本。类似地，<code>data_id</code>参数用于识别点击事件。</p>
+</div>
+</div>
+<div id="增强交互性" class="section level3 hasAnchor" number="3.6.3">
+<h3><span class="header-section-number">3.6.3</span> 增强交互性<a href="ggplot2-拓展包.html#增强交互性" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="自定义悬停文本" class="section level4 hasAnchor" number="3.6.3.1">
+<h4><span class="header-section-number">3.6.3.1</span> 自定义悬停文本<a href="ggplot2-拓展包.html#自定义悬停文本" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>利用<code>tooltip</code>参数，你可以自定义显示的文本，甚至包括HTML标签来增强文本的格式。</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="ggplot2-拓展包.html#cb38-1" tabindex="-1"></a><span class="fu">aes</span>(<span class="at">tooltip =</span> <span class="fu">paste0</span>(<span class="st">&quot;&lt;b&gt;&quot;</span>, <span class="fu">rownames</span>(mtcars), <span class="st">&quot;&lt;/b&gt;: &quot;</span>, mpg, <span class="st">&quot; mpg&quot;</span>))</span></code></pre></div>
+<pre><code>## Aesthetic mapping: 
+## * `tooltip` -&gt; `paste0(&quot;&lt;b&gt;&quot;, rownames(mtcars), &quot;&lt;/b&gt;: &quot;, mpg, &quot; mpg&quot;)`</code></pre>
+</div>
+<div id="添加工具提示和点击事件" class="section level4 hasAnchor" number="3.6.3.2">
+<h4><span class="header-section-number">3.6.3.2</span> 添加工具提示和点击事件<a href="ggplot2-拓展包.html#添加工具提示和点击事件" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>除了悬停文本，你还可以为图形元素添加点击事件，这在集成到Shiny应用时尤其有用。</p>
+</div>
+</div>
+<div id="高级功能" class="section level3 hasAnchor" number="3.6.4">
+<h3><span class="header-section-number">3.6.4</span> 高级功能<a href="ggplot2-拓展包.html#高级功能" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="使用dsvg设备创建动态图形" class="section level4 hasAnchor" number="3.6.4.1">
+<h4><span class="header-section-number">3.6.4.1</span> 使用<code>dsvg</code>设备创建动态图形<a href="ggplot2-拓展包.html#使用dsvg设备创建动态图形" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>ggiraph</code>提供了<code>dsvg</code>设备，可以用于创建具有动态效果的SVG图形，这对于在网页或应用程序中创建丰富的视觉效果非常有用。</p>
+</div>
+<div id="集成到shiny应用中" class="section level4 hasAnchor" number="3.6.4.2">
+<h4><span class="header-section-number">3.6.4.2</span> 集成到Shiny应用中<a href="ggplot2-拓展包.html#集成到shiny应用中" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>ggiraph</code>非常适合与Shiny集成，使得Shiny应用中的图形具有高度的交互性。通过在服务器逻辑中处理<code>data_id</code>，你可以根据用户的点击或悬停操作动态更新应用的内容。</p>
+</div>
+</div>
+<div id="实战示例-6" class="section level3 hasAnchor" number="3.6.5">
+<h3><span class="header-section-number">3.6.5</span> 实战示例<a href="ggplot2-拓展包.html#实战示例-6" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>让我们通过一个实战示例来展示如何利用<code>ggiraph</code>创建一个交互式的数据可视化。</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="ggplot2-拓展包.html#cb40-1" tabindex="-1"></a><span class="co"># 示例数据：mtcars数据集</span></span>
+<span id="cb40-2"><a href="ggplot2-拓展包.html#cb40-2" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg, <span class="at">tooltip =</span> <span class="fu">rownames</span>(mtcars), <span class="at">data_id =</span> <span class="fu">rownames</span>(mtcars))) <span class="sc">+</span></span>
+<span id="cb40-3"><a href="ggplot2-拓展包.html#cb40-3" tabindex="-1"></a>  <span class="fu">geom_point_interactive</span>()</span>
+<span id="cb40-4"><a href="ggplot2-拓展包.html#cb40-4" tabindex="-1"></a></span>
+<span id="cb40-5"><a href="ggplot2-拓展包.html#cb40-5" tabindex="-1"></a><span class="co"># 创建交互式图形</span></span>
+<span id="cb40-6"><a href="ggplot2-拓展包.html#cb40-6" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">girafe</span>(<span class="at">ggobj =</span> p)</span>
+<span id="cb40-7"><a href="ggplot2-拓展包.html#cb40-7" tabindex="-1"></a></span>
+<span id="cb40-8"><a href="ggplot2-拓展包.html#cb40-8" tabindex="-1"></a><span class="co"># 如果在Shiny应用中，可以如此集成</span></span>
+<span id="cb40-9"><a href="ggplot2-拓展包.html#cb40-9" tabindex="-1"></a><span class="co"># output$myPlot &lt;- renderGirafe({ g })</span></span></code></pre></div>
+</div>
+<div id="注意事项-6" class="section level3 hasAnchor" number="3.6.6">
+<h3><span class="header-section-number">3.6.6</span> 注意事项<a href="ggplot2-拓展包.html#注意事项-6" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><strong>性能和兼容性</strong>：在创建复杂的交互式图形时，注意测试图形在不同浏览器和设备上的性能和显示效果。</li>
+<li><strong>设计交互式图形的最佳实践</strong>：在设计交互式图形时，应注意保持清晰和简洁，避免过度装饰，确保用户可以轻松理解图形传达的信息。</li>
+</ul>
+</div>
+</div>
+<div id="esquisse" class="section level2 hasAnchor" number="3.7">
+<h2><span class="header-section-number">3.7</span> esquisse<a href="ggplot2-拓展包.html#esquisse" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><code>esquisse</code>是一个R包，旨在为<code>ggplot2</code>提供一个用户友好的图形界面，使得创建美观的数据可视化变得简单快捷。通过<code>esquisse</code>，用户可以通过拖放的方式选择数据、定义图形类型、调整美学设置，而无需编写任何代码。这使得<code>esquisse</code>成为初学者快速学习<code>ggplot2</code>以及专业人士加速数据探索过程的理想工具。本教程将介绍<code>esquisse</code>的安装、基本使用方法、功能特点以及如何将其集成到Shiny应用中。</p>
+<div id="简介与安装-8" class="section level3 hasAnchor" number="3.7.1">
+<h3><span class="header-section-number">3.7.1</span> 简介与安装<a href="ggplot2-拓展包.html#简介与安装-8" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="esquisse简介" class="section level4 hasAnchor" number="3.7.1.1">
+<h4><span class="header-section-number">3.7.1.1</span> <code>esquisse</code>简介<a href="ggplot2-拓展包.html#esquisse简介" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>esquisse</code>提供了一个图形用户界面(GUI)，通过这个界面，用户可以交互式地创建、定制并预览<code>ggplot2</code>图形。<code>esquisse</code>的设计哲学是让数据可视化的创建过程既直观又高效。</p>
+</div>
+<div id="安装esquisse" class="section level4 hasAnchor" number="3.7.1.2">
+<h4><span class="header-section-number">3.7.1.2</span> 安装<code>esquisse</code><a href="ggplot2-拓展包.html#安装esquisse" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>esquisse</code>可以通过CRAN安装，这是最简单的安装方法。</p>
+<pre><code>install.packages(&quot;esquisse&quot;)</code></pre>
+</div>
+</div>
+<div id="启动esquisse界面" class="section level3 hasAnchor" number="3.7.2">
+<h3><span class="header-section-number">3.7.2</span> 启动<code>esquisse</code>界面<a href="ggplot2-拓展包.html#启动esquisse界面" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="使用esquisser函数" class="section level4 hasAnchor" number="3.7.2.1">
+<h4><span class="header-section-number">3.7.2.1</span> 使用<code>esquisser()</code>函数<a href="ggplot2-拓展包.html#使用esquisser函数" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>安装完<code>esquisse</code>包后，你可以通过运行<code>esquisser()</code>函数来启动GUI界面。这个界面可以直接在RStudio的Viewer窗口中打开，或者在默认的网络浏览器中打开。</p>
+<pre><code>library(esquisse)
+esquisser()</code></pre>
+</div>
+<div id="界面概览" class="section level4 hasAnchor" number="3.7.2.2">
+<h4><span class="header-section-number">3.7.2.2</span> 界面概览<a href="ggplot2-拓展包.html#界面概览" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>esquisse</code>界面分为几个主要部分：数据选择、图形类型选择、图形美学设置和预览区域。用户可以通过这些部分的交互操作来迅速构建和预览图形。</p>
+</div>
+</div>
+<div id="创建图形" class="section level3 hasAnchor" number="3.7.3">
+<h3><span class="header-section-number">3.7.3</span> 创建图形<a href="ggplot2-拓展包.html#创建图形" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="选择数据集" class="section level4 hasAnchor" number="3.7.3.1">
+<h4><span class="header-section-number">3.7.3.1</span> 选择数据集<a href="ggplot2-拓展包.html#选择数据集" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>在<code>esquisse</code>界面中，首先需要选择一个数据集。<code>esquisse</code>可以自动识别当前R会话中加载的数据集，或者你可以通过界面上传一个新的数据集。</p>
+</div>
+<div id="定义图形类型和美学属性" class="section level4 hasAnchor" number="3.7.3.2">
+<h4><span class="header-section-number">3.7.3.2</span> 定义图形类型和美学属性<a href="ggplot2-拓展包.html#定义图形类型和美学属性" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>选择数据集后，你可以选择希望创建的图形类型（如散点图、柱状图等），并通过拖放的方式定义美学属性（如x轴、y轴、颜色分组等）。</p>
+</div>
+<div id="调整图形设置" class="section level4 hasAnchor" number="3.7.3.3">
+<h4><span class="header-section-number">3.7.3.3</span> 调整图形设置<a href="ggplot2-拓展包.html#调整图形设置" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>esquisse</code>还提供了一些工具来调整图形的细节设置，如图例位置、主题样式等，使得最终图形更加符合你的需求。</p>
+</div>
+</div>
+<div id="导出和使用代码" class="section level3 hasAnchor" number="3.7.4">
+<h3><span class="header-section-number">3.7.4</span> 导出和使用代码<a href="ggplot2-拓展包.html#导出和使用代码" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="生成ggplot2代码" class="section level4 hasAnchor" number="3.7.4.1">
+<h4><span class="header-section-number">3.7.4.1</span> 生成<code>ggplot2</code>代码<a href="ggplot2-拓展包.html#生成ggplot2代码" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>创建满意的图形后，<code>esquisse</code>允许你生成对应的<code>ggplot2</code>代码。这不仅方便了图形的进一步定制和复用，也是学习<code>ggplot2</code>语法的好方法。</p>
+</div>
+<div id="导出图形" class="section level4 hasAnchor" number="3.7.4.2">
+<h4><span class="header-section-number">3.7.4.2</span> 导出图形<a href="ggplot2-拓展包.html#导出图形" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>除了代码，你还可以直接从<code>esquisse</code>界面导出图形，支持多种格式，包括PNG、JPEG等。</p>
+</div>
+</div>
+<div id="esquisse与shiny集成" class="section level3 hasAnchor" number="3.7.5">
+<h3><span class="header-section-number">3.7.5</span> <code>esquisse</code>与Shiny集成<a href="ggplot2-拓展包.html#esquisse与shiny集成" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="将esquisse嵌入shiny应用" class="section level4 hasAnchor" number="3.7.5.1">
+<h4><span class="header-section-number">3.7.5.1</span> 将<code>esquisse</code>嵌入Shiny应用<a href="ggplot2-拓展包.html#将esquisse嵌入shiny应用" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>esquisse</code>提供了Shiny模块，使得开发者可以轻松地将这个强大的图形创建工具嵌入到自己的Shiny应用中，增强应用的数据可视化能力。</p>
+<pre><code># 示例代码，将esquisse嵌入Shiny应用
+ui &lt;- fluidPage(
+  esquisse::esquisserUI(id = &quot;esquisse&quot;, height = &quot;600px&quot;)
+)
+
+server &lt;- function(input, output, session) {
+  esquisse::serverEsquisser(input, output, session, id = &quot;esquisse&quot;)
+}
+
+shinyApp(ui, server)</code></pre>
+</div>
+<div id="定制shiny模块" class="section level4 hasAnchor" number="3.7.5.2">
+<h4><span class="header-section-number">3.7.5.2</span> 定制Shiny模块<a href="ggplot2-拓展包.html#定制shiny模块" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>通过调整<code>esquisserUI</code>和<code>serverEsquisser</code>函数的参数，你可以定制嵌入到Shiny应用中的<code>esquisse</code>模块，如调整界面布局、预设数据集等。</p>
+</div>
+</div>
+<div id="注意事项-7" class="section level3 hasAnchor" number="3.7.6">
+<h3><span class="header-section-number">3.7.6</span> 注意事项<a href="ggplot2-拓展包.html#注意事项-7" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><strong>性能考量</strong>：在处理大型数据集时，<code>esquisse</code>可能会影响图形的渲染速度。考虑预处理数据以优化性能。</li>
+<li><strong>适用场景</strong>：<code>esquisse</code>非常适合快速原型设计和初步数据探索。对于复杂的图形定制需求，直接使用<code>ggplot2</code>代码可能更加灵活。</li>
+</ul>
+</div>
+</div>
+<div id="ggthemes" class="section level2 hasAnchor" number="3.8">
+<h2><span class="header-section-number">3.8</span> ggthemes<a href="ggplot2-拓展包.html#ggthemes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><code>ggthemes</code>是一个R包，提供了一系列额外的主题、比例尺和几何对象，以扩展<code>ggplot2</code>的功能。这使得用户可以轻松地为他们的图形添加独特的样式和外观，从而提高数据可视化的吸引力和表现力。本教程将介绍<code>ggthemes</code>的安装、基本使用方法、一些流行主题的应用，以及如何将这些主题和样式应用到你的<code>ggplot2</code>图形中。</p>
+<div id="简介与安装-9" class="section level3 hasAnchor" number="3.8.1">
+<h3><span class="header-section-number">3.8.1</span> 简介与安装<a href="ggplot2-拓展包.html#简介与安装-9" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="ggthemes简介" class="section level4 hasAnchor" number="3.8.1.1">
+<h4><span class="header-section-number">3.8.1.1</span> <code>ggthemes</code>简介<a href="ggplot2-拓展包.html#ggthemes简介" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>ggthemes</code>增加了<code>ggplot2</code>的可用主题和样式选项，让用户能够创建更加多样化和个性化的图形。这些主题通常受到经典的或流行的设计风格启发。</p>
+</div>
+<div id="安装ggthemes" class="section level4 hasAnchor" number="3.8.1.2">
+<h4><span class="header-section-number">3.8.1.2</span> 安装<code>ggthemes</code><a href="ggplot2-拓展包.html#安装ggthemes" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>通过CRAN安装<code>ggthemes</code>是最直接的方式：</p>
+<pre><code>install.packages(&quot;ggthemes&quot;)</code></pre>
+</div>
+</div>
+<div id="基本使用方法-5" class="section level3 hasAnchor" number="3.8.2">
+<h3><span class="header-section-number">3.8.2</span> 基本使用方法<a href="ggplot2-拓展包.html#基本使用方法-5" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="应用主题" class="section level4 hasAnchor" number="3.8.2.1">
+<h4><span class="header-section-number">3.8.2.1</span> 应用主题<a href="ggplot2-拓展包.html#应用主题" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>使用<code>ggthemes</code>的主题非常简单，只需在你的<code>ggplot2</code>图形代码中加入<code>theme_xxx()</code>函数即可，其中<code>xxx</code>是主题的名称。</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="ggplot2-拓展包.html#cb45-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb45-2"><a href="ggplot2-拓展包.html#cb45-2" tabindex="-1"></a><span class="fu">library</span>(ggthemes)</span>
+<span id="cb45-3"><a href="ggplot2-拓展包.html#cb45-3" tabindex="-1"></a></span>
+<span id="cb45-4"><a href="ggplot2-拓展包.html#cb45-4" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb45-5"><a href="ggplot2-拓展包.html#cb45-5" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb45-6"><a href="ggplot2-拓展包.html#cb45-6" tabindex="-1"></a>  <span class="fu">theme_economist</span>() <span class="co"># 应用Economist主题</span></span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+</div>
+<div id="使用比例尺和几何对象" class="section level4 hasAnchor" number="3.8.2.2">
+<h4><span class="header-section-number">3.8.2.2</span> 使用比例尺和几何对象<a href="ggplot2-拓展包.html#使用比例尺和几何对象" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>ggthemes</code>还提供了一些特定的比例尺和几何对象，这些可以通过类似的方式添加到图形中，以匹配选定主题的风格。</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="ggplot2-拓展包.html#cb46-1" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb46-2"><a href="ggplot2-拓展包.html#cb46-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb46-3"><a href="ggplot2-拓展包.html#cb46-3" tabindex="-1"></a>  <span class="fu">scale_colour_economist</span>() <span class="co"># 使用Economist风格的颜色比例尺</span></span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+</div>
+</div>
+<div id="流行主题介绍" class="section level3 hasAnchor" number="3.8.3">
+<h3><span class="header-section-number">3.8.3</span> 流行主题介绍<a href="ggplot2-拓展包.html#流行主题介绍" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="tufte主题" class="section level4 hasAnchor" number="3.8.3.1">
+<h4><span class="header-section-number">3.8.3.1</span> Tufte主题<a href="ggplot2-拓展包.html#tufte主题" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>受到爱德华·塔夫特（Edward Tufte）设计风格的启发，这个主题强调简洁和数据墨水比的最大化。</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="ggplot2-拓展包.html#cb47-1" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb47-2"><a href="ggplot2-拓展包.html#cb47-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb47-3"><a href="ggplot2-拓展包.html#cb47-3" tabindex="-1"></a>  <span class="fu">theme_tufte</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+</div>
+<div id="economist主题" class="section level4 hasAnchor" number="3.8.3.2">
+<h4><span class="header-section-number">3.8.3.2</span> Economist主题<a href="ggplot2-拓展包.html#economist主题" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>这个主题模仿了《经济学人》杂志的图形风格，适用于创建正式且具有高辨识度的图表。</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="ggplot2-拓展包.html#cb48-1" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb48-2"><a href="ggplot2-拓展包.html#cb48-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb48-3"><a href="ggplot2-拓展包.html#cb48-3" tabindex="-1"></a>  <span class="fu">theme_economist</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+</div>
+<div id="excel主题" class="section level4 hasAnchor" number="3.8.3.3">
+<h4><span class="header-section-number">3.8.3.3</span> Excel主题<a href="ggplot2-拓展包.html#excel主题" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>模仿了经典的Excel图表样式，适合需要与Excel图表保持一致风格的场合。</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="ggplot2-拓展包.html#cb49-1" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb49-2"><a href="ggplot2-拓展包.html#cb49-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb49-3"><a href="ggplot2-拓展包.html#cb49-3" tabindex="-1"></a>  <span class="fu">theme_excel</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
+</div>
+<div id="更多主题" class="section level4 hasAnchor" number="3.8.3.4">
+<h4><span class="header-section-number">3.8.3.4</span> 更多主题<a href="ggplot2-拓展包.html#更多主题" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>ggthemes</code>还包括很多其他主题，如<code>theme_fivethirtyeight</code>、<code>theme_stata</code>等，每个主题都有其独特的设计风格和用途。</p>
+</div>
+</div>
+<div id="自定义和扩展" class="section level3 hasAnchor" number="3.8.4">
+<h3><span class="header-section-number">3.8.4</span> 自定义和扩展<a href="ggplot2-拓展包.html#自定义和扩展" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="修改现有主题" class="section level4 hasAnchor" number="3.8.4.1">
+<h4><span class="header-section-number">3.8.4.1</span> 修改现有主题<a href="ggplot2-拓展包.html#修改现有主题" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>你可以通过添加<code>theme()</code>函数来修改现有主题的具体元素，例如字体大小、颜色等。</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="ggplot2-拓展包.html#cb50-1" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb50-2"><a href="ggplot2-拓展包.html#cb50-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb50-3"><a href="ggplot2-拓展包.html#cb50-3" tabindex="-1"></a>  <span class="fu">theme_economist</span>() <span class="sc">+</span></span>
+<span id="cb50-4"><a href="ggplot2-拓展包.html#cb50-4" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+</div>
+<div id="创建自定义主题" class="section level4 hasAnchor" number="3.8.4.2">
+<h4><span class="header-section-number">3.8.4.2</span> 创建自定义主题<a href="ggplot2-拓展包.html#创建自定义主题" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>虽然<code>ggthemes</code>提供了丰富的主题选择，但有时你可能需要创建完全自定义的主题。这可以通过扩展<code>theme()</code>函数来实现。</p>
+</div>
+</div>
+<div id="实战示例-7" class="section level3 hasAnchor" number="3.8.5">
+<h3><span class="header-section-number">3.8.5</span> 实战示例<a href="ggplot2-拓展包.html#实战示例-7" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>让我们通过一个实战示例来演示如何使用<code>ggthemes</code>改善图形的外观。</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="ggplot2-拓展包.html#cb51-1" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(<span class="fu">factor</span>(cyl), mpg), <span class="at">y =</span> mpg, <span class="at">fill =</span> <span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb51-2"><a href="ggplot2-拓展包.html#cb51-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb51-3"><a href="ggplot2-拓展包.html#cb51-3" tabindex="-1"></a>  <span class="fu">theme_fivethirtyeight</span>() <span class="sc">+</span></span>
+<span id="cb51-4"><a href="ggplot2-拓展包.html#cb51-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Fuel Efficiency by Cylinder Count&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Cylinders&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Miles per Gallon&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+</div>
+<div id="注意事项-8" class="section level3 hasAnchor" number="3.8.6">
+<h3><span class="header-section-number">3.8.6</span> 注意事项<a href="ggplot2-拓展包.html#注意事项-8" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><strong>兼容性和性能考虑</strong>：使用<code>ggthemes</code>时，要确保它与你的<code>ggplot2</code>版本兼容。同时，注意某些主题可能会稍微增加图形渲染的时间。</li>
+<li><strong>选择合适的主题</strong>：选择主题时，考虑你的图形将在何种上下文中使用（如报告、演示或网页），并选择最能传达信息、符合设计语言的主题。</li>
+</ul>
+</div>
+</div>
+<div id="ggbump" class="section level2 hasAnchor" number="3.9">
+<h2><span class="header-section-number">3.9</span> ggbump<a href="ggplot2-拓展包.html#ggbump" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><code>ggbump</code>是一个R包，它扩展了<code>ggplot2</code>的功能，提供了一种绘制“bump chart”的方法。Bump chart是一种显示排名变化的图表，非常适合展示时间序列数据中各个类别的排名如何随时间变化。本教程将介绍<code>ggbump</code>的安装、基本使用方法、如何自定义图表以增强表现力，以及实战示例，帮助你有效地使用<code>ggbump</code>来可视化排名变化数据。</p>
+<div id="简介与安装-10" class="section level3 hasAnchor" number="3.9.1">
+<h3><span class="header-section-number">3.9.1</span> 简介与安装<a href="ggplot2-拓展包.html#简介与安装-10" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="ggbump简介" class="section level4 hasAnchor" number="3.9.1.1">
+<h4><span class="header-section-number">3.9.1.1</span> <code>ggbump</code>简介<a href="ggplot2-拓展包.html#ggbump简介" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>ggbump</code>通过简单的语法让<code>ggplot2</code>用户能够创建Bump Chart，这种图表非常适用于显示多个类别在不同时间点的排名变化，帮助观众快速理解趋势和变化。</p>
+</div>
+<div id="安装ggbump" class="section level4 hasAnchor" number="3.9.1.2">
+<h4><span class="header-section-number">3.9.1.2</span> 安装<code>ggbump</code><a href="ggplot2-拓展包.html#安装ggbump" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>ggbump</code>可以通过CRAN进行安装，确保你已经安装了<code>ggplot2</code>包，因为<code>ggbump</code>是建立在其基础上的。</p>
+<pre><code>install.packages(&quot;ggbump&quot;)</code></pre>
+</div>
+</div>
+<div id="基本使用方法-6" class="section level3 hasAnchor" number="3.9.2">
+<h3><span class="header-section-number">3.9.2</span> 基本使用方法<a href="ggplot2-拓展包.html#基本使用方法-6" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="创建第一个bump-chart" class="section level4 hasAnchor" number="3.9.2.1">
+<h4><span class="header-section-number">3.9.2.1</span> 创建第一个Bump Chart<a href="ggplot2-拓展包.html#创建第一个bump-chart" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>一旦安装了<code>ggbump</code>，你就可以开始创建你的第一个Bump Chart。首先，确保你的数据以长格式组织，每行表示一个类别在特定时间点的排名。</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="ggplot2-拓展包.html#cb53-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb53-2"><a href="ggplot2-拓展包.html#cb53-2" tabindex="-1"></a><span class="fu">library</span>(ggbump)</span>
+<span id="cb53-3"><a href="ggplot2-拓展包.html#cb53-3" tabindex="-1"></a></span>
+<span id="cb53-4"><a href="ggplot2-拓展包.html#cb53-4" tabindex="-1"></a><span class="co"># 示例数据</span></span>
+<span id="cb53-5"><a href="ggplot2-拓展包.html#cb53-5" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb53-6"><a href="ggplot2-拓展包.html#cb53-6" tabindex="-1"></a>  <span class="at">time =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>),</span>
+<span id="cb53-7"><a href="ggplot2-拓展包.html#cb53-7" tabindex="-1"></a>  <span class="at">category =</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>),</span>
+<span id="cb53-8"><a href="ggplot2-拓展包.html#cb53-8" tabindex="-1"></a>  <span class="at">rank =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
+<span id="cb53-9"><a href="ggplot2-拓展包.html#cb53-9" tabindex="-1"></a>)</span>
+<span id="cb53-10"><a href="ggplot2-拓展包.html#cb53-10" tabindex="-1"></a></span>
+<span id="cb53-11"><a href="ggplot2-拓展包.html#cb53-11" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> rank, <span class="at">group =</span> category, <span class="at">color =</span> category)) <span class="sc">+</span></span>
+<span id="cb53-12"><a href="ggplot2-拓展包.html#cb53-12" tabindex="-1"></a>  <span class="fu">geom_bump</span>()</span></code></pre></div>
+<pre><code>## Warning: Computation failed in `stat_bump()`
+## Caused by error in `arrange()`:
+## ! could not find function &quot;arrange&quot;</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+</div>
+<div id="数据准备" class="section level4 hasAnchor" number="3.9.2.2">
+<h4><span class="header-section-number">3.9.2.2</span> 数据准备<a href="ggplot2-拓展包.html#数据准备" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>确保你的数据集包含至少三个关键列：时间点、类别和排名。数据应该是“长格式”，每个观察值一行。</p>
+</div>
+</div>
+<div id="自定义图表" class="section level3 hasAnchor" number="3.9.3">
+<h3><span class="header-section-number">3.9.3</span> 自定义图表<a href="ggplot2-拓展包.html#自定义图表" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="调整线条颜色和粗细" class="section level4 hasAnchor" number="3.9.3.1">
+<h4><span class="header-section-number">3.9.3.1</span> 调整线条颜色和粗细<a href="ggplot2-拓展包.html#调整线条颜色和粗细" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>你可以通过<code>aes()</code>函数中的<code>color</code>参数来为不同的类别指定颜色，并使用<code>size</code>参数来调整线条的粗细。</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="ggplot2-拓展包.html#cb55-1" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> rank, <span class="at">group =</span> category, <span class="at">color =</span> category)) <span class="sc">+</span></span>
+<span id="cb55-2"><a href="ggplot2-拓展包.html#cb55-2" tabindex="-1"></a>  <span class="fu">geom_bump</span>(<span class="at">size =</span> <span class="fl">1.5</span>)</span></code></pre></div>
+<pre><code>## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+## ℹ Please use `linewidth` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
+<pre><code>## Warning: Computation failed in `stat_bump()`
+## Caused by error in `arrange()`:
+## ! could not find function &quot;arrange&quot;</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+</div>
+<div id="添加点和标签" class="section level4 hasAnchor" number="3.9.3.2">
+<h4><span class="header-section-number">3.9.3.2</span> 添加点和标签<a href="ggplot2-拓展包.html#添加点和标签" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>为了使图表更加信息丰富，你可以添加点来表示每个时间点的排名，并通过<code>geom_text()</code>添加标签来显示具体的排名或其他信息。</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="ggplot2-拓展包.html#cb58-1" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> time, <span class="at">y =</span> rank, <span class="at">group =</span> category, <span class="at">label =</span> rank, <span class="at">color =</span> category)) <span class="sc">+</span></span>
+<span id="cb58-2"><a href="ggplot2-拓展包.html#cb58-2" tabindex="-1"></a>  <span class="fu">geom_bump</span>(<span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb58-3"><a href="ggplot2-拓展包.html#cb58-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb58-4"><a href="ggplot2-拓展包.html#cb58-4" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">nudge_y =</span> <span class="fl">0.2</span>) <span class="co"># 轻微调整标签位置</span></span></code></pre></div>
+<pre><code>## Warning: Computation failed in `stat_bump()`
+## Caused by error in `arrange()`:
+## ! could not find function &quot;arrange&quot;</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+</div>
+</div>
+<div id="高级功能-1" class="section level3 hasAnchor" number="3.9.4">
+<h3><span class="header-section-number">3.9.4</span> 高级功能<a href="ggplot2-拓展包.html#高级功能-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="使用不同的比例尺" class="section level4 hasAnchor" number="3.9.4.1">
+<h4><span class="header-section-number">3.9.4.1</span> 使用不同的比例尺<a href="ggplot2-拓展包.html#使用不同的比例尺" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>如果你的排名数据不是线性的，可以考虑使用不同的比例尺来更好地展示数据，如<code>scale_y_reverse()</code>来颠倒y轴，使得排名第一位于顶部。</p>
+</div>
+<div id="添加高亮和注释" class="section level4 hasAnchor" number="3.9.4.2">
+<h4><span class="header-section-number">3.9.4.2</span> 添加高亮和注释<a href="ggplot2-拓展包.html#添加高亮和注释" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>使用<code>ggplot2</code>的注释功能（如<code>annotate()</code>或<code>geom_label()</code>）来为图表添加高亮或注释，强调特定的变化或趋势。</p>
+</div>
+</div>
+<div id="注意事项-9" class="section level3 hasAnchor" number="3.9.5">
+<h3><span class="header-section-number">3.9.5</span> 注意事项<a href="ggplot2-拓展包.html#注意事项-9" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><strong>数据格式要求</strong>：确保数据为长格式，并且清晰地标记了时间点、类别和排名。</li>
+<li><strong>性能和兼容性考虑</strong>：<code>ggbump</code>图表的渲染性能可能受到数据大小和复杂性的影响，尤其是在添加了大量注释或标签时。测试图表以确保良好的性能。</li>
+<li><strong>设计考虑</strong>：在设计Bump Chart时，保持简洁明了，避免过多装饰，确保图表的目的和数据的故事可以清晰地传达给观众。</li>
+</ul>
+</div>
+</div>
+<div id="ggtext" class="section level2 hasAnchor" number="3.10">
+<h2><span class="header-section-number">3.10</span> ggtext<a href="ggplot2-拓展包.html#ggtext" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><code>ggtext</code>是一个R包，它扩展了<code>ggplot2</code>的功能，允许在图形的文本元素中使用HTML和CSS样式。这意味着你可以在图表的标题、轴标签、图例文本甚至是图形注释中使用富文本格式，包括不同的字体、颜色和大小，甚至可以插入图片。本教程将介绍<code>ggtext</code>的安装、基本使用方法、如何利用HTML和CSS样式来增强你的图形文本，以及一些实用的示例。</p>
+<div id="简介与安装-11" class="section level3 hasAnchor" number="3.10.1">
+<h3><span class="header-section-number">3.10.1</span> 简介与安装<a href="ggplot2-拓展包.html#简介与安装-11" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="ggtext简介" class="section level4 hasAnchor" number="3.10.1.1">
+<h4><span class="header-section-number">3.10.1.1</span> <code>ggtext</code>简介<a href="ggplot2-拓展包.html#ggtext简介" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>ggtext</code>为<code>ggplot2</code>图形中的文本元素提供了富文本格式支持，通过使用HTML和CSS，你可以创建更具表现力和吸引力的图表。</p>
+</div>
+<div id="安装ggtext" class="section level4 hasAnchor" number="3.10.1.2">
+<h4><span class="header-section-number">3.10.1.2</span> 安装<code>ggtext</code><a href="ggplot2-拓展包.html#安装ggtext" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>通过CRAN安装<code>ggtext</code>是最简单的方式：</p>
+<pre><code>install.packages(&quot;ggtext&quot;)</code></pre>
+</div>
+</div>
+<div id="基本使用方法-7" class="section level3 hasAnchor" number="3.10.2">
+<h3><span class="header-section-number">3.10.2</span> 基本使用方法<a href="ggplot2-拓展包.html#基本使用方法-7" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="应用富文本格式到图形文本" class="section level4 hasAnchor" number="3.10.2.1">
+<h4><span class="header-section-number">3.10.2.1</span> 应用富文本格式到图形文本<a href="ggplot2-拓展包.html#应用富文本格式到图形文本" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>ggtext</code>允许你在任何支持文本的<code>ggplot2</code>图层中使用Markdown语法或HTML标签来格式化文本。</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="ggplot2-拓展包.html#cb61-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb61-2"><a href="ggplot2-拓展包.html#cb61-2" tabindex="-1"></a><span class="fu">library</span>(ggtext)</span>
+<span id="cb61-3"><a href="ggplot2-拓展包.html#cb61-3" tabindex="-1"></a></span>
+<span id="cb61-4"><a href="ggplot2-拓展包.html#cb61-4" tabindex="-1"></a><span class="co"># 创建一个简单的图表</span></span>
+<span id="cb61-5"><a href="ggplot2-拓展包.html#cb61-5" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb61-6"><a href="ggplot2-拓展包.html#cb61-6" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb61-7"><a href="ggplot2-拓展包.html#cb61-7" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&#39;&lt;span style=&quot;color: red;&quot;&gt;Weight&lt;/span&gt; vs. &lt;em&gt;MPG&lt;/em&gt;&#39;</span>)</span>
+<span id="cb61-8"><a href="ggplot2-拓展包.html#cb61-8" tabindex="-1"></a></span>
+<span id="cb61-9"><a href="ggplot2-拓展包.html#cb61-9" tabindex="-1"></a><span class="co"># 使用ggtext的element_markdown()来渲染Markdown/HTML</span></span>
+<span id="cb61-10"><a href="ggplot2-拓展包.html#cb61-10" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_markdown</span>())</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="ggplot2-拓展包.html#cb62-1" tabindex="-1"></a>p</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-34-2.png" width="672" /></p>
+</div>
+<div id="使用element_markdown自定义样式" class="section level4 hasAnchor" number="3.10.2.2">
+<h4><span class="header-section-number">3.10.2.2</span> 使用<code>element_markdown()</code>自定义样式<a href="ggplot2-拓展包.html#使用element_markdown自定义样式" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>element_markdown()</code>函数可以用来为图表的各个文本元素（如标题、轴标签等）设置富文本样式。</p>
+</div>
+</div>
+<div id="增强文本表现力" class="section level3 hasAnchor" number="3.10.3">
+<h3><span class="header-section-number">3.10.3</span> 增强文本表现力<a href="ggplot2-拓展包.html#增强文本表现力" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="使用html标签" class="section level4 hasAnchor" number="3.10.3.1">
+<h4><span class="header-section-number">3.10.3.1</span> 使用HTML标签<a href="ggplot2-拓展包.html#使用html标签" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>在<code>ggtext</code>中，你可以使用HTML标签来为文本添加颜色、加粗、斜体、下划线等格式。</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="ggplot2-拓展包.html#cb63-1" tabindex="-1"></a><span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&#39;This is a &lt;span style=&quot;color: blue;&quot;&gt;blue&lt;/span&gt; title&#39;</span>,</span>
+<span id="cb63-2"><a href="ggplot2-拓展包.html#cb63-2" tabindex="-1"></a>     <span class="at">subtitle =</span> <span class="st">&#39;This is a &lt;strong&gt;bold&lt;/strong&gt; subtitle&#39;</span>)</span></code></pre></div>
+<pre><code>## $title
+## [1] &quot;This is a &lt;span style=\&quot;color: blue;\&quot;&gt;blue&lt;/span&gt; title&quot;
+## 
+## $subtitle
+## [1] &quot;This is a &lt;strong&gt;bold&lt;/strong&gt; subtitle&quot;
+## 
+## attr(,&quot;class&quot;)
+## [1] &quot;labels&quot;</code></pre>
+</div>
+<div id="应用css样式" class="section level4 hasAnchor" number="3.10.3.2">
+<h4><span class="header-section-number">3.10.3.2</span> 应用CSS样式<a href="ggplot2-拓展包.html#应用css样式" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>通过内联CSS，你可以进一步自定义文本的样式，如字体大小、边距、背景色等。</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="ggplot2-拓展包.html#cb65-1" tabindex="-1"></a><span class="fu">labs</span>(<span class="at">caption =</span> <span class="st">&#39;&lt;div style=&quot;background-color: #f0f0f0; padding: 5px; border-radius: 5px;&quot;&gt;Caption with &lt;b&gt;style&lt;/b&gt;&lt;/div&gt;&#39;</span>)</span></code></pre></div>
+<pre><code>## $caption
+## [1] &quot;&lt;div style=\&quot;background-color: #f0f0f0; padding: 5px; border-radius: 5px;\&quot;&gt;Caption with &lt;b&gt;style&lt;/b&gt;&lt;/div&gt;&quot;
+## 
+## attr(,&quot;class&quot;)
+## [1] &quot;labels&quot;</code></pre>
+</div>
+</div>
+<div id="实战示例-8" class="section level3 hasAnchor" number="3.10.4">
+<h3><span class="header-section-number">3.10.4</span> 实战示例<a href="ggplot2-拓展包.html#实战示例-8" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="创建包含富文本标题的图表" class="section level4 hasAnchor" number="3.10.4.1">
+<h4><span class="header-section-number">3.10.4.1</span> 创建包含富文本标题的图表<a href="ggplot2-拓展包.html#创建包含富文本标题的图表" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>以下是一个实战示例，展示了如何创建一个包含富文本标题和子标题的图表。</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="ggplot2-拓展包.html#cb67-1" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb67-2"><a href="ggplot2-拓展包.html#cb67-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb67-3"><a href="ggplot2-拓展包.html#cb67-3" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&#39;Weight vs. &lt;span style=&quot;color: #D55E00;&quot;&gt;MPG&lt;/span&gt;&#39;</span>,</span>
+<span id="cb67-4"><a href="ggplot2-拓展包.html#cb67-4" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&#39;Each point represents a &lt;span style=&quot;font-weight: bold;&quot;&gt;car&lt;/span&gt;.&#39;</span>) <span class="sc">+</span></span>
+<span id="cb67-5"><a href="ggplot2-拓展包.html#cb67-5" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_markdown</span>(),</span>
+<span id="cb67-6"><a href="ggplot2-拓展包.html#cb67-6" tabindex="-1"></a>        <span class="at">plot.subtitle =</span> <span class="fu">element_markdown</span>())</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
+</div>
+<div id="在图例和注释中使用富文本" class="section level4 hasAnchor" number="3.10.4.2">
+<h4><span class="header-section-number">3.10.4.2</span> 在图例和注释中使用富文本<a href="ggplot2-拓展包.html#在图例和注释中使用富文本" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>ggtext</code>同样支持在图例标题和图形注释中使用富文本格式，使得图表的信息传递更加灵活和丰富。</p>
+</div>
+</div>
+<div id="注意事项-10" class="section level3 hasAnchor" number="3.10.5">
+<h3><span class="header-section-number">3.10.5</span> 注意事项<a href="ggplot2-拓展包.html#注意事项-10" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><strong>兼容性和限制</strong>：并非所有的<code>ggplot2</code>主题元素都支持富文本格式，测试和预览你的图表以确保所需的格式正确应用。</li>
+<li><strong>性能考虑</strong>：使用大量的富文本格式和CSS样式可能会影响图表的渲染时间，尤其是在包含大量数据点的图表中。</li>
+</ul>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="r-语言可视化核心包.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="parts.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/02-cross-refs.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
