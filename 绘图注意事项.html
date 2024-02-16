@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 绘图注意事项 | From Data to Viz</title>
+  <meta name="description" content="R语言数据可视化相关数据" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 7 绘图注意事项 | From Data to Viz" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="R语言数据可视化相关数据" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7 绘图注意事项 | From Data to Viz" />
+  
+  <meta name="twitter:description" content="R语言数据可视化相关数据" />
+  
+
+<meta name="author" content="米霖" />
+
+
+<meta name="date" content="2024-01-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="高质量数据可视化案例.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">From Data to Viz</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> url: your book url like https://bookdown.org/yihui/bookdown</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#从数据到图形"><i class="fa fa-check"></i><b>1.1</b> 从数据到图形</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#numeric"><i class="fa fa-check"></i><b>1.1.1</b> Numeric</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#categoric"><i class="fa fa-check"></i><b>1.1.2</b> Categoric</a></li>
+<li class="chapter" data-level="1.1.3" data-path="index.html"><a href="index.html#numeric-catogoric"><i class="fa fa-check"></i><b>1.1.3</b> Numeric &amp; Catogoric</a></li>
+<li class="chapter" data-level="1.1.4" data-path="index.html"><a href="index.html#network"><i class="fa fa-check"></i><b>1.1.4</b> Network</a></li>
+<li class="chapter" data-level="1.1.5" data-path="index.html"><a href="index.html#times-series"><i class="fa fa-check"></i><b>1.1.5</b> Times Series</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html"><i class="fa fa-check"></i><b>2</b> R 语言可视化核心包</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#ggplot2"><i class="fa fa-check"></i><b>2.1</b> ggplot2</a></li>
+<li class="chapter" data-level="2.2" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#基础使用"><i class="fa fa-check"></i><b>2.2</b> 基础使用</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#安装和加载"><i class="fa fa-check"></i><b>2.2.1</b> 安装和加载</a></li>
+<li class="chapter" data-level="2.2.2" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#创建一个简单的图形"><i class="fa fa-check"></i><b>2.2.2</b> 创建一个简单的图形</a></li>
+<li class="chapter" data-level="2.2.3" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#添加图层"><i class="fa fa-check"></i><b>2.2.3</b> 添加图层</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#高级使用"><i class="fa fa-check"></i><b>2.3</b> 高级使用</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#自定义主题"><i class="fa fa-check"></i><b>2.3.1</b> 自定义主题</a></li>
+<li class="chapter" data-level="2.3.2" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#多统计图形"><i class="fa fa-check"></i><b>2.3.2</b> 多统计图形</a></li>
+<li class="chapter" data-level="2.3.3" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#调整图形细节"><i class="fa fa-check"></i><b>2.3.3</b> 调整图形细节</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#plotly"><i class="fa fa-check"></i><b>2.4</b> plotly</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#安装和设置"><i class="fa fa-check"></i><b>2.4.1</b> 安装和设置</a></li>
+<li class="chapter" data-level="2.4.2" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#基础图表创建"><i class="fa fa-check"></i><b>2.4.2</b> 基础图表创建</a></li>
+<li class="chapter" data-level="2.4.3" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#基础图表创建-1"><i class="fa fa-check"></i><b>2.4.3</b> 基础图表创建</a></li>
+<li class="chapter" data-level="2.4.4" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#交互式数据可视化"><i class="fa fa-check"></i><b>2.4.4</b> 交互式数据可视化</a></li>
+<li class="chapter" data-level="2.4.5" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#高级自定义和优化技术"><i class="fa fa-check"></i><b>2.4.5</b> 高级自定义和优化技术</a></li>
+<li class="chapter" data-level="2.4.6" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#高级交互功能"><i class="fa fa-check"></i><b>2.4.6</b> 高级交互功能</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#patchwork"><i class="fa fa-check"></i><b>2.5</b> patchwork</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#简介与安装"><i class="fa fa-check"></i><b>2.5.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="2.5.2" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#基本用法"><i class="fa fa-check"></i><b>2.5.2</b> 基本用法</a></li>
+<li class="chapter" data-level="2.5.3" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#高级布局"><i class="fa fa-check"></i><b>2.5.3</b> 高级布局</a></li>
+<li class="chapter" data-level="2.5.4" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#添加注释和共享图例"><i class="fa fa-check"></i><b>2.5.4</b> 添加注释和共享图例</a></li>
+<li class="chapter" data-level="2.5.5" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#实战示例"><i class="fa fa-check"></i><b>2.5.5</b> 实战示例</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#hrbrthemes"><i class="fa fa-check"></i><b>2.6</b> hrbrthemes</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#简介与安装-1"><i class="fa fa-check"></i><b>2.6.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="2.6.2" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#基本使用"><i class="fa fa-check"></i><b>2.6.2</b> 基本使用</a></li>
+<li class="chapter" data-level="2.6.3" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#高级定制"><i class="fa fa-check"></i><b>2.6.3</b> 高级定制</a></li>
+<li class="chapter" data-level="2.6.4" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#实战示例-1"><i class="fa fa-check"></i><b>2.6.4</b> 实战示例</a></li>
+<li class="chapter" data-level="2.6.5" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#注意事项"><i class="fa fa-check"></i><b>2.6.5</b> 注意事项</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html"><i class="fa fa-check"></i><b>3</b> ggplot2 拓展包</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#ggstatsplot"><i class="fa fa-check"></i><b>3.1</b> ggstatsplot</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#简介与安装-2"><i class="fa fa-check"></i><b>3.1.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="3.1.2" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#基本用法-1"><i class="fa fa-check"></i><b>3.1.2</b> 基本用法</a></li>
+<li class="chapter" data-level="3.1.3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#特色功能"><i class="fa fa-check"></i><b>3.1.3</b> 特色功能</a></li>
+<li class="chapter" data-level="3.1.4" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#高级定制-1"><i class="fa fa-check"></i><b>3.1.4</b> 高级定制</a></li>
+<li class="chapter" data-level="3.1.5" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#实战示例-2"><i class="fa fa-check"></i><b>3.1.5</b> 实战示例</a></li>
+<li class="chapter" data-level="3.1.6" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#注意事项-1"><i class="fa fa-check"></i><b>3.1.6</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#gghighlight"><i class="fa fa-check"></i><b>3.2</b> gghighlight</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#简介与安装-3"><i class="fa fa-check"></i><b>3.2.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="3.2.2" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#基本使用方法"><i class="fa fa-check"></i><b>3.2.2</b> 基本使用方法</a></li>
+<li class="chapter" data-level="3.2.3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#高亮多个系列"><i class="fa fa-check"></i><b>3.2.3</b> 高亮多个系列</a></li>
+<li class="chapter" data-level="3.2.4" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#高级定制-2"><i class="fa fa-check"></i><b>3.2.4</b> 高级定制</a></li>
+<li class="chapter" data-level="3.2.5" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#实战示例-3"><i class="fa fa-check"></i><b>3.2.5</b> 实战示例</a></li>
+<li class="chapter" data-level="3.2.6" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#注意事项-2"><i class="fa fa-check"></i><b>3.2.6</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#ggpattern"><i class="fa fa-check"></i><b>3.3</b> ggpattern</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#简介与安装-4"><i class="fa fa-check"></i><b>3.3.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="3.3.2" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#基本使用方法-1"><i class="fa fa-check"></i><b>3.3.2</b> 基本使用方法</a></li>
+<li class="chapter" data-level="3.3.3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#图案属性定制"><i class="fa fa-check"></i><b>3.3.3</b> 图案属性定制</a></li>
+<li class="chapter" data-level="3.3.4" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#高级应用"><i class="fa fa-check"></i><b>3.3.4</b> 高级应用</a></li>
+<li class="chapter" data-level="3.3.5" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#实战示例-4"><i class="fa fa-check"></i><b>3.3.5</b> 实战示例</a></li>
+<li class="chapter" data-level="3.3.6" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#注意事项-3"><i class="fa fa-check"></i><b>3.3.6</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#geomtextpath"><i class="fa fa-check"></i><b>3.4</b> geomtextpath</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#简介与安装-5"><i class="fa fa-check"></i><b>3.4.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="3.4.2" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#基本使用方法-2"><i class="fa fa-check"></i><b>3.4.2</b> 基本使用方法</a></li>
+<li class="chapter" data-level="3.4.3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#文本属性定制"><i class="fa fa-check"></i><b>3.4.3</b> 文本属性定制</a></li>
+<li class="chapter" data-level="3.4.4" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#高级应用-1"><i class="fa fa-check"></i><b>3.4.4</b> 高级应用</a></li>
+<li class="chapter" data-level="3.4.5" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#实战示例-5"><i class="fa fa-check"></i><b>3.4.5</b> 实战示例</a></li>
+<li class="chapter" data-level="3.4.6" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#注意事项-4"><i class="fa fa-check"></i><b>3.4.6</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#gganimate"><i class="fa fa-check"></i><b>3.5</b> gganimate</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#简介与安装-6"><i class="fa fa-check"></i><b>3.5.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="3.5.2" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#基本使用方法-3"><i class="fa fa-check"></i><b>3.5.2</b> 基本使用方法</a></li>
+<li class="chapter" data-level="3.5.3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#时间轴和标签"><i class="fa fa-check"></i><b>3.5.3</b> 时间轴和标签</a></li>
+<li class="chapter" data-level="3.5.4" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#高级定制-3"><i class="fa fa-check"></i><b>3.5.4</b> 高级定制</a></li>
+<li class="chapter" data-level="3.5.5" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#输出和保存动画"><i class="fa fa-check"></i><b>3.5.5</b> 输出和保存动画</a></li>
+<li class="chapter" data-level="3.5.6" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#注意事项-5"><i class="fa fa-check"></i><b>3.5.6</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#ggiraph"><i class="fa fa-check"></i><b>3.6</b> ggiraph</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#简介与安装-7"><i class="fa fa-check"></i><b>3.6.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="3.6.2" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#基本使用方法-4"><i class="fa fa-check"></i><b>3.6.2</b> 基本使用方法</a></li>
+<li class="chapter" data-level="3.6.3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#增强交互性"><i class="fa fa-check"></i><b>3.6.3</b> 增强交互性</a></li>
+<li class="chapter" data-level="3.6.4" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#高级功能"><i class="fa fa-check"></i><b>3.6.4</b> 高级功能</a></li>
+<li class="chapter" data-level="3.6.5" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#实战示例-6"><i class="fa fa-check"></i><b>3.6.5</b> 实战示例</a></li>
+<li class="chapter" data-level="3.6.6" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#注意事项-6"><i class="fa fa-check"></i><b>3.6.6</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#esquisse"><i class="fa fa-check"></i><b>3.7</b> esquisse</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#简介与安装-8"><i class="fa fa-check"></i><b>3.7.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="3.7.2" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#启动esquisse界面"><i class="fa fa-check"></i><b>3.7.2</b> 启动<code>esquisse</code>界面</a></li>
+<li class="chapter" data-level="3.7.3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#创建图形"><i class="fa fa-check"></i><b>3.7.3</b> 创建图形</a></li>
+<li class="chapter" data-level="3.7.4" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#导出和使用代码"><i class="fa fa-check"></i><b>3.7.4</b> 导出和使用代码</a></li>
+<li class="chapter" data-level="3.7.5" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#esquisse与shiny集成"><i class="fa fa-check"></i><b>3.7.5</b> <code>esquisse</code>与Shiny集成</a></li>
+<li class="chapter" data-level="3.7.6" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#注意事项-7"><i class="fa fa-check"></i><b>3.7.6</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#ggthemes"><i class="fa fa-check"></i><b>3.8</b> ggthemes</a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#简介与安装-9"><i class="fa fa-check"></i><b>3.8.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="3.8.2" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#基本使用方法-5"><i class="fa fa-check"></i><b>3.8.2</b> 基本使用方法</a></li>
+<li class="chapter" data-level="3.8.3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#流行主题介绍"><i class="fa fa-check"></i><b>3.8.3</b> 流行主题介绍</a></li>
+<li class="chapter" data-level="3.8.4" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#自定义和扩展"><i class="fa fa-check"></i><b>3.8.4</b> 自定义和扩展</a></li>
+<li class="chapter" data-level="3.8.5" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#实战示例-7"><i class="fa fa-check"></i><b>3.8.5</b> 实战示例</a></li>
+<li class="chapter" data-level="3.8.6" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#注意事项-8"><i class="fa fa-check"></i><b>3.8.6</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#ggbump"><i class="fa fa-check"></i><b>3.9</b> ggbump</a>
+<ul>
+<li class="chapter" data-level="3.9.1" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#简介与安装-10"><i class="fa fa-check"></i><b>3.9.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="3.9.2" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#基本使用方法-6"><i class="fa fa-check"></i><b>3.9.2</b> 基本使用方法</a></li>
+<li class="chapter" data-level="3.9.3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#自定义图表"><i class="fa fa-check"></i><b>3.9.3</b> 自定义图表</a></li>
+<li class="chapter" data-level="3.9.4" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#高级功能-1"><i class="fa fa-check"></i><b>3.9.4</b> 高级功能</a></li>
+<li class="chapter" data-level="3.9.5" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#注意事项-9"><i class="fa fa-check"></i><b>3.9.5</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="3.10" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#ggtext"><i class="fa fa-check"></i><b>3.10</b> ggtext</a>
+<ul>
+<li class="chapter" data-level="3.10.1" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#简介与安装-11"><i class="fa fa-check"></i><b>3.10.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="3.10.2" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#基本使用方法-7"><i class="fa fa-check"></i><b>3.10.2</b> 基本使用方法</a></li>
+<li class="chapter" data-level="3.10.3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#增强文本表现力"><i class="fa fa-check"></i><b>3.10.3</b> 增强文本表现力</a></li>
+<li class="chapter" data-level="3.10.4" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#实战示例-8"><i class="fa fa-check"></i><b>3.10.4</b> 实战示例</a></li>
+<li class="chapter" data-level="3.10.5" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#注意事项-10"><i class="fa fa-check"></i><b>3.10.5</b> 注意事项</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="关于图表的显示.html"><a href="关于图表的显示.html"><i class="fa fa-check"></i><b>4</b> 关于图表的显示</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="关于图表的显示.html"><a href="关于图表的显示.html#dt"><i class="fa fa-check"></i><b>4.1</b> DT</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="关于图表的显示.html"><a href="关于图表的显示.html#简介与安装-12"><i class="fa fa-check"></i><b>4.1.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="4.1.2" data-path="关于图表的显示.html"><a href="关于图表的显示.html#基本使用方法-8"><i class="fa fa-check"></i><b>4.1.2</b> 基本使用方法</a></li>
+<li class="chapter" data-level="4.1.3" data-path="关于图表的显示.html"><a href="关于图表的显示.html#自定义表格样式"><i class="fa fa-check"></i><b>4.1.3</b> 自定义表格样式</a></li>
+<li class="chapter" data-level="4.1.4" data-path="关于图表的显示.html"><a href="关于图表的显示.html#高级功能-2"><i class="fa fa-check"></i><b>4.1.4</b> 高级功能</a></li>
+<li class="chapter" data-level="4.1.5" data-path="关于图表的显示.html"><a href="关于图表的显示.html#dt与shiny集成"><i class="fa fa-check"></i><b>4.1.5</b> <code>DT</code>与Shiny集成</a></li>
+<li class="chapter" data-level="4.1.6" data-path="关于图表的显示.html"><a href="关于图表的显示.html#注意事项-11"><i class="fa fa-check"></i><b>4.1.6</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="关于图表的显示.html"><a href="关于图表的显示.html#reactable"><i class="fa fa-check"></i><b>4.2</b> ReacTable</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="关于图表的显示.html"><a href="关于图表的显示.html#简介"><i class="fa fa-check"></i><b>4.2.1</b> 简介</a></li>
+<li class="chapter" data-level="4.2.2" data-path="关于图表的显示.html"><a href="关于图表的显示.html#安装"><i class="fa fa-check"></i><b>4.2.2</b> 安装</a></li>
+<li class="chapter" data-level="4.2.3" data-path="关于图表的显示.html"><a href="关于图表的显示.html#基本使用方法-9"><i class="fa fa-check"></i><b>4.2.3</b> 基本使用方法</a></li>
+<li class="chapter" data-level="4.2.4" data-path="关于图表的显示.html"><a href="关于图表的显示.html#自定义表格样式-1"><i class="fa fa-check"></i><b>4.2.4</b> 自定义表格样式</a></li>
+<li class="chapter" data-level="4.2.5" data-path="关于图表的显示.html"><a href="关于图表的显示.html#高级功能-3"><i class="fa fa-check"></i><b>4.2.5</b> 高级功能</a></li>
+<li class="chapter" data-level="4.2.6" data-path="关于图表的显示.html"><a href="关于图表的显示.html#reactable与shiny集成"><i class="fa fa-check"></i><b>4.2.6</b> <code>ReacTable</code>与Shiny集成</a></li>
+<li class="chapter" data-level="4.2.7" data-path="关于图表的显示.html"><a href="关于图表的显示.html#注意事项-12"><i class="fa fa-check"></i><b>4.2.7</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="关于图表的显示.html"><a href="关于图表的显示.html#kableextra"><i class="fa fa-check"></i><b>4.3</b> kableExtra</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="关于图表的显示.html"><a href="关于图表的显示.html#基本使用-1"><i class="fa fa-check"></i><b>4.3.1</b> 基本使用</a></li>
+<li class="chapter" data-level="4.3.2" data-path="关于图表的显示.html"><a href="关于图表的显示.html#高级定制-4"><i class="fa fa-check"></i><b>4.3.2</b> 高级定制</a></li>
+<li class="chapter" data-level="4.3.3" data-path="关于图表的显示.html"><a href="关于图表的显示.html#总结"><i class="fa fa-check"></i><b>4.3.3</b> 总结</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="关于图表的显示.html"><a href="关于图表的显示.html#gt"><i class="fa fa-check"></i><b>4.4</b> gt</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="关于图表的显示.html"><a href="关于图表的显示.html#创建你的第一个gt表格"><i class="fa fa-check"></i><b>4.4.1</b> 创建你的第一个<code>gt</code>表格</a></li>
+<li class="chapter" data-level="4.4.2" data-path="关于图表的显示.html"><a href="关于图表的显示.html#定制表格"><i class="fa fa-check"></i><b>4.4.2</b> 定制表格</a></li>
+<li class="chapter" data-level="4.4.3" data-path="关于图表的显示.html"><a href="关于图表的显示.html#导出表格"><i class="fa fa-check"></i><b>4.4.3</b> 导出表格</a></li>
+<li class="chapter" data-level="4.4.4" data-path="关于图表的显示.html"><a href="关于图表的显示.html#总结-1"><i class="fa fa-check"></i><b>4.4.4</b> 总结</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="关于图表的显示.html"><a href="关于图表的显示.html#gtsummary"><i class="fa fa-check"></i><b>4.5</b> gtsummary</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="关于图表的显示.html"><a href="关于图表的显示.html#创建第一个摘要表格"><i class="fa fa-check"></i><b>4.5.1</b> 创建第一个摘要表格</a></li>
+<li class="chapter" data-level="4.5.2" data-path="关于图表的显示.html"><a href="关于图表的显示.html#定制摘要表格"><i class="fa fa-check"></i><b>4.5.2</b> 定制摘要表格</a></li>
+<li class="chapter" data-level="4.5.3" data-path="关于图表的显示.html"><a href="关于图表的显示.html#导出表格-1"><i class="fa fa-check"></i><b>4.5.3</b> 导出表格</a></li>
+<li class="chapter" data-level="4.5.4" data-path="关于图表的显示.html"><a href="关于图表的显示.html#总结-2"><i class="fa fa-check"></i><b>4.5.4</b> 总结</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="其他绘图工具.html"><a href="其他绘图工具.html"><i class="fa fa-check"></i><b>5</b> 其他绘图工具</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="其他绘图工具.html"><a href="其他绘图工具.html#upsetr"><i class="fa fa-check"></i><b>5.1</b> <code>UpSetR</code></a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="其他绘图工具.html"><a href="其他绘图工具.html#准备数据"><i class="fa fa-check"></i><b>5.1.1</b> 准备数据</a></li>
+<li class="chapter" data-level="5.1.2" data-path="其他绘图工具.html"><a href="其他绘图工具.html#创建upset图"><i class="fa fa-check"></i><b>5.1.2</b> 创建UpSet图</a></li>
+<li class="chapter" data-level="5.1.3" data-path="其他绘图工具.html"><a href="其他绘图工具.html#定制upset图"><i class="fa fa-check"></i><b>5.1.3</b> 定制UpSet图</a></li>
+<li class="chapter" data-level="5.1.4" data-path="其他绘图工具.html"><a href="其他绘图工具.html#分析数据框中的集合"><i class="fa fa-check"></i><b>5.1.4</b> 分析数据框中的集合</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="其他绘图工具.html"><a href="其他绘图工具.html#streamgraph"><i class="fa fa-check"></i><b>5.2</b> <code>streamgraph</code></a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="其他绘图工具.html"><a href="其他绘图工具.html#准备数据-1"><i class="fa fa-check"></i><b>5.2.1</b> 准备数据</a></li>
+<li class="chapter" data-level="5.2.2" data-path="其他绘图工具.html"><a href="其他绘图工具.html#创建流图"><i class="fa fa-check"></i><b>5.2.2</b> 创建流图</a></li>
+<li class="chapter" data-level="5.2.3" data-path="其他绘图工具.html"><a href="其他绘图工具.html#定制流图"><i class="fa fa-check"></i><b>5.2.3</b> 定制流图</a></li>
+<li class="chapter" data-level="5.2.4" data-path="其他绘图工具.html"><a href="其他绘图工具.html#导出和嵌入"><i class="fa fa-check"></i><b>5.2.4</b> 导出和嵌入</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="其他绘图工具.html"><a href="其他绘图工具.html#wordcloud2"><i class="fa fa-check"></i><b>5.3</b> <code>wordcloud2</code></a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="其他绘图工具.html"><a href="其他绘图工具.html#安装和加载-1"><i class="fa fa-check"></i><b>5.3.1</b> 安装和加载</a></li>
+<li class="chapter" data-level="5.3.2" data-path="其他绘图工具.html"><a href="其他绘图工具.html#准备数据-2"><i class="fa fa-check"></i><b>5.3.2</b> 准备数据</a></li>
+<li class="chapter" data-level="5.3.3" data-path="其他绘图工具.html"><a href="其他绘图工具.html#创建词云"><i class="fa fa-check"></i><b>5.3.3</b> 创建词云</a></li>
+<li class="chapter" data-level="5.3.4" data-path="其他绘图工具.html"><a href="其他绘图工具.html#定制词云"><i class="fa fa-check"></i><b>5.3.4</b> 定制词云</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="其他绘图工具.html"><a href="其他绘图工具.html#ggridges"><i class="fa fa-check"></i><b>5.4</b> <code>ggridges</code></a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="其他绘图工具.html"><a href="其他绘图工具.html#准备数据-3"><i class="fa fa-check"></i><b>5.4.1</b> 准备数据</a></li>
+<li class="chapter" data-level="5.4.2" data-path="其他绘图工具.html"><a href="其他绘图工具.html#创建山脊线图"><i class="fa fa-check"></i><b>5.4.2</b> 创建山脊线图</a></li>
+<li class="chapter" data-level="5.4.3" data-path="其他绘图工具.html"><a href="其他绘图工具.html#定制山脊线图"><i class="fa fa-check"></i><b>5.4.3</b> 定制山脊线图</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="高质量数据可视化案例.html"><a href="高质量数据可视化案例.html"><i class="fa fa-check"></i><b>6</b> 高质量数据可视化案例</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="高质量数据可视化案例.html"><a href="高质量数据可视化案例.html#带有标签的线图"><i class="fa fa-check"></i><b>6.1</b> 带有标签的线图</a></li>
+<li class="chapter" data-level="6.2" data-path="高质量数据可视化案例.html"><a href="高质量数据可视化案例.html#办公室评级"><i class="fa fa-check"></i><b>6.2</b> 办公室评级</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="高质量数据可视化案例.html"><a href="高质量数据可视化案例.html#加载和准备数据集"><i class="fa fa-check"></i><b>6.2.1</b> 加载和准备数据集</a></li>
+<li class="chapter" data-level="6.2.2" data-path="高质量数据可视化案例.html"><a href="高质量数据可视化案例.html#第一个棒棒糖图版本"><i class="fa fa-check"></i><b>6.2.2</b> 第一个棒棒糖图版本</a></li>
+<li class="chapter" data-level="6.2.3" data-path="高质量数据可视化案例.html"><a href="高质量数据可视化案例.html#添加标签和调整比例"><i class="fa fa-check"></i><b>6.2.3</b> 添加标签和调整比例</a></li>
+<li class="chapter" data-level="6.2.4" data-path="高质量数据可视化案例.html"><a href="高质量数据可视化案例.html#保存"><i class="fa fa-check"></i><b>6.2.4</b> 保存</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="高质量数据可视化案例.html"><a href="高质量数据可视化案例.html#贪污感知指数"><i class="fa fa-check"></i><b>6.3</b> 贪污感知指数</a></li>
+<li class="chapter" data-level="6.4" data-path="高质量数据可视化案例.html"><a href="高质量数据可视化案例.html#每小时热力图"><i class="fa fa-check"></i><b>6.4</b> 每小时热力图</a></li>
+<li class="chapter" data-level="6.5" data-path="高质量数据可视化案例.html"><a href="高质量数据可视化案例.html#小倍数线图"><i class="fa fa-check"></i><b>6.5</b> 小倍数线图</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="绘图注意事项.html"><a href="绘图注意事项.html"><i class="fa fa-check"></i><b>7</b> 绘图注意事项</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/liamamilin" target="blank">From Data to Viz</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">From Data to Viz</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="绘图注意事项" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Chapter 7</span> 绘图注意事项<a href="绘图注意事项.html#绘图注意事项" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<ol style="list-style-type: decimal">
+<li>数据排序：对图表中的实体进行排序可以增强其洞察力。</li>
+<li>是否切割Y轴？：在数据可视化中，切割Y轴是有争议的。</li>
+<li>意大利面图表：线图中如果有太多线条，将变得难以阅读。</li>
+<li>饼图：人眼在阅读角度上有困难。</li>
+<li>调整直方图的箱体大小：不同的箱体大小会导致不同的洞察。</li>
+<li>箱形图是否隐藏信息？：箱形图总结了分布，但隐藏了样本大小和分布。</li>
+<li>误导性的误差条：误差条需要谨慎使用。</li>
+<li>过多的分布：避免在比较多个分布时使图形变得杂乱。</li>
+<li>过度绘图：存在技术可以避免散点图中的过度拥挤。</li>
+<li>彩虹色调色板：对于数值变量，选择比彩虹色调色板更好的调色板。</li>
+<li>斯特鲁普效应：颜色名称会干扰视觉信息的解释。</li>
+<li>色盲考虑：选择调色板时要考虑色盲。</li>
+<li>3D误导：3D图表可能会扭曲数据解释。</li>
+<li>面积陷阱：我们对面积的感知不准确，影响饼图和环形图。</li>
+<li>尺度问题：在数据可视化中要小心尺度，因为它可能会误导。</li>
+<li>误导性相关性：相关性并不意味着因果关系，视觉可能会误导。</li>
+</ol>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="高质量数据可视化案例.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/06-share.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

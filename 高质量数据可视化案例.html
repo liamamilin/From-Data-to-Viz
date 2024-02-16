@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 6 高质量数据可视化案例 | From Data to Viz</title>
+  <meta name="description" content="R语言数据可视化相关数据" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 6 高质量数据可视化案例 | From Data to Viz" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="R语言数据可视化相关数据" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 6 高质量数据可视化案例 | From Data to Viz" />
+  
+  <meta name="twitter:description" content="R语言数据可视化相关数据" />
+  
+
+<meta name="author" content="米霖" />
+
+
+<meta name="date" content="2024-01-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="其他绘图工具.html"/>
+<link rel="next" href="绘图注意事项.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">From Data to Viz</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> url: your book url like https://bookdown.org/yihui/bookdown</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#从数据到图形"><i class="fa fa-check"></i><b>1.1</b> 从数据到图形</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#numeric"><i class="fa fa-check"></i><b>1.1.1</b> Numeric</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#categoric"><i class="fa fa-check"></i><b>1.1.2</b> Categoric</a></li>
+<li class="chapter" data-level="1.1.3" data-path="index.html"><a href="index.html#numeric-catogoric"><i class="fa fa-check"></i><b>1.1.3</b> Numeric &amp; Catogoric</a></li>
+<li class="chapter" data-level="1.1.4" data-path="index.html"><a href="index.html#network"><i class="fa fa-check"></i><b>1.1.4</b> Network</a></li>
+<li class="chapter" data-level="1.1.5" data-path="index.html"><a href="index.html#times-series"><i class="fa fa-check"></i><b>1.1.5</b> Times Series</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html"><i class="fa fa-check"></i><b>2</b> R 语言可视化核心包</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#ggplot2"><i class="fa fa-check"></i><b>2.1</b> ggplot2</a></li>
+<li class="chapter" data-level="2.2" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#基础使用"><i class="fa fa-check"></i><b>2.2</b> 基础使用</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#安装和加载"><i class="fa fa-check"></i><b>2.2.1</b> 安装和加载</a></li>
+<li class="chapter" data-level="2.2.2" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#创建一个简单的图形"><i class="fa fa-check"></i><b>2.2.2</b> 创建一个简单的图形</a></li>
+<li class="chapter" data-level="2.2.3" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#添加图层"><i class="fa fa-check"></i><b>2.2.3</b> 添加图层</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#高级使用"><i class="fa fa-check"></i><b>2.3</b> 高级使用</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#自定义主题"><i class="fa fa-check"></i><b>2.3.1</b> 自定义主题</a></li>
+<li class="chapter" data-level="2.3.2" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#多统计图形"><i class="fa fa-check"></i><b>2.3.2</b> 多统计图形</a></li>
+<li class="chapter" data-level="2.3.3" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#调整图形细节"><i class="fa fa-check"></i><b>2.3.3</b> 调整图形细节</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#plotly"><i class="fa fa-check"></i><b>2.4</b> plotly</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#安装和设置"><i class="fa fa-check"></i><b>2.4.1</b> 安装和设置</a></li>
+<li class="chapter" data-level="2.4.2" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#基础图表创建"><i class="fa fa-check"></i><b>2.4.2</b> 基础图表创建</a></li>
+<li class="chapter" data-level="2.4.3" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#基础图表创建-1"><i class="fa fa-check"></i><b>2.4.3</b> 基础图表创建</a></li>
+<li class="chapter" data-level="2.4.4" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#交互式数据可视化"><i class="fa fa-check"></i><b>2.4.4</b> 交互式数据可视化</a></li>
+<li class="chapter" data-level="2.4.5" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#高级自定义和优化技术"><i class="fa fa-check"></i><b>2.4.5</b> 高级自定义和优化技术</a></li>
+<li class="chapter" data-level="2.4.6" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#高级交互功能"><i class="fa fa-check"></i><b>2.4.6</b> 高级交互功能</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#patchwork"><i class="fa fa-check"></i><b>2.5</b> patchwork</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#简介与安装"><i class="fa fa-check"></i><b>2.5.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="2.5.2" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#基本用法"><i class="fa fa-check"></i><b>2.5.2</b> 基本用法</a></li>
+<li class="chapter" data-level="2.5.3" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#高级布局"><i class="fa fa-check"></i><b>2.5.3</b> 高级布局</a></li>
+<li class="chapter" data-level="2.5.4" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#添加注释和共享图例"><i class="fa fa-check"></i><b>2.5.4</b> 添加注释和共享图例</a></li>
+<li class="chapter" data-level="2.5.5" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#实战示例"><i class="fa fa-check"></i><b>2.5.5</b> 实战示例</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#hrbrthemes"><i class="fa fa-check"></i><b>2.6</b> hrbrthemes</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#简介与安装-1"><i class="fa fa-check"></i><b>2.6.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="2.6.2" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#基本使用"><i class="fa fa-check"></i><b>2.6.2</b> 基本使用</a></li>
+<li class="chapter" data-level="2.6.3" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#高级定制"><i class="fa fa-check"></i><b>2.6.3</b> 高级定制</a></li>
+<li class="chapter" data-level="2.6.4" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#实战示例-1"><i class="fa fa-check"></i><b>2.6.4</b> 实战示例</a></li>
+<li class="chapter" data-level="2.6.5" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#注意事项"><i class="fa fa-check"></i><b>2.6.5</b> 注意事项</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html"><i class="fa fa-check"></i><b>3</b> ggplot2 拓展包</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#ggstatsplot"><i class="fa fa-check"></i><b>3.1</b> ggstatsplot</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#简介与安装-2"><i class="fa fa-check"></i><b>3.1.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="3.1.2" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#基本用法-1"><i class="fa fa-check"></i><b>3.1.2</b> 基本用法</a></li>
+<li class="chapter" data-level="3.1.3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#特色功能"><i class="fa fa-check"></i><b>3.1.3</b> 特色功能</a></li>
+<li class="chapter" data-level="3.1.4" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#高级定制-1"><i class="fa fa-check"></i><b>3.1.4</b> 高级定制</a></li>
+<li class="chapter" data-level="3.1.5" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#实战示例-2"><i class="fa fa-check"></i><b>3.1.5</b> 实战示例</a></li>
+<li class="chapter" data-level="3.1.6" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#注意事项-1"><i class="fa fa-check"></i><b>3.1.6</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#gghighlight"><i class="fa fa-check"></i><b>3.2</b> gghighlight</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#简介与安装-3"><i class="fa fa-check"></i><b>3.2.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="3.2.2" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#基本使用方法"><i class="fa fa-check"></i><b>3.2.2</b> 基本使用方法</a></li>
+<li class="chapter" data-level="3.2.3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#高亮多个系列"><i class="fa fa-check"></i><b>3.2.3</b> 高亮多个系列</a></li>
+<li class="chapter" data-level="3.2.4" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#高级定制-2"><i class="fa fa-check"></i><b>3.2.4</b> 高级定制</a></li>
+<li class="chapter" data-level="3.2.5" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#实战示例-3"><i class="fa fa-check"></i><b>3.2.5</b> 实战示例</a></li>
+<li class="chapter" data-level="3.2.6" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#注意事项-2"><i class="fa fa-check"></i><b>3.2.6</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#ggpattern"><i class="fa fa-check"></i><b>3.3</b> ggpattern</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#简介与安装-4"><i class="fa fa-check"></i><b>3.3.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="3.3.2" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#基本使用方法-1"><i class="fa fa-check"></i><b>3.3.2</b> 基本使用方法</a></li>
+<li class="chapter" data-level="3.3.3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#图案属性定制"><i class="fa fa-check"></i><b>3.3.3</b> 图案属性定制</a></li>
+<li class="chapter" data-level="3.3.4" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#高级应用"><i class="fa fa-check"></i><b>3.3.4</b> 高级应用</a></li>
+<li class="chapter" data-level="3.3.5" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#实战示例-4"><i class="fa fa-check"></i><b>3.3.5</b> 实战示例</a></li>
+<li class="chapter" data-level="3.3.6" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#注意事项-3"><i class="fa fa-check"></i><b>3.3.6</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#geomtextpath"><i class="fa fa-check"></i><b>3.4</b> geomtextpath</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#简介与安装-5"><i class="fa fa-check"></i><b>3.4.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="3.4.2" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#基本使用方法-2"><i class="fa fa-check"></i><b>3.4.2</b> 基本使用方法</a></li>
+<li class="chapter" data-level="3.4.3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#文本属性定制"><i class="fa fa-check"></i><b>3.4.3</b> 文本属性定制</a></li>
+<li class="chapter" data-level="3.4.4" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#高级应用-1"><i class="fa fa-check"></i><b>3.4.4</b> 高级应用</a></li>
+<li class="chapter" data-level="3.4.5" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#实战示例-5"><i class="fa fa-check"></i><b>3.4.5</b> 实战示例</a></li>
+<li class="chapter" data-level="3.4.6" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#注意事项-4"><i class="fa fa-check"></i><b>3.4.6</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#gganimate"><i class="fa fa-check"></i><b>3.5</b> gganimate</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#简介与安装-6"><i class="fa fa-check"></i><b>3.5.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="3.5.2" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#基本使用方法-3"><i class="fa fa-check"></i><b>3.5.2</b> 基本使用方法</a></li>
+<li class="chapter" data-level="3.5.3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#时间轴和标签"><i class="fa fa-check"></i><b>3.5.3</b> 时间轴和标签</a></li>
+<li class="chapter" data-level="3.5.4" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#高级定制-3"><i class="fa fa-check"></i><b>3.5.4</b> 高级定制</a></li>
+<li class="chapter" data-level="3.5.5" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#输出和保存动画"><i class="fa fa-check"></i><b>3.5.5</b> 输出和保存动画</a></li>
+<li class="chapter" data-level="3.5.6" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#注意事项-5"><i class="fa fa-check"></i><b>3.5.6</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#ggiraph"><i class="fa fa-check"></i><b>3.6</b> ggiraph</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#简介与安装-7"><i class="fa fa-check"></i><b>3.6.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="3.6.2" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#基本使用方法-4"><i class="fa fa-check"></i><b>3.6.2</b> 基本使用方法</a></li>
+<li class="chapter" data-level="3.6.3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#增强交互性"><i class="fa fa-check"></i><b>3.6.3</b> 增强交互性</a></li>
+<li class="chapter" data-level="3.6.4" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#高级功能"><i class="fa fa-check"></i><b>3.6.4</b> 高级功能</a></li>
+<li class="chapter" data-level="3.6.5" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#实战示例-6"><i class="fa fa-check"></i><b>3.6.5</b> 实战示例</a></li>
+<li class="chapter" data-level="3.6.6" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#注意事项-6"><i class="fa fa-check"></i><b>3.6.6</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#esquisse"><i class="fa fa-check"></i><b>3.7</b> esquisse</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#简介与安装-8"><i class="fa fa-check"></i><b>3.7.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="3.7.2" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#启动esquisse界面"><i class="fa fa-check"></i><b>3.7.2</b> 启动<code>esquisse</code>界面</a></li>
+<li class="chapter" data-level="3.7.3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#创建图形"><i class="fa fa-check"></i><b>3.7.3</b> 创建图形</a></li>
+<li class="chapter" data-level="3.7.4" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#导出和使用代码"><i class="fa fa-check"></i><b>3.7.4</b> 导出和使用代码</a></li>
+<li class="chapter" data-level="3.7.5" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#esquisse与shiny集成"><i class="fa fa-check"></i><b>3.7.5</b> <code>esquisse</code>与Shiny集成</a></li>
+<li class="chapter" data-level="3.7.6" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#注意事项-7"><i class="fa fa-check"></i><b>3.7.6</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#ggthemes"><i class="fa fa-check"></i><b>3.8</b> ggthemes</a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#简介与安装-9"><i class="fa fa-check"></i><b>3.8.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="3.8.2" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#基本使用方法-5"><i class="fa fa-check"></i><b>3.8.2</b> 基本使用方法</a></li>
+<li class="chapter" data-level="3.8.3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#流行主题介绍"><i class="fa fa-check"></i><b>3.8.3</b> 流行主题介绍</a></li>
+<li class="chapter" data-level="3.8.4" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#自定义和扩展"><i class="fa fa-check"></i><b>3.8.4</b> 自定义和扩展</a></li>
+<li class="chapter" data-level="3.8.5" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#实战示例-7"><i class="fa fa-check"></i><b>3.8.5</b> 实战示例</a></li>
+<li class="chapter" data-level="3.8.6" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#注意事项-8"><i class="fa fa-check"></i><b>3.8.6</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#ggbump"><i class="fa fa-check"></i><b>3.9</b> ggbump</a>
+<ul>
+<li class="chapter" data-level="3.9.1" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#简介与安装-10"><i class="fa fa-check"></i><b>3.9.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="3.9.2" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#基本使用方法-6"><i class="fa fa-check"></i><b>3.9.2</b> 基本使用方法</a></li>
+<li class="chapter" data-level="3.9.3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#自定义图表"><i class="fa fa-check"></i><b>3.9.3</b> 自定义图表</a></li>
+<li class="chapter" data-level="3.9.4" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#高级功能-1"><i class="fa fa-check"></i><b>3.9.4</b> 高级功能</a></li>
+<li class="chapter" data-level="3.9.5" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#注意事项-9"><i class="fa fa-check"></i><b>3.9.5</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="3.10" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#ggtext"><i class="fa fa-check"></i><b>3.10</b> ggtext</a>
+<ul>
+<li class="chapter" data-level="3.10.1" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#简介与安装-11"><i class="fa fa-check"></i><b>3.10.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="3.10.2" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#基本使用方法-7"><i class="fa fa-check"></i><b>3.10.2</b> 基本使用方法</a></li>
+<li class="chapter" data-level="3.10.3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#增强文本表现力"><i class="fa fa-check"></i><b>3.10.3</b> 增强文本表现力</a></li>
+<li class="chapter" data-level="3.10.4" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#实战示例-8"><i class="fa fa-check"></i><b>3.10.4</b> 实战示例</a></li>
+<li class="chapter" data-level="3.10.5" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#注意事项-10"><i class="fa fa-check"></i><b>3.10.5</b> 注意事项</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="关于图表的显示.html"><a href="关于图表的显示.html"><i class="fa fa-check"></i><b>4</b> 关于图表的显示</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="关于图表的显示.html"><a href="关于图表的显示.html#dt"><i class="fa fa-check"></i><b>4.1</b> DT</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="关于图表的显示.html"><a href="关于图表的显示.html#简介与安装-12"><i class="fa fa-check"></i><b>4.1.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="4.1.2" data-path="关于图表的显示.html"><a href="关于图表的显示.html#基本使用方法-8"><i class="fa fa-check"></i><b>4.1.2</b> 基本使用方法</a></li>
+<li class="chapter" data-level="4.1.3" data-path="关于图表的显示.html"><a href="关于图表的显示.html#自定义表格样式"><i class="fa fa-check"></i><b>4.1.3</b> 自定义表格样式</a></li>
+<li class="chapter" data-level="4.1.4" data-path="关于图表的显示.html"><a href="关于图表的显示.html#高级功能-2"><i class="fa fa-check"></i><b>4.1.4</b> 高级功能</a></li>
+<li class="chapter" data-level="4.1.5" data-path="关于图表的显示.html"><a href="关于图表的显示.html#dt与shiny集成"><i class="fa fa-check"></i><b>4.1.5</b> <code>DT</code>与Shiny集成</a></li>
+<li class="chapter" data-level="4.1.6" data-path="关于图表的显示.html"><a href="关于图表的显示.html#注意事项-11"><i class="fa fa-check"></i><b>4.1.6</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="关于图表的显示.html"><a href="关于图表的显示.html#reactable"><i class="fa fa-check"></i><b>4.2</b> ReacTable</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="关于图表的显示.html"><a href="关于图表的显示.html#简介"><i class="fa fa-check"></i><b>4.2.1</b> 简介</a></li>
+<li class="chapter" data-level="4.2.2" data-path="关于图表的显示.html"><a href="关于图表的显示.html#安装"><i class="fa fa-check"></i><b>4.2.2</b> 安装</a></li>
+<li class="chapter" data-level="4.2.3" data-path="关于图表的显示.html"><a href="关于图表的显示.html#基本使用方法-9"><i class="fa fa-check"></i><b>4.2.3</b> 基本使用方法</a></li>
+<li class="chapter" data-level="4.2.4" data-path="关于图表的显示.html"><a href="关于图表的显示.html#自定义表格样式-1"><i class="fa fa-check"></i><b>4.2.4</b> 自定义表格样式</a></li>
+<li class="chapter" data-level="4.2.5" data-path="关于图表的显示.html"><a href="关于图表的显示.html#高级功能-3"><i class="fa fa-check"></i><b>4.2.5</b> 高级功能</a></li>
+<li class="chapter" data-level="4.2.6" data-path="关于图表的显示.html"><a href="关于图表的显示.html#reactable与shiny集成"><i class="fa fa-check"></i><b>4.2.6</b> <code>ReacTable</code>与Shiny集成</a></li>
+<li class="chapter" data-level="4.2.7" data-path="关于图表的显示.html"><a href="关于图表的显示.html#注意事项-12"><i class="fa fa-check"></i><b>4.2.7</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="关于图表的显示.html"><a href="关于图表的显示.html#kableextra"><i class="fa fa-check"></i><b>4.3</b> kableExtra</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="关于图表的显示.html"><a href="关于图表的显示.html#基本使用-1"><i class="fa fa-check"></i><b>4.3.1</b> 基本使用</a></li>
+<li class="chapter" data-level="4.3.2" data-path="关于图表的显示.html"><a href="关于图表的显示.html#高级定制-4"><i class="fa fa-check"></i><b>4.3.2</b> 高级定制</a></li>
+<li class="chapter" data-level="4.3.3" data-path="关于图表的显示.html"><a href="关于图表的显示.html#总结"><i class="fa fa-check"></i><b>4.3.3</b> 总结</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="关于图表的显示.html"><a href="关于图表的显示.html#gt"><i class="fa fa-check"></i><b>4.4</b> gt</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="关于图表的显示.html"><a href="关于图表的显示.html#创建你的第一个gt表格"><i class="fa fa-check"></i><b>4.4.1</b> 创建你的第一个<code>gt</code>表格</a></li>
+<li class="chapter" data-level="4.4.2" data-path="关于图表的显示.html"><a href="关于图表的显示.html#定制表格"><i class="fa fa-check"></i><b>4.4.2</b> 定制表格</a></li>
+<li class="chapter" data-level="4.4.3" data-path="关于图表的显示.html"><a href="关于图表的显示.html#导出表格"><i class="fa fa-check"></i><b>4.4.3</b> 导出表格</a></li>
+<li class="chapter" data-level="4.4.4" data-path="关于图表的显示.html"><a href="关于图表的显示.html#总结-1"><i class="fa fa-check"></i><b>4.4.4</b> 总结</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="关于图表的显示.html"><a href="关于图表的显示.html#gtsummary"><i class="fa fa-check"></i><b>4.5</b> gtsummary</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="关于图表的显示.html"><a href="关于图表的显示.html#创建第一个摘要表格"><i class="fa fa-check"></i><b>4.5.1</b> 创建第一个摘要表格</a></li>
+<li class="chapter" data-level="4.5.2" data-path="关于图表的显示.html"><a href="关于图表的显示.html#定制摘要表格"><i class="fa fa-check"></i><b>4.5.2</b> 定制摘要表格</a></li>
+<li class="chapter" data-level="4.5.3" data-path="关于图表的显示.html"><a href="关于图表的显示.html#导出表格-1"><i class="fa fa-check"></i><b>4.5.3</b> 导出表格</a></li>
+<li class="chapter" data-level="4.5.4" data-path="关于图表的显示.html"><a href="关于图表的显示.html#总结-2"><i class="fa fa-check"></i><b>4.5.4</b> 总结</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="其他绘图工具.html"><a href="其他绘图工具.html"><i class="fa fa-check"></i><b>5</b> 其他绘图工具</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="其他绘图工具.html"><a href="其他绘图工具.html#upsetr"><i class="fa fa-check"></i><b>5.1</b> <code>UpSetR</code></a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="其他绘图工具.html"><a href="其他绘图工具.html#准备数据"><i class="fa fa-check"></i><b>5.1.1</b> 准备数据</a></li>
+<li class="chapter" data-level="5.1.2" data-path="其他绘图工具.html"><a href="其他绘图工具.html#创建upset图"><i class="fa fa-check"></i><b>5.1.2</b> 创建UpSet图</a></li>
+<li class="chapter" data-level="5.1.3" data-path="其他绘图工具.html"><a href="其他绘图工具.html#定制upset图"><i class="fa fa-check"></i><b>5.1.3</b> 定制UpSet图</a></li>
+<li class="chapter" data-level="5.1.4" data-path="其他绘图工具.html"><a href="其他绘图工具.html#分析数据框中的集合"><i class="fa fa-check"></i><b>5.1.4</b> 分析数据框中的集合</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="其他绘图工具.html"><a href="其他绘图工具.html#streamgraph"><i class="fa fa-check"></i><b>5.2</b> <code>streamgraph</code></a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="其他绘图工具.html"><a href="其他绘图工具.html#准备数据-1"><i class="fa fa-check"></i><b>5.2.1</b> 准备数据</a></li>
+<li class="chapter" data-level="5.2.2" data-path="其他绘图工具.html"><a href="其他绘图工具.html#创建流图"><i class="fa fa-check"></i><b>5.2.2</b> 创建流图</a></li>
+<li class="chapter" data-level="5.2.3" data-path="其他绘图工具.html"><a href="其他绘图工具.html#定制流图"><i class="fa fa-check"></i><b>5.2.3</b> 定制流图</a></li>
+<li class="chapter" data-level="5.2.4" data-path="其他绘图工具.html"><a href="其他绘图工具.html#导出和嵌入"><i class="fa fa-check"></i><b>5.2.4</b> 导出和嵌入</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="其他绘图工具.html"><a href="其他绘图工具.html#wordcloud2"><i class="fa fa-check"></i><b>5.3</b> <code>wordcloud2</code></a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="其他绘图工具.html"><a href="其他绘图工具.html#安装和加载-1"><i class="fa fa-check"></i><b>5.3.1</b> 安装和加载</a></li>
+<li class="chapter" data-level="5.3.2" data-path="其他绘图工具.html"><a href="其他绘图工具.html#准备数据-2"><i class="fa fa-check"></i><b>5.3.2</b> 准备数据</a></li>
+<li class="chapter" data-level="5.3.3" data-path="其他绘图工具.html"><a href="其他绘图工具.html#创建词云"><i class="fa fa-check"></i><b>5.3.3</b> 创建词云</a></li>
+<li class="chapter" data-level="5.3.4" data-path="其他绘图工具.html"><a href="其他绘图工具.html#定制词云"><i class="fa fa-check"></i><b>5.3.4</b> 定制词云</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="其他绘图工具.html"><a href="其他绘图工具.html#ggridges"><i class="fa fa-check"></i><b>5.4</b> <code>ggridges</code></a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="其他绘图工具.html"><a href="其他绘图工具.html#准备数据-3"><i class="fa fa-check"></i><b>5.4.1</b> 准备数据</a></li>
+<li class="chapter" data-level="5.4.2" data-path="其他绘图工具.html"><a href="其他绘图工具.html#创建山脊线图"><i class="fa fa-check"></i><b>5.4.2</b> 创建山脊线图</a></li>
+<li class="chapter" data-level="5.4.3" data-path="其他绘图工具.html"><a href="其他绘图工具.html#定制山脊线图"><i class="fa fa-check"></i><b>5.4.3</b> 定制山脊线图</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="高质量数据可视化案例.html"><a href="高质量数据可视化案例.html"><i class="fa fa-check"></i><b>6</b> 高质量数据可视化案例</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="高质量数据可视化案例.html"><a href="高质量数据可视化案例.html#带有标签的线图"><i class="fa fa-check"></i><b>6.1</b> 带有标签的线图</a></li>
+<li class="chapter" data-level="6.2" data-path="高质量数据可视化案例.html"><a href="高质量数据可视化案例.html#办公室评级"><i class="fa fa-check"></i><b>6.2</b> 办公室评级</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="高质量数据可视化案例.html"><a href="高质量数据可视化案例.html#加载和准备数据集"><i class="fa fa-check"></i><b>6.2.1</b> 加载和准备数据集</a></li>
+<li class="chapter" data-level="6.2.2" data-path="高质量数据可视化案例.html"><a href="高质量数据可视化案例.html#第一个棒棒糖图版本"><i class="fa fa-check"></i><b>6.2.2</b> 第一个棒棒糖图版本</a></li>
+<li class="chapter" data-level="6.2.3" data-path="高质量数据可视化案例.html"><a href="高质量数据可视化案例.html#添加标签和调整比例"><i class="fa fa-check"></i><b>6.2.3</b> 添加标签和调整比例</a></li>
+<li class="chapter" data-level="6.2.4" data-path="高质量数据可视化案例.html"><a href="高质量数据可视化案例.html#保存"><i class="fa fa-check"></i><b>6.2.4</b> 保存</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="高质量数据可视化案例.html"><a href="高质量数据可视化案例.html#贪污感知指数"><i class="fa fa-check"></i><b>6.3</b> 贪污感知指数</a></li>
+<li class="chapter" data-level="6.4" data-path="高质量数据可视化案例.html"><a href="高质量数据可视化案例.html#每小时热力图"><i class="fa fa-check"></i><b>6.4</b> 每小时热力图</a></li>
+<li class="chapter" data-level="6.5" data-path="高质量数据可视化案例.html"><a href="高质量数据可视化案例.html#小倍数线图"><i class="fa fa-check"></i><b>6.5</b> 小倍数线图</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="绘图注意事项.html"><a href="绘图注意事项.html"><i class="fa fa-check"></i><b>7</b> 绘图注意事项</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/liamamilin" target="blank">From Data to Viz</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">From Data to Viz</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="高质量数据可视化案例" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Chapter 6</span> 高质量数据可视化案例<a href="高质量数据可视化案例.html#高质量数据可视化案例" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="带有标签的线图" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> 带有标签的线图<a href="高质量数据可视化案例.html#带有标签的线图" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="高质量数据可视化案例.html#cb1-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+## ✔ dplyr     1.1.4     ✔ readr     2.1.4
+## ✔ forcats   1.0.0     ✔ stringr   1.5.1
+## ✔ ggplot2   3.4.4     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.3     ✔ tidyr     1.3.0
+## ✔ purrr     1.0.2     
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="高质量数据可视化案例.html#cb3-1" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb3-2"><a href="高质量数据可视化案例.html#cb3-2" tabindex="-1"></a><span class="fu">library</span>(ggtext)</span>
+<span id="cb3-3"><a href="高质量数据可视化案例.html#cb3-3" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="高质量数据可视化案例.html#cb3-4" tabindex="-1"></a><span class="fu">library</span>(showtext)</span></code></pre></div>
+<pre><code>## Loading required package: sysfonts
+## Loading required package: showtextdb</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="高质量数据可视化案例.html#cb5-1" tabindex="-1"></a><span class="fu">font_add_google</span>(<span class="st">&quot;Lato&quot;</span>)</span>
+<span id="cb5-2"><a href="高质量数据可视化案例.html#cb5-2" tabindex="-1"></a><span class="fu">showtext_auto</span>()</span></code></pre></div>
+<p>加载并准备数据集
+今天的图表可视化了 Big Mac 的价格变化（以美元计） ，基准年份为2008年。数据的原始来源是《经济学人》，但本文基于2020-12-22周的 TidyTuesday 项目版本。您可以在这里找到原始公告和有关数据的更多信息。</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="高质量数据可视化案例.html#cb6-1" tabindex="-1"></a>df_mac_raw <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&#39;big-mac.csv&#39;</span>)</span></code></pre></div>
+<pre><code>## Rows: 1386 Columns: 19
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr   (3): iso_a3, currency_code, name
+## dbl  (15): local_price, dollar_ex, dollar_price, usd_raw, eur_raw, gbp_raw, ...
+## date  (1): date
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<p>数据加载完成后，就该为绘图准备数据了。</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="高质量数据可视化案例.html#cb8-1" tabindex="-1"></a>df_mac <span class="ot">&lt;-</span> df_mac_raw <span class="sc">%&gt;%</span> </span>
+<span id="cb8-2"><a href="高质量数据可视化案例.html#cb8-2" tabindex="-1"></a>  <span class="co"># 提取年份</span></span>
+<span id="cb8-3"><a href="高质量数据可视化案例.html#cb8-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> lubridate<span class="sc">::</span><span class="fu">year</span>(date)) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-4"><a href="高质量数据可视化案例.html#cb8-4" tabindex="-1"></a>  <span class="co"># 子集变量</span></span>
+<span id="cb8-5"><a href="高质量数据可视化案例.html#cb8-5" tabindex="-1"></a>  <span class="fu">select</span>(date, year, iso_a3, currency_code, name, dollar_price) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-6"><a href="高质量数据可视化案例.html#cb8-6" tabindex="-1"></a>  <span class="co"># 如果每年/每个国家有多条记录，则使用平均值</span></span>
+<span id="cb8-7"><a href="高质量数据可视化案例.html#cb8-7" tabindex="-1"></a>  <span class="fu">group_by</span>(iso_a3, name, year) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-8"><a href="高质量数据可视化案例.html#cb8-8" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">price =</span> <span class="fu">mean</span>(dollar_price)) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-9"><a href="高质量数据可视化案例.html#cb8-9" tabindex="-1"></a>  <span class="co"># 保留具有过去21年（从2000年到2020年，包括在内）记录的国家/地区</span></span>
+<span id="cb8-10"><a href="高质量数据可视化案例.html#cb8-10" tabindex="-1"></a>  <span class="fu">group_by</span>(iso_a3) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-11"><a href="高质量数据可视化案例.html#cb8-11" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">n</span>() <span class="sc">==</span> <span class="dv">21</span>)</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;iso_a3&#39;, &#39;name&#39;. You can override using
+## the `.groups` argument.</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="高质量数据可视化案例.html#cb10-1" tabindex="-1"></a><span class="co"># 还定义了要突出显示的国家组</span></span>
+<span id="cb10-2"><a href="高质量数据可视化案例.html#cb10-2" tabindex="-1"></a>highlights <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;EUZ&quot;</span>, <span class="st">&quot;CHE&quot;</span>, <span class="st">&quot;DNK&quot;</span>, <span class="st">&quot;SWE&quot;</span>, <span class="st">&quot;BRA&quot;</span>, <span class="st">&quot;ARG&quot;</span>, <span class="st">&quot;GBR&quot;</span>, <span class="st">&quot;USA&quot;</span>)</span>
+<span id="cb10-3"><a href="高质量数据可视化案例.html#cb10-3" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(highlights)</span></code></pre></div>
+<p>接下来，重要的是确保图表仅显示具有2008年 Big Mac Index 的国家。给定国家在某一时刻的价格指数是该时刻价格与该国2008年价格之间的差异。</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="高质量数据可视化案例.html#cb11-1" tabindex="-1"></a>countries <span class="ot">&lt;-</span> df_mac <span class="sc">%&gt;%</span> </span>
+<span id="cb11-2"><a href="高质量数据可视化案例.html#cb11-2" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2008</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-3"><a href="高质量数据可视化案例.html#cb11-3" tabindex="-1"></a>  <span class="fu">pull</span>(iso_a3)</span>
+<span id="cb11-4"><a href="高质量数据可视化案例.html#cb11-4" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="高质量数据可视化案例.html#cb11-5" tabindex="-1"></a>df_mac_indexed_2008 <span class="ot">&lt;-</span> df_mac <span class="sc">%&gt;%</span> </span>
+<span id="cb11-6"><a href="高质量数据可视化案例.html#cb11-6" tabindex="-1"></a>  <span class="co"># 保留具有2008年记录的国家，即基准年。</span></span>
+<span id="cb11-7"><a href="高质量数据可视化案例.html#cb11-7" tabindex="-1"></a>  <span class="fu">group_by</span>(iso_a3) <span class="sc">%&gt;%</span></span>
+<span id="cb11-8"><a href="高质量数据可视化案例.html#cb11-8" tabindex="-1"></a>  <span class="fu">filter</span>(iso_a3 <span class="sc">%in%</span> countries) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-9"><a href="高质量数据可视化案例.html#cb11-9" tabindex="-1"></a>  <span class="co"># 计算`price_index`</span></span>
+<span id="cb11-10"><a href="高质量数据可视化案例.html#cb11-10" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb11-11"><a href="高质量数据可视化案例.html#cb11-11" tabindex="-1"></a>    <span class="at">ref_year =</span> <span class="dv">2008</span>,</span>
+<span id="cb11-12"><a href="高质量数据可视化案例.html#cb11-12" tabindex="-1"></a>    <span class="at">price_index =</span> price[<span class="fu">which</span>(year <span class="sc">==</span> <span class="dv">2008</span>)],</span>
+<span id="cb11-13"><a href="高质量数据可视化案例.html#cb11-13" tabindex="-1"></a>    <span class="at">price_rel =</span> price <span class="sc">-</span> price_index,</span>
+<span id="cb11-14"><a href="高质量数据可视化案例.html#cb11-14" tabindex="-1"></a>    <span class="co"># 创建 &#39;group&#39;，用于着色线条。</span></span>
+<span id="cb11-15"><a href="高质量数据可视化案例.html#cb11-15" tabindex="-1"></a>    <span class="at">group =</span> <span class="fu">if_else</span>(iso_a3 <span class="sc">%in%</span> highlights, iso_a3, <span class="st">&quot;other&quot;</span>),</span>
+<span id="cb11-16"><a href="高质量数据可视化案例.html#cb11-16" tabindex="-1"></a>    <span class="at">group =</span> <span class="fu">as.factor</span>(group)</span>
+<span id="cb11-17"><a href="高质量数据可视化案例.html#cb11-17" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-18"><a href="高质量数据可视化案例.html#cb11-18" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb11-19"><a href="高质量数据可视化案例.html#cb11-19" tabindex="-1"></a>    <span class="at">group =</span> <span class="fu">fct_relevel</span>(group, <span class="st">&quot;other&quot;</span>, <span class="at">after =</span> <span class="cn">Inf</span>),</span>
+<span id="cb11-20"><a href="高质量数据可视化案例.html#cb11-20" tabindex="-1"></a>    <span class="at">name_lab =</span> <span class="fu">if_else</span>(year <span class="sc">==</span> <span class="dv">2020</span>, name, <span class="cn">NA_character_</span>)</span>
+<span id="cb11-21"><a href="高质量数据可视化案例.html#cb11-21" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb11-22"><a href="高质量数据可视化案例.html#cb11-22" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code></pre></div>
+<p>主题定义
+这次，在创建图表之前定义了主题。请查看下面代码中的注释，以更好地理解这里发生的情况。</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="高质量数据可视化案例.html#cb12-1" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_minimal</span>(<span class="at">base_family =</span> <span class="st">&quot;Lato&quot;</span>))</span>
+<span id="cb12-2"><a href="高质量数据可视化案例.html#cb12-2" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="高质量数据可视化案例.html#cb12-3" tabindex="-1"></a><span class="fu">theme_update</span>(</span>
+<span id="cb12-4"><a href="高质量数据可视化案例.html#cb12-4" tabindex="-1"></a>  <span class="co"># 删除 x 轴和 y 轴的标题</span></span>
+<span id="cb12-5"><a href="高质量数据可视化案例.html#cb12-5" tabindex="-1"></a>  <span class="at">axis.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb12-6"><a href="高质量数据可视化案例.html#cb12-6" tabindex="-1"></a>  <span class="co"># 轴标签为灰色</span></span>
+<span id="cb12-7"><a href="高质量数据可视化案例.html#cb12-7" tabindex="-1"></a>  <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">&quot;grey40&quot;</span>),</span>
+<span id="cb12-8"><a href="高质量数据可视化案例.html#cb12-8" tabindex="-1"></a>  <span class="co"># x 和 y 轴的标签大小不同。</span></span>
+<span id="cb12-9"><a href="高质量数据可视化案例.html#cb12-9" tabindex="-1"></a>  <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">20</span>, <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">t =</span> <span class="dv">5</span>)),</span>
+<span id="cb12-10"><a href="高质量数据可视化案例.html#cb12-10" tabindex="-1"></a>  <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">17</span>, <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">r =</span> <span class="dv">5</span>)),</span>
+<span id="cb12-11"><a href="高质量数据可视化案例.html#cb12-11" tabindex="-1"></a>  <span class="co"># 刻度线为非常浅的灰色</span></span>
+<span id="cb12-12"><a href="高质量数据可视化案例.html#cb12-12" tabindex="-1"></a>  <span class="at">axis.ticks =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">&quot;grey91&quot;</span>, <span class="at">size =</span> .<span class="dv">5</span>),</span>
+<span id="cb12-13"><a href="高质量数据可视化案例.html#cb12-13" tabindex="-1"></a>  <span class="co"># 增加刻度线的长度。</span></span>
+<span id="cb12-14"><a href="高质量数据可视化案例.html#cb12-14" tabindex="-1"></a>  <span class="at">axis.ticks.length.x =</span> <span class="fu">unit</span>(<span class="fl">1.3</span>, <span class="st">&quot;lines&quot;</span>),</span>
+<span id="cb12-15"><a href="高质量数据可视化案例.html#cb12-15" tabindex="-1"></a>  <span class="at">axis.ticks.length.y =</span> <span class="fu">unit</span>(.<span class="dv">7</span>, <span class="st">&quot;lines&quot;</span>),</span>
+<span id="cb12-16"><a href="高质量数据可视化案例.html#cb12-16" tabindex="-1"></a>  <span class="co"># 删除 ggplot2 默认带有的网格线</span></span>
+<span id="cb12-17"><a href="高质量数据可视化案例.html#cb12-17" tabindex="-1"></a>  <span class="at">panel.grid =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb12-18"><a href="高质量数据可视化案例.html#cb12-18" tabindex="-1"></a>  <span class="co"># 自定义边缘值（顶部，右侧，底部，左侧）</span></span>
+<span id="cb12-19"><a href="高质量数据可视化案例.html#cb12-19" tabindex="-1"></a>  <span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="dv">20</span>, <span class="dv">40</span>, <span class="dv">20</span>, <span class="dv">40</span>),</span>
+<span id="cb12-20"><a href="高质量数据可视化案例.html#cb12-20" tabindex="-1"></a>  <span class="co"># 使用浅灰色为图和面板背景</span></span>
+<span id="cb12-21"><a href="高质量数据可视化案例.html#cb12-21" tabindex="-1"></a>  <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;grey98&quot;</span>, <span class="at">color =</span> <span class="st">&quot;grey98&quot;</span>),</span>
+<span id="cb12-22"><a href="高质量数据可视化案例.html#cb12-22" tabindex="-1"></a>  <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;grey98&quot;</span>, <span class="at">color =</span> <span class="st">&quot;grey98&quot;</span>),</span>
+<span id="cb12-23"><a href="高质量数据可视化案例.html#cb12-23" tabindex="-1"></a>  <span class="co"># 自定义标题外观</span></span>
+<span id="cb12-24"><a href="高质量数据可视化案例.html#cb12-24" tabindex="-1"></a>  <span class="at">plot.title =</span> <span class="fu">element_text</span>(</span>
+<span id="cb12-25"><a href="高质量数据可视化案例.html#cb12-25" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;grey10&quot;</span>, </span>
+<span id="cb12-26"><a href="高质量数据可视化案例.html#cb12-26" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">28</span>, </span>
+<span id="cb12-27"><a href="高质量数据可视化案例.html#cb12-27" tabindex="-1"></a>    <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>,</span>
+<span id="cb12-28"><a href="高质量数据可视化案例.html#cb12-28" tabindex="-1"></a>    <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">t =</span> <span class="dv">15</span>)</span>
+<span id="cb12-29"><a href="高质量数据可视化案例.html#cb12-29" tabindex="-1"></a>  ),</span>
+<span id="cb12-30"><a href="高质量数据可视化案例.html#cb12-30" tabindex="-1"></a>  <span class="co"># 自定义子标题外观</span></span>
+<span id="cb12-31"><a href="高质量数据可视化案例.html#cb12-31" tabindex="-1"></a>  <span class="at">plot.subtitle =</span> <span class="fu">element_markdown</span>(</span>
+<span id="cb12-32"><a href="高质量数据可视化案例.html#cb12-32" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;grey30&quot;</span>, </span>
+<span id="cb12-33"><a href="高质量数据可视化案例.html#cb12-33" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">16</span>,</span>
+<span id="cb12-34"><a href="高质量数据可视化案例.html#cb12-34" tabindex="-1"></a>    <span class="at">lineheight =</span> <span class="fl">1.35</span>,</span>
+<span id="cb12-35"><a href="高质量数据可视化案例.html#cb12-35" tabindex="-1"></a>    <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">t =</span> <span class="dv">15</span>, <span class="at">b =</span> <span class="dv">40</span>)</span>
+<span id="cb12-36"><a href="高质量数据可视化案例.html#cb12-36" tabindex="-1"></a>  ),</span>
+<span id="cb12-37"><a href="高质量数据可视化案例.html#cb12-37" tabindex="-1"></a>  <span class="co"># 标题和说明将对齐</span></span>
+<span id="cb12-38"><a href="高质量数据可视化案例.html#cb12-38" tabindex="-1"></a>  <span class="at">plot.title.position =</span> <span class="st">&quot;plot&quot;</span>,</span>
+<span id="cb12-39"><a href="高质量数据可视化案例.html#cb12-39" tabindex="-1"></a>  <span class="at">plot.caption.position =</span> <span class="st">&quot;plot&quot;</span>,</span>
+<span id="cb12-40"><a href="高质量数据可视化案例.html#cb12-40" tabindex="-1"></a>  <span class="at">plot.caption =</span> <span class="fu">element_text</span>(</span>
+<span id="cb12-41"><a href="高质量数据可视化案例.html#cb12-41" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;grey30&quot;</span>, </span>
+<span id="cb12-42"><a href="高质量数据可视化案例.html#cb12-42" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">13</span>,</span>
+<span id="cb12-43"><a href="高质量数据可视化案例.html#cb12-43" tabindex="-1"></a>    <span class="at">lineheight =</span> <span class="fl">1.2</span>, </span>
+<span id="cb12-44"><a href="高质量数据可视化案例.html#cb12-44" tabindex="-1"></a>    <span class="at">hjust =</span> <span class="dv">0</span>,</span>
+<span id="cb12-45"><a href="高质量数据可视化案例.html#cb12-45" tabindex="-1"></a>    <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">t =</span> <span class="dv">40</span>) <span class="co"># 大间距在说明的顶部。</span></span>
+<span id="cb12-46"><a href="高质量数据可视化案例.html#cb12-46" tabindex="-1"></a>  ),</span>
+<span id="cb12-47"><a href="高质量数据可视化案例.html#cb12-47" tabindex="-1"></a>  <span class="co"># 删除图例</span></span>
+<span id="cb12-48"><a href="高质量数据可视化案例.html#cb12-48" tabindex="-1"></a>  <span class="at">legend.position =</span> <span class="st">&quot;none</span></span>
+<span id="cb12-49"><a href="高质量数据可视化案例.html#cb12-49" tabindex="-1"></a></span>
+<span id="cb12-50"><a href="高质量数据可视化案例.html#cb12-50" tabindex="-1"></a><span class="st">&quot;</span></span>
+<span id="cb12-51"><a href="高质量数据可视化案例.html#cb12-51" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## Warning: The `size` argument of `element_line()` is deprecated as of ggplot2 3.4.0.
+## ℹ Please use the `linewidth` argument instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
+<p>您是否在上面的 plot.subtitle() 中看到了 element_markdown()？该函数随 ggtext() 包提供，并且可以使用 markdown 语法格式化文本。就像魔法一样！</p>
+<p>基本图表
+今天的图表是一个线图，可视化了 Big Mac 的价格变化（以美元计） ，基准年份为2008年。在高亮显示的向量中的国家有不同的颜色，以突出显示其在时间轴上的演变。听起来很令人兴奋，让我们开始吧！</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="高质量数据可视化案例.html#cb14-1" tabindex="-1"></a>plt <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
+<span id="cb14-2"><a href="高质量数据可视化案例.html#cb14-2" tabindex="-1"></a>  <span class="co"># ggplot 对象已将高亮显示的国家的数据关联起来</span></span>
+<span id="cb14-3"><a href="高质量数据可视化案例.html#cb14-3" tabindex="-1"></a>  df_mac_indexed_2008 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(group <span class="sc">!=</span> <span class="st">&quot;other&quot;</span>), </span>
+<span id="cb14-4"><a href="高质量数据可视化案例.html#cb14-4" tabindex="-1"></a>  <span class="fu">aes</span>(year, price_rel, <span class="at">group =</span> iso_a3)</span>
+<span id="cb14-5"><a href="高质量数据可视化案例.html#cb14-5" tabindex="-1"></a>) <span class="sc">+</span> </span>
+<span id="cb14-6"><a href="高质量数据可视化案例.html#cb14-6" tabindex="-1"></a>  <span class="co"># 几何注释，起到网格线的作用</span></span>
+<span id="cb14-7"><a href="高质量数据可视化案例.html#cb14-7" tabindex="-1"></a>  <span class="fu">geom_vline</span>(</span>
+<span id="cb14-8"><a href="高质量数据可视化案例.html#cb14-8" tabindex="-1"></a>    <span class="at">xintercept =</span> <span class="fu">seq</span>(<span class="dv">2000</span>, <span class="dv">2020</span>, <span class="at">by =</span> <span class="dv">5</span>),</span>
+<span id="cb14-9"><a href="高质量数据可视化案例.html#cb14-9" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;grey91&quot;</span>, </span>
+<span id="cb14-10"><a href="高质量数据可视化案例.html#cb14-10" tabindex="-1"></a>    <span class="at">size =</span> .<span class="dv">6</span></span>
+<span id="cb14-11"><a href="高质量数据可视化案例.html#cb14-11" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb14-12"><a href="高质量数据可视化案例.html#cb14-12" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb14-13"><a href="高质量数据可视化案例.html#cb14-13" tabindex="-1"></a>    <span class="at">data =</span> <span class="fu">tibble</span>(<span class="at">y =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">3</span>, <span class="at">by =</span> <span class="dv">1</span>), <span class="at">x1 =</span> <span class="dv">2000</span>, <span class="at">x2 =</span> <span class="dv">2020</span>),</span>
+<span id="cb14-14"><a href="高质量数据可视化案例.html#cb14-14" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> x1, <span class="at">xend =</span> x2, <span class="at">y =</span> y, <span class="at">yend =</span> y),</span>
+<span id="cb14-15"><a href="高质量数据可视化案例.html#cb14-15" tabindex="-1"></a>    <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb14-16"><a href="高质量数据可视化案例.html#cb14-16" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;grey91&quot;</span>,</span>
+<span id="cb14-17"><a href="高质量数据可视化案例.html#cb14-17" tabindex="-1"></a>    <span class="at">size =</span> .<span class="dv">6</span></span>
+<span id="cb14-18"><a href="高质量数据可视化案例.html#cb14-18" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb14-19"><a href="高质量数据可视化案例.html#cb14-19" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb14-20"><a href="高质量数据可视化案例.html#cb14-20" tabindex="-1"></a>    <span class="at">data =</span> <span class="fu">tibble</span>(<span class="at">y =</span> <span class="dv">0</span>, <span class="at">x1 =</span> <span class="dv">2000</span>, <span class="at">x2 =</span> <span class="dv">2020</span>),</span>
+<span id="cb14-21"><a href="高质量数据可视化案例.html#cb14-21" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> x1, <span class="at">xend =</span> x2, <span class="at">y =</span> y, <span class="at">yend =</span> y),</span>
+<span id="cb14-22"><a href="高质量数据可视化案例.html#cb14-22" tabindex="-1"></a>    <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb14-23"><a href="高质量数据可视化案例.html#cb14-23" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;grey60&quot;</span>,</span>
+<span id="cb14-24"><a href="高质量数据可视化案例.html#cb14-24" tabindex="-1"></a>    <span class="at">size =</span> .<span class="dv">8</span></span>
+<span id="cb14-25"><a href="高质量数据可视化案例.html#cb14-25" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb14-26"><a href="高质量数据可视化案例.html#cb14-26" tabindex="-1"></a>  <span class="fu">geom_vline</span>(</span>
+<span id="cb14-27"><a href="高质量数据可视化案例.html#cb14-27" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">xintercept =</span> ref_year), </span>
+<span id="cb14-28"><a href="高质量数据可视化案例.html#cb14-28" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;grey40&quot;</span>,</span>
+<span id="cb14-29"><a href="高质量数据可视化案例.html#cb14-29" tabindex="-1"></a>    <span class="at">linetype =</span> <span class="st">&quot;dotted&quot;</span>,</span>
+<span id="cb14-30"><a href="高质量数据可视化案例.html#cb14-30" tabindex="-1"></a>    <span class="at">size =</span> .<span class="dv">8</span></span>
+<span id="cb14-31"><a href="高质量数据可视化案例.html#cb14-31" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb14-32"><a href="高质量数据可视化案例.html#cb14-32" tabindex="-1"></a>  <span class="do">## 非高亮显示的国家的线条</span></span>
+<span id="cb14-33"><a href="高质量数据可视化案例.html#cb14-33" tabindex="-1"></a>  <span class="fu">geom_line</span>(</span>
+<span id="cb14-34"><a href="高质量数据可视化案例.html#cb14-34" tabindex="-1"></a>    <span class="at">data =</span> df_mac_indexed_2008 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(group <span class="sc">==</span> <span class="st">&quot;other&quot;</span>),</span>
+<span id="cb14-35"><a href="高质量数据可视化案例.html#cb14-35" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;grey75&quot;</span>,</span>
+<span id="cb14-36"><a href="高质量数据可视化案例.html#cb14-36" tabindex="-1"></a>    <span class="at">size =</span> .<span class="dv">6</span>,</span>
+<span id="cb14-37"><a href="高质量数据可视化案例.html#cb14-37" tabindex="-1"></a>    <span class="at">alpha =</span> .<span class="dv">5</span></span>
+<span id="cb14-38"><a href="高质量数据可视化案例.html#cb14-38" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb14-39"><a href="高质量数据可视化案例.html#cb14-39" tabindex="-1"></a>  <span class="do">## 高亮显示的国家的线条。</span></span>
+<span id="cb14-40"><a href="高质量数据可视化案例.html#cb14-40" tabindex="-1"></a>  <span class="co"># 重要的是将它们放在灰色线条之后，</span></span>
+<span id="cb14-41"><a href="高质量数据可视化案例.html#cb14-41" tabindex="-1"></a>  <span class="co"># 以便着色的线条位于顶部</span></span>
+<span id="cb14-42"><a href="高质量数据可视化案例.html#cb14-42" tabindex="-1"></a>  <span class="fu">geom_line</span>(</span>
+<span id="cb14-43"><a href="高质量数据可视化案例.html#cb14-43" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">color =</span> group),</span>
+<span id="cb14-44"><a href="高质量数据可视化案例.html#cb14-44" tabindex="-1"></a>    <span class="at">size =</span> .<span class="dv">9</span></span>
+<span id="cb14-45"><a href="高质量数据可视化案例.html#cb14-45" tabindex="-1"></a>  )</span></code></pre></div>
+<pre><code>## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+## ℹ Please use `linewidth` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="高质量数据可视化案例.html#cb16-1" tabindex="-1"></a>plt</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>这是一个不错的开端！为一些国家使用不同的颜色绝对可以让人更容易追踪其价格指数的演变。</p>
+<p>添加不重叠的标签
+虽然颜色是很大的帮助，但它们并不透露线条代表哪个国家。在每条线的末端添加一个标签，告诉它代表的是哪个国家，这样不是很好吗？</p>
+<p>在图上添加许多标签是非常具有挑战性的，因为标签往往会重叠在一起，使图表难以阅读。幸运的是，ggrepel 包可以帮助我们。它提供了一个算法，可以自动为我们定位标签。让我们来做吧！</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="高质量数据可视化案例.html#cb17-1" tabindex="-1"></a>plt <span class="ot">&lt;-</span> plt <span class="sc">+</span> </span>
+<span id="cb17-2"><a href="高质量数据可视化案例.html#cb17-2" tabindex="-1"></a>  <span class="fu">annotate</span>(</span>
+<span id="cb17-3"><a href="高质量数据可视化案例.html#cb17-3" tabindex="-1"></a>    <span class="st">&quot;text&quot;</span>, <span class="at">x =</span> <span class="fl">2008.15</span>, <span class="at">y =</span> <span class="sc">-</span><span class="fl">3.35</span>, </span>
+<span id="cb17-4"><a href="高质量数据可视化案例.html#cb17-4" tabindex="-1"></a>    <span class="at">label =</span> <span class="st">&quot;2008&quot;</span>,</span>
+<span id="cb17-5"><a href="高质量数据可视化案例.html#cb17-5" tabindex="-1"></a>    <span class="at">family =</span> <span class="st">&quot;Lato&quot;</span>,</span>
+<span id="cb17-6"><a href="高质量数据可视化案例.html#cb17-6" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">8</span>,</span>
+<span id="cb17-7"><a href="高质量数据可视化案例.html#cb17-7" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;grey40&quot;</span>,</span>
+<span id="cb17-8"><a href="高质量数据可视化案例.html#cb17-8" tabindex="-1"></a>    <span class="at">hjust =</span> <span class="dv">0</span></span>
+<span id="cb17-9"><a href="高质量数据可视化案例.html#cb17-9" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb17-10"><a href="高质量数据可视化案例.html#cb17-10" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(</span>
+<span id="cb17-11"><a href="高质量数据可视化案例.html#cb17-11" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">color =</span> group, <span class="at">label =</span> name_lab),</span>
+<span id="cb17-12"><a href="高质量数据可视化案例.html#cb17-12" tabindex="-1"></a>    <span class="at">family =</span> <span class="st">&quot;Lato&quot;</span>,</span>
+<span id="cb17-13"><a href="高质量数据可视化案例.html#cb17-13" tabindex="-1"></a>    <span class="at">fontface =</span> <span class="st">&quot;bold&quot;</span>,</span>
+<span id="cb17-14"><a href="高质量数据可视化案例.html#cb17-14" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">8</span>,</span>
+<span id="cb17-15"><a href="高质量数据可视化案例.html#cb17-15" tabindex="-1"></a>    <span class="at">direction =</span> <span class="st">&quot;y&quot;</span>,</span>
+<span id="cb17-16"><a href="高质量数据可视化案例.html#cb17-16" tabindex="-1"></a>    <span class="at">xlim =</span> <span class="fu">c</span>(<span class="fl">2020.8</span>, <span class="cn">NA</span>),</span>
+<span id="cb17-17"><a href="高质量数据可视化案例.html#cb17-17" tabindex="-1"></a>    <span class="at">hjust =</span> <span class="dv">0</span>,</span>
+<span id="cb17-18"><a href="高质量数据可视化案例.html#cb17-18" tabindex="-1"></a>    <span class="at">segment.size =</span> .<span class="dv">7</span>,</span>
+<span id="cb17-19"><a href="高质量数据可视化案例.html#cb17-19" tabindex="-1"></a>    <span class="at">segment.alpha =</span> .<span class="dv">5</span>,</span>
+<span id="cb17-20"><a href="高质量数据可视化案例.html#cb17-20" tabindex="-1"></a>    <span class="at">segment.linetype =</span> <span class="st">&quot;dotted&quot;</span>,</span>
+<span id="cb17-21"><a href="高质量数据可视化案例.html#cb17-21" tabindex="-1"></a>    <span class="at">box.padding =</span> .<span class="dv">4</span>,</span>
+<span id="cb17-22"><a href="高质量数据可视化案例.html#cb17-22" tabindex="-1"></a>    <span class="at">segment.curvature =</span> <span class="sc">-</span><span class="fl">0.1</span>,</span>
+<span id="cb17-23"><a href="高质量数据可视化案例.html#cb17-23" tabindex="-1"></a>    <span class="at">segment.ncp =</span> <span class="dv">3</span>,</span>
+<span id="cb17-24"><a href="高质量数据可视化案例.html#cb17-24" tabindex="-1"></a>    <span class="at">segment.angle =</span> <span class="dv">20</span></span>
+<span id="cb17-25"><a href="高质量数据可视化案例.html#cb17-25" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb17-26"><a href="高质量数据可视化案例.html#cb17-26" tabindex="-1"></a>  <span class="do">## 坐标系 + 刻度</span></span>
+<span id="cb17-27"><a href="高质量数据可视化案例.html#cb17-27" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(</span>
+<span id="cb17-28"><a href="高质量数据可视化案例.html#cb17-28" tabindex="-1"></a>    <span class="at">clip =</span> <span class="st">&quot;off&quot;</span>,</span>
+<span id="cb17-29"><a href="高质量数据可视化案例.html#cb17-29" tabindex="-1"></a>    <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">3</span>)</span>
+<span id="cb17-30"><a href="高质量数据可视化案例.html#cb17-30" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb17-31"><a href="高质量数据可视化案例.html#cb17-31" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(</span>
+<span id="cb17-32"><a href="高质量数据可视化案例.html#cb17-32" tabindex="-1"></a>    <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>),</span>
+<span id="cb17-33"><a href="高质量数据可视化案例.html#cb17-33" tabindex="-1"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">2000</span>, <span class="fl">2023.5</span>), </span>
+<span id="cb17-34"><a href="高质量数据可视化案例.html#cb17-34" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">2000</span>, <span class="dv">2020</span>, <span class="at">by =</span> <span class="dv">5</span>)</span>
+<span id="cb17-35"><a href="高质量数据可视化案例.html#cb17-35" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb17-36"><a href="高质量数据可视化案例.html#cb17-36" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb17-37"><a href="高质量数据可视化案例.html#cb17-37" tabindex="-1"></a>    <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>),</span>
+<span id="cb17-38"><a href="高质量数据可视化案例.html#cb17-38" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">3</span>, <span class="at">by =</span> <span class="dv">1</span>),</span>
+<span id="cb17-39"><a href="高质量数据可视化案例.html#cb17-39" tabindex="-1"></a>    <span class="at">labels =</span> glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">&quot;{format(seq(-4, 3, by = 1), nsmall = 2)}$&quot;</span>)</span>
+<span id="cb17-40"><a href="高质量数据可视化案例.html#cb17-40" tabindex="-1"></a>  )</span>
+<span id="cb17-41"><a href="高质量数据可视化案例.html#cb17-41" tabindex="-1"></a>plt </span></code></pre></div>
+<pre><code>## Warning: Removed 160 rows containing missing values (`geom_text_repel()`).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>太棒了！几个注释就能极大地提高图表的可读性。</p>
+<p>最终图表
+上面的图表已经非常接近发布准备就绪的状态。现在需要的是一个更好的颜色调色板来改善图表的外观，并且需要一些好的注释来使图表更有见地：</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="高质量数据可视化案例.html#cb19-1" tabindex="-1"></a>plt <span class="ot">&lt;-</span> plt <span class="sc">+</span> </span>
+<span id="cb19-2"><a href="高质量数据可视化案例.html#cb19-2" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(</span>
+<span id="cb19-3"><a href="高质量数据可视化案例.html#cb19-3" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(rcartocolor<span class="sc">::</span><span class="fu">carto_pal</span>(<span class="at">n =</span> n, <span class="at">name =</span> <span class="st">&quot;Bold&quot;</span>)[<span class="dv">1</span><span class="sc">:</span>n<span class="dv">-1</span>], <span class="st">&quot;grey50&quot;</span>)</span>
+<span id="cb19-4"><a href="高质量数据可视化案例.html#cb19-4" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb19-5"><a href="高质量数据可视化案例.html#cb19-5" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb19-6"><a href="高质量数据可视化案例.html#cb19-6" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Compared to the financial crisis in 2008, how much more or less do you have to pay for a Big Mac today?&quot;</span>,</span>
+<span id="cb19-7"><a href="高质量数据可视化案例.html#cb19-7" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;The &lt;i&gt;index chart&lt;/i&gt; visualizes the price changes (in USD) of a Big Mac based on a 2008 as index year. The &lt;b&gt;Big Mac Index&lt;/b&gt; is published by The Economist as an informal way to provide a test of the&lt;br&gt;extent to which market exchange rates result in goods costing the same in different countries. It &lt;i&gt;seeks to make exchange-rate theory a bit more digestible&lt;/i&gt; and takes its name from the Big Mac,&lt;br&gt;a hamburger sold at McDonald&#39;s restaurants.&quot;</span>,</span>
+<span id="cb19-8"><a href="高质量数据可视化案例.html#cb19-8" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">&quot;Visualization by Cédric Scherer  •  Data by The Economist  •  The index chart shows the 27 countries that provide Big mac prices for all years from 2000 to 2020. In case a country was reported twice per year, the mean value was visualized.&quot;</span></span>
+<span id="cb19-9"><a href="高质量数据可视化案例.html#cb19-9" tabindex="-1"></a>  )</span>
+<span id="cb19-10"><a href="高质量数据可视化案例.html#cb19-10" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;plt.png&quot;</span>,plt)</span></code></pre></div>
+<pre><code>## Saving 7 x 5 in image</code></pre>
+<pre><code>## Warning: Removed 160 rows containing missing values (`geom_text_repel()`).</code></pre>
+<pre><code>## Warning: ggrepel: 1 unlabeled data points (too many overlaps). Consider
+## increasing max.overlaps</code></pre>
+<p>现在这个图表已经准备
+<img src="plt.png" /></p>
+</div>
+<div id="办公室评级" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> 办公室评级<a href="高质量数据可视化案例.html#办公室评级" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>为了构建图形，通常需要加载多个包。这次我们还通过<code>font_add_google()</code>函数从Google导入了一些字体。最后，我们调用<code>showtext_auto()</code>函数来指示我们在图表中使用showtext来绘制文本。</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="高质量数据可视化案例.html#cb23-1" tabindex="-1"></a><span class="co"># 加载包</span></span>
+<span id="cb23-2"><a href="高质量数据可视化案例.html#cb23-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb23-3"><a href="高质量数据可视化案例.html#cb23-3" tabindex="-1"></a><span class="fu">library</span>(cowplot)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;cowplot&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:lubridate&#39;:
+## 
+##     stamp</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="高质量数据可视化案例.html#cb26-1" tabindex="-1"></a><span class="fu">library</span>(showtext)</span>
+<span id="cb26-2"><a href="高质量数据可视化案例.html#cb26-2" tabindex="-1"></a><span class="fu">showtext_auto</span>()</span>
+<span id="cb26-3"><a href="高质量数据可视化案例.html#cb26-3" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="高质量数据可视化案例.html#cb26-4" tabindex="-1"></a><span class="co"># 添加来自Google的字体。</span></span>
+<span id="cb26-5"><a href="高质量数据可视化案例.html#cb26-5" tabindex="-1"></a><span class="fu">font_add_google</span>(<span class="st">&quot;Roboto Mono&quot;</span>, <span class="st">&quot;Roboto Mono&quot;</span>)</span>
+<span id="cb26-6"><a href="高质量数据可视化案例.html#cb26-6" tabindex="-1"></a><span class="fu">font_add_google</span>(<span class="st">&quot;Open Sans&quot;</span>, <span class="st">&quot;Open Sans&quot;</span>)</span>
+<span id="cb26-7"><a href="高质量数据可视化案例.html#cb26-7" tabindex="-1"></a><span class="fu">font_add_google</span>(<span class="st">&quot;Special Elite&quot;</span>, <span class="st">&quot;Special Elite&quot;</span>)</span>
+<span id="cb26-8"><a href="高质量数据可视化案例.html#cb26-8" tabindex="-1"></a></span>
+<span id="cb26-9"><a href="高质量数据可视化案例.html#cb26-9" tabindex="-1"></a><span class="co"># 设置ggplot主题</span></span>
+<span id="cb26-10"><a href="高质量数据可视化案例.html#cb26-10" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_minimal</span>(<span class="at">base_family =</span> <span class="st">&quot;Roboto Mono&quot;</span>))</span>
+<span id="cb26-11"><a href="高质量数据可视化案例.html#cb26-11" tabindex="-1"></a><span class="fu">theme_update</span>(</span>
+<span id="cb26-12"><a href="高质量数据可视化案例.html#cb26-12" tabindex="-1"></a>  <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;#fafaf5&quot;</span>, <span class="at">color =</span> <span class="st">&quot;#fafaf5&quot;</span>),</span>
+<span id="cb26-13"><a href="高质量数据可视化案例.html#cb26-13" tabindex="-1"></a>  <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
+<span id="cb26-14"><a href="高质量数据可视化案例.html#cb26-14" tabindex="-1"></a>  <span class="at">panel.border =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">color =</span> <span class="cn">NA</span>),</span>
+<span id="cb26-15"><a href="高质量数据可视化案例.html#cb26-15" tabindex="-1"></a>  <span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb26-16"><a href="高质量数据可视化案例.html#cb26-16" tabindex="-1"></a>  <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb26-17"><a href="高质量数据可视化案例.html#cb26-17" tabindex="-1"></a>  <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb26-18"><a href="高质量数据可视化案例.html#cb26-18" tabindex="-1"></a>  <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>),</span>
+<span id="cb26-19"><a href="高质量数据可视化案例.html#cb26-19" tabindex="-1"></a>  <span class="at">axis.ticks =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb26-20"><a href="高质量数据可视化案例.html#cb26-20" tabindex="-1"></a>  <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">13</span>, <span class="at">margin =</span> <span class="fu">margin</span>(<span class="at">r =</span> <span class="dv">10</span>)),</span>
+<span id="cb26-21"><a href="高质量数据可视化案例.html#cb26-21" tabindex="-1"></a>  <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">9</span>),</span>
+<span id="cb26-22"><a href="高质量数据可视化案例.html#cb26-22" tabindex="-1"></a>  <span class="at">plot.caption =</span> <span class="fu">element_text</span>(</span>
+<span id="cb26-23"><a href="高质量数据可视化案例.html#cb26-23" tabindex="-1"></a>    <span class="at">family =</span> <span class="st">&quot;Special Elite&quot;</span>,</span>
+<span id="cb26-24"><a href="高质量数据可视化案例.html#cb26-24" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">10</span>,</span>
+<span id="cb26-25"><a href="高质量数据可视化案例.html#cb26-25" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;grey70&quot;</span>,</span>
+<span id="cb26-26"><a href="高质量数据可视化案例.html#cb26-26" tabindex="-1"></a>    <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>,</span>
+<span id="cb26-27"><a href="高质量数据可视化案例.html#cb26-27" tabindex="-1"></a>    <span class="at">hjust =</span> .<span class="dv">5</span>,</span>
+<span id="cb26-28"><a href="高质量数据可视化案例.html#cb26-28" tabindex="-1"></a>    <span class="at">margin =</span> <span class="fu">margin</span>(<span class="dv">5</span>, <span class="dv">0</span>, <span class="dv">20</span>, <span class="dv">0</span>)</span>
+<span id="cb26-29"><a href="高质量数据可视化案例.html#cb26-29" tabindex="-1"></a>  ),</span>
+<span id="cb26-30"><a href="高质量数据可视化案例.html#cb26-30" tabindex="-1"></a>  <span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="dv">10</span>, <span class="dv">25</span>, <span class="dv">10</span>, <span class="dv">25</span>)</span>
+<span id="cb26-31"><a href="高质量数据可视化案例.html#cb26-31" tabindex="-1"></a>)</span>
+<span id="cb26-32"><a href="高质量数据可视化案例.html#cb26-32" tabindex="-1"></a></span>
+<span id="cb26-33"><a href="高质量数据可视化案例.html#cb26-33" tabindex="-1"></a><span class="co"># 开启showtext</span></span>
+<span id="cb26-34"><a href="高质量数据可视化案例.html#cb26-34" tabindex="-1"></a><span class="fu">showtext_auto</span>()</span></code></pre></div>
+<p>有关使用ggplot2自定义字体的更多信息，请访问<a href="https://blog.cedricscherer.com/2020/12/14/custom-fonts-in-ggplot2/">这篇专门的博客文章</a></p>
+<div id="加载和准备数据集" class="section level3 hasAnchor" number="6.2.1">
+<h3><span class="header-section-number">6.2.1</span> 加载和准备数据集<a href="高质量数据可视化案例.html#加载和准备数据集" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>今天我们将创建一个高度定制的棒棒糖图，来可视化电视节目《办公室》(美国版)每一集的IMDB评分。数据最初来自schrute R包和data.world，但我们使用的是在2020-03-17的TidyTuesday倡议中发布的版本。您可以在<a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-03-17/office_ratings.csv">这里</a>找到原始公告和有关数据的更多信息。</p>
+<p>首先，我们读取数据集并查看前几行以熟悉数据。</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="高质量数据可视化案例.html#cb27-1" tabindex="-1"></a>df_office <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">&#39;office_ratings.csv&#39;</span>)</span></code></pre></div>
+<pre><code>## Rows: 188 Columns: 6
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr  (1): title
+## dbl  (4): season, episode, imdb_rating, total_votes
+## date (1): air_date
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="高质量数据可视化案例.html#cb29-1" tabindex="-1"></a><span class="fu">head</span>(df_office)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 6
+##   season episode title         imdb_rating total_votes air_date  
+##    &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;       &lt;dbl&gt; &lt;date&gt;    
+## 1      1       1 Pilot                 7.6        3706 2005-03-24
+## 2      1       2 Diversity Day         8.3        3566 2005-03-29
+## 3      1       3 Health Care           7.9        2983 2005-04-05
+## 4      1       4 The Alliance          8.1        2886 2005-04-12
+## 5      1       5 Basketball            8.4        3179 2005-04-19
+## 6      1       6 Hot Girl              7.8        2852 2005-04-26</code></pre>
+<p>从数据中包含的所有列中，我们使用季节（season），集数（episode），IMDB评分（imdb_rating）和用于每个评分的投票数（total_votes）。</p>
+<p>我们首先计算每个季节的平均评分。观察结果按季节和集数排列，以确保row_number()表示集数，而不考虑季节。将季节（season）突变为因子类型，以便ggplot2将其识别为离散变量而不是数值变量。</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="高质量数据可视化案例.html#cb31-1" tabindex="-1"></a>df_office_avg <span class="ot">&lt;-</span></span>
+<span id="cb31-2"><a href="高质量数据可视化案例.html#cb31-2" tabindex="-1"></a>  df_office <span class="sc">%&gt;%</span> </span>
+<span id="cb31-3"><a href="高质量数据可视化案例.html#cb31-3" tabindex="-1"></a>  <span class="fu">arrange</span>(season, episode) <span class="sc">%&gt;%</span> </span>
+<span id="cb31-4"><a href="高质量数据可视化案例.html#cb31-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">episode_id =</span> <span class="fu">row_number</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb31-5"><a href="高质量数据可视化案例.html#cb31-5" tabindex="-1"></a>  <span class="fu">group_by</span>(season) <span class="sc">%&gt;%</span> </span>
+<span id="cb31-6"><a href="高质量数据可视化案例.html#cb31-6" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb31-7"><a href="高质量数据可视化案例.html#cb31-7" tabindex="-1"></a>    <span class="at">avg =</span> <span class="fu">mean</span>(imdb_rating),</span>
+<span id="cb31-8"><a href="高质量数据可视化案例.html#cb31-8" tabindex="-1"></a>    <span class="at">episode_mod =</span> episode_id <span class="sc">+</span> (<span class="dv">9</span> <span class="sc">*</span> season),</span>
+<span id="cb31-9"><a href="高质量数据可视化案例.html#cb31-9" tabindex="-1"></a>    <span class="at">mid =</span> <span class="fu">mean</span>(episode_mod)</span>
+<span id="cb31-10"><a href="高质量数据可视化案例.html#cb31-10" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb31-11"><a href="高质量数据可视化案例.html#cb31-11" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb31-12"><a href="高质量数据可视化案例.html#cb31-12" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">season =</span> <span class="fu">factor</span>(season))</span></code></pre></div>
+<p>现在我们构造用于绘制每季度平均评分的水平线的数据框。这个数据框还包括我们需要的值，以便在x和y上添加连接相邻季节的平均评分的线。</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="高质量数据可视化案例.html#cb32-1" tabindex="-1"></a>df_lines <span class="ot">&lt;-</span></span>
+<span id="cb32-2"><a href="高质量数据可视化案例.html#cb32-2" tabindex="-1"></a>  df_office_avg <span class="sc">%&gt;%</span> </span>
+<span id="cb32-3"><a href="高质量数据可视化案例.html#cb32-3" tabindex="-1"></a>  <span class="fu">group_by</span>(season) <span class="sc">%&gt;%</span> </span>
+<span id="cb32-4"><a href="高质量数据可视化案例.html#cb32-4" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb32-5"><a href="高质量数据可视化案例.html#cb32-5" tabindex="-1"></a>    <span class="at">start_x =</span> <span class="fu">min</span>(episode_mod) <span class="sc">-</span> <span class="dv">5</span>,</span>
+<span id="cb32-6"><a href="高质量数据可视化案例.html#cb32-6" tabindex="-1"></a>    <span class="at">end_x =</span> <span class="fu">max</span>(episode_mod) <span class="sc">+</span> <span class="dv">5</span>,</span>
+<span id="cb32-7"><a href="高质量数据可视化案例.html#cb32-7" tabindex="-1"></a>    <span class="at">y =</span> <span class="fu">unique</span>(avg)</span>
+<span id="cb32-8"><a href="高质量数据可视化案例.html#cb32-8" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb32-9"><a href="高质量数据可视化案例.html#cb32-9" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb32-10"><a href="高质量数据可视化案例.html#cb32-10" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">c</span>(start_x, end_x),</span>
+<span id="cb32-11"><a href="高质量数据可视化案例.html#cb32-11" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">&quot;type&quot;</span>,</span>
+<span id="cb32-12"><a href="高质量数据可视化案例.html#cb32-12" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">&quot;x&quot;</span></span>
+<span id="cb32-13"><a href="高质量数据可视化案例.html#cb32-13" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb32-14"><a href="高质量数据可视化案例.html#cb32-14" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb32-15"><a href="高质量数据可视化案例.html#cb32-15" tabindex="-1"></a>    <span class="at">x_group =</span> <span class="fu">if_else</span>(type <span class="sc">==</span> <span class="st">&quot;start_x&quot;</span>, x <span class="sc">+</span> .<span class="dv">1</span>, x <span class="sc">-</span> .<span class="dv">1</span>),</span>
+<span id="cb32-16"><a href="高质量数据可视化案例.html#cb32-16" tabindex="-1"></a>    <span class="at">x_group =</span> <span class="fu">if_else</span>(type <span class="sc">==</span> <span class="st">&quot;start_x&quot;</span> <span class="sc">&amp;</span> x <span class="sc">==</span> <span class="fu">min</span>(x), x_group <span class="sc">-</span> .<span class="dv">1</span>, x_group),</span>
+<span id="cb32-17"><a href="高质量数据可视化案例.html#cb32-17" tabindex="-1"></a>    <span class="at">x_group =</span> <span class="fu">if_else</span>(type <span class="sc">==</span> <span class="st">&quot;end_x&quot;</span> <span class="sc">&amp;</span> x <span class="sc">==</span> <span class="fu">max</span>(x), x_group <span class="sc">+</span> .<span class="dv">1</span>, x_group)</span>
+<span id="cb32-18"><a href="高质量数据可视化案例.html#cb32-18" tabindex="-1"></a>  )</span></code></pre></div>
+</div>
+<div id="第一个棒棒糖图版本" class="section level3 hasAnchor" number="6.2.2">
+<h3><span class="header-section-number">6.2.2</span> 第一个棒棒糖图版本<a href="高质量数据可视化案例.html#第一个棒棒糖图版本" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>让我们构建图表。我们以逐步方式进行，添加注释以解释我们每次添加的内容。</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="高质量数据可视化案例.html#cb33-1" tabindex="-1"></a><span class="co"># 首先是用作比例参考的水平线。它们首先添加以确保它们保持在背景中。</span></span>
+<span id="cb33-2"><a href="高质量数据可视化案例.html#cb33-2" tabindex="-1"></a>p <span class="ot">&lt;-</span> df_office_avg <span class="sc">%&gt;%</span> </span>
+<span id="cb33-3"><a href="高质量数据可视化案例.html#cb33-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(episode_mod, imdb_rating)) <span class="sc">+</span></span>
+<span id="cb33-4"><a href="高质量数据可视化案例.html#cb33-4" tabindex="-1"></a>    <span class="fu">geom_hline</span>(</span>
+<span id="cb33-5"><a href="高质量数据可视化案例.html#cb33-5" tabindex="-1"></a>      <span class="at">data =</span> <span class="fu">tibble</span>(<span class="at">y =</span> <span class="dv">7</span><span class="sc">:</span><span class="dv">10</span>),</span>
+<span id="cb33-6"><a href="高质量数据可视化案例.html#cb33-6" tabindex="-1"></a>      <span class="fu">aes</span>(<span class="at">yintercept =</span> y),</span>
+<span id="cb33-7"><a href="高质量数据可视化案例.html#cb33-7" tabindex="-1"></a>      <span class="at">color =</span> <span class="st">&quot;grey82&quot;</span>,</span>
+<span id="cb33-8"><a href="高质量数据可视化案例.html#cb33-8" tabindex="-1"></a>      <span class="at">size =</span> .<span class="dv">5</span></span>
+<span id="cb33-9"><a href="高质量数据可视化案例.html#cb33-9" tabindex="-1"></a>    )</span>
+<span id="cb33-10"><a href="高质量数据可视化案例.html#cb33-10" tabindex="-1"></a></span>
+<span id="cb33-11"><a href="高质量数据可视化案例.html#cb33-11" tabindex="-1"></a><span class="co"># 添加垂直线段。</span></span>
+<span id="cb33-12"><a href="高质量数据可视化案例.html#cb33-12" tabindex="-1"></a><span class="co"># 这些表示每集的评分与其所属季节的平均评分的偏差。</span></span>
+<span id="cb33-13"><a href="高质量数据可视化案例.html#cb33-13" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> </span>
+<span id="cb33-14"><a href="高质量数据可视化案例.html#cb33-14" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
+<span id="cb33-15"><a href="高质量数据可视化案例.html#cb33-15" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb33-16"><a href="高质量数据可视化案例.html#cb33-16" tabindex="-1"></a>      <span class="at">xend =</span> episode_mod,</span>
+<span id="cb33-17"><a href="高质量数据可视化案例.html#cb33-17" tabindex="-1"></a>      <span class="at">yend =</span> avg, </span>
+<span id="cb33-18"><a href="高质量数据可视化案例.html#cb33-18" tabindex="-1"></a>      <span class="at">color =</span> season, </span>
+<span id="cb33-19"><a href="高质量数据可视化案例.html#cb33-19" tabindex="-1"></a>      <span class="at">color =</span> <span class="fu">after_scale</span>(colorspace<span class="sc">::</span><span class="fu">lighten</span>(color, .<span class="dv">2</span>))</span>
+<span id="cb33-20"><a href="高质量数据可视化案例.html#cb33-20" tabindex="-1"></a>    )</span>
+<span id="cb33-21"><a href="高质量数据可视化案例.html#cb33-21" tabindex="-1"></a>  )</span></code></pre></div>
+<pre><code>## Warning: Duplicated aesthetics after name standardisation: colour</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="高质量数据可视化案例.html#cb35-1" tabindex="-1"></a><span class="co"># 添加线条和点。</span></span>
+<span id="cb35-2"><a href="高质量数据可视化案例.html#cb35-2" tabindex="-1"></a><span class="co"># 这些表示每个季节的平均评分。</span></span>
+<span id="cb35-3"><a href="高质量数据可视化案例.html#cb35-3" tabindex="-1"></a><span class="co"># 点标记每集的评分，其大小由投票数确定。</span></span>
+<span id="cb35-4"><a href="高质量数据可视化案例.html#cb35-4" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> </span>
+<span id="cb35-5"><a href="高质量数据可视化案例.html#cb35-5" tabindex="-1"></a>  <span class="fu">geom_line</span>(</span>
+<span id="cb35-6"><a href="高质量数据可视化案例.html#cb35-6" tabindex="-1"></a>    <span class="at">data =</span> df_lines,</span>
+<span id="cb35-7"><a href="高质量数据可视化案例.html#cb35-7" tabindex="-1"></a>    <span class="fu">aes</span>(x, y),</span>
+<span id="cb35-8"><a href="高质量数据可视化案例.html#cb35-8" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;grey40&quot;</span></span>
+<span id="cb35-9"><a href="高质量数据可视化案例.html#cb35-9" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb35-10"><a href="高质量数据可视化案例.html#cb35-10" tabindex="-1"></a>  <span class="fu">geom_line</span>(</span>
+<span id="cb35-11"><a href="高质量数据可视化案例.html#cb35-11" tabindex="-1"></a>    <span class="at">data =</span> df_lines,</span>
+<span id="cb35-12"><a href="高质量数据可视化案例.html#cb35-12" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb35-13"><a href="高质量数据可视化案例.html#cb35-13" tabindex="-1"></a>      x_group, </span>
+<span id="cb35-14"><a href="高质量数据可视化案例.html#cb35-14" tabindex="-1"></a>      y, </span>
+<span id="cb35-15"><a href="高质量数据可视化案例.html#cb35-15" tabindex="-1"></a>      <span class="at">color =</span> season, </span>
+<span id="cb35-16"><a href="高质量数据可视化案例.html#cb35-16" tabindex="-1"></a>      <span class="at">color =</span> <span class="fu">after_scale</span>(colorspace<span class="sc">::</span><span class="fu">darken</span>(color, .<span class="dv">2</span>))</span>
+<span id="cb35-17"><a href="高质量数据可视化案例.html#cb35-17" tabindex="-1"></a>    ),</span>
+<span id="cb35-18"><a href="高质量数据可视化案例.html#cb35-18" tabindex="-1"></a>    <span class="at">size =</span> <span class="fl">2.5</span></span>
+<span id="cb35-19"><a href="高质量数据可视化案例.html#cb35-19" tabindex="-1"></a>  ) <span class="sc">+</span> </span>
+<span id="cb35-20"><a href="高质量数据可视化案例.html#cb35-20" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb35-21"><a href="高质量数据可视化案例.html#cb35-21" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">size =</span> total_votes, <span class="at">color =</span> season)</span>
+<span id="cb35-22"><a href="高质量数据可视化案例.html#cb35-22" tabindex="-1"></a>  ) </span></code></pre></div>
+<pre><code>## Warning: Duplicated aesthetics after name standardisation: colour</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="高质量数据可视化案例.html#cb37-1" tabindex="-1"></a>p</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p>这是一个不错的开始。让我们让它变得更好。</p>
+</div>
+<div id="添加标签和调整比例" class="section level3 hasAnchor" number="6.2.3">
+<h3><span class="header-section-number">6.2.3</span> 添加标签和调整比例<a href="高质量数据可视化案例.html#添加标签和调整比例" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>值得注意的是，看起来不连贯的灰色垂直线是如何添加的。实际上，这只是一个灰色线，其值表示平均评分。最后，由于不同季节平均评分之间的跳跃以及在水平部分覆盖它的较粗线，它看起来像几条不连续的垂直线。</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="高质量数据可视化案例.html#cb38-1" tabindex="-1"></a><span class="co"># 在顶部添加标签。</span></span>
+<span id="cb38-2"><a href="高质量数据可视化案例.html#cb38-2" tabindex="-1"></a><span class="co"># 它们指示季节，并使我们无需使用图例。</span></span>
+<span id="cb38-3"><a href="高质量数据可视化案例.html#cb38-3" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> </span>
+<span id="cb38-4"><a href="高质量数据可视化案例.html#cb38-4" tabindex="-1"></a>  <span class="fu">geom_label</span>(</span>
+<span id="cb38-5"><a href="高质量数据可视化案例.html#cb38-5" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb38-6"><a href="高质量数据可视化案例.html#cb38-6" tabindex="-1"></a>      mid, </span>
+<span id="cb38-7"><a href="高质量数据可视化案例.html#cb38-7" tabindex="-1"></a>      <span class="fl">10.12</span>, <span class="co"># 标签的垂直位置</span></span>
+<span id="cb38-8"><a href="高质量数据可视化案例.html#cb38-8" tabindex="-1"></a>      <span class="at">label =</span> glue<span class="sc">::</span><span class="fu">glue</span>(<span class="st">&quot; Season {season} &quot;</span>),</span>
+<span id="cb38-9"><a href="高质量数据可视化案例.html#cb38-9" tabindex="-1"></a>      <span class="at">color =</span> season, </span>
+<span id="cb38-10"><a href="高质量数据可视化案例.html#cb38-10" tabindex="-1"></a>      <span class="at">color =</span> <span class="fu">after_scale</span>(colorspace<span class="sc">::</span><span class="fu">darken</span>(color, .<span class="dv">2</span>))</span>
+<span id="cb38-11"><a href="高质量数据可视化案例.html#cb38-11" tabindex="-1"></a>    ),</span>
+<span id="cb38-12"><a href="高质量数据可视化案例.html#cb38-12" tabindex="-1"></a>    <span class="at">fill =</span> <span class="cn">NA</span>,</span>
+<span id="cb38-13"><a href="高质量数据可视化案例.html#cb38-13" tabindex="-1"></a>    <span class="at">family =</span> <span class="st">&quot;Special Elite&quot;</span>,</span>
+<span id="cb38-14"><a href="高质量数据可视化案例.html#cb38-14" tabindex="-1"></a>    <span class="at">fontface =</span> <span class="st">&quot;bold&quot;</span>,</span>
+<span id="cb38-15"><a href="高质量数据可视化案例.html#cb38-15" tabindex="-1"></a>    <span class="at">label.padding =</span> <span class="fu">unit</span>(.<span class="dv">2</span>, <span class="st">&quot;lines&quot;</span>),</span>
+<span id="cb38-16"><a href="高质量数据可视化案例.html#cb38-16" tabindex="-1"></a>    <span class="at">label.r =</span> <span class="fu">unit</span>(.<span class="dv">25</span>, <span class="st">&quot;lines&quot;</span>), <span class="co"># 圆角的半径</span></span>
+<span id="cb38-17"><a href="高质量数据可视化案例.html#cb38-17" tabindex="-1"></a>    <span class="at">label.size =</span> .<span class="dv">5</span></span>
+<span id="cb38-18"><a href="高质量数据可视化案例.html#cb38-18" tabindex="-1"></a>  ) </span></code></pre></div>
+<pre><code>## Warning: Duplicated aesthetics after name standardisation: colour</code></pre>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="高质量数据可视化案例.html#cb40-1" tabindex="-1"></a><span class="co"># 自定义比例尺和标签。</span></span>
+<span id="cb40-2"><a href="高质量数据可视化案例.html#cb40-2" tabindex="-1"></a><span class="co"># 用更好看的调色板覆盖默认颜色。</span></span>
+<span id="cb40-3"><a href="高质量数据可视化案例.html#cb40-3" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> </span>
+<span id="cb40-4"><a href="高质量数据可视化案例.html#cb40-4" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(.<span class="dv">015</span>, .<span class="dv">015</span>)) <span class="sc">+</span></span>
+<span id="cb40-5"><a href="高质量数据可视化案例.html#cb40-5" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb40-6"><a href="高质量数据可视化案例.html#cb40-6" tabindex="-1"></a>      <span class="at">expand =</span> <span class="fu">c</span>(.<span class="dv">03</span>, .<span class="dv">03</span>),</span>
+<span id="cb40-7"><a href="高质量数据可视化案例.html#cb40-7" tabindex="-1"></a>      <span class="at">limits =</span> <span class="fu">c</span>(<span class="fl">6.5</span>, <span class="fl">10.2</span>),</span>
+<span id="cb40-8"><a href="高质量数据可视化案例.html#cb40-8" tabindex="-1"></a>      <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="fl">6.5</span>, <span class="dv">10</span>, <span class="at">by =</span> .<span class="dv">5</span>),</span>
+<span id="cb40-9"><a href="高质量数据可视化案例.html#cb40-9" tabindex="-1"></a>      <span class="at">sec.axis =</span> <span class="fu">dup_axis</span>(<span class="at">name =</span> <span class="cn">NULL</span>)</span>
+<span id="cb40-10"><a href="高质量数据可视化案例.html#cb40-10" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb40-11"><a href="高质量数据可视化案例.html#cb40-11" tabindex="-1"></a>    <span class="fu">scale_color_manual</span>(</span>
+<span id="cb40-12"><a href="高质量数据可视化案例.html#cb40-12" tabindex="-1"></a>      <span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;#486090&quot;</span>, <span class="st">&quot;#D7BFA6&quot;</span>, <span class="st">&quot;#6078A8&quot;</span>, <span class="st">&quot;#9CCCCC&quot;</span>, <span class="st">&quot;#7890A8&quot;</span>, </span>
+<span id="cb40-13"><a href="高质量数据可视化案例.html#cb40-13" tabindex="-1"></a>                 <span class="st">&quot;#C7B0C1&quot;</span>, <span class="st">&quot;#B5C9C9&quot;</span>, <span class="st">&quot;#90A8C0&quot;</span>, <span class="st">&quot;#A8A890&quot;</span>),</span>
+<span id="cb40-14"><a href="高质量数据可视化案例.html#cb40-14" tabindex="-1"></a>      <span class="at">guide =</span> <span class="cn">FALSE</span> <span class="co"># 不显示颜色比例尺的图例。</span></span>
+<span id="cb40-15"><a href="高质量数据可视化案例.html#cb40-15" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb40-16"><a href="高质量数据可视化案例.html#cb40-16" tabindex="-1"></a>    <span class="fu">scale_size_binned</span>(<span class="at">name =</span> <span class="st">&quot;Votes per Episode&quot;</span>, <span class="at">range =</span> <span class="fu">c</span>(.<span class="dv">3</span>, <span class="dv">3</span>)) <span class="sc">+</span></span>
+<span id="cb40-17"><a href="高质量数据可视化案例.html#cb40-17" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb40-18"><a href="高质量数据可视化案例.html#cb40-18" tabindex="-1"></a>      <span class="at">x =</span> <span class="cn">NULL</span>, </span>
+<span id="cb40-19"><a href="高质量数据可视化案例.html#cb40-19" tabindex="-1"></a>      <span class="at">y =</span> <span class="st">&quot;IMDb评分&quot;</span>,</span>
+<span id="cb40-20"><a href="高质量数据可视化案例.html#cb40-20" tabindex="-1"></a>      <span class="at">caption =</span> <span class="st">&quot;可视化由Cédric Scherer制作 • 数据来源：IMDb via data.world • 粉丝艺术设计：ArieS&quot;</span></span>
+<span id="cb40-21"><a href="高质量数据可视化案例.html#cb40-21" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb40-22"><a href="高质量数据可视化案例.html#cb40-22" tabindex="-1"></a>    <span class="fu">guides</span>(</span>
+<span id="cb40-23"><a href="高质量数据可视化案例.html#cb40-23" tabindex="-1"></a>      <span class="at">size =</span> <span class="fu">guide_bins</span>(</span>
+<span id="cb40-24"><a href="高质量数据可视化案例.html#cb40-24" tabindex="-1"></a>        <span class="at">show.limits =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb40-25"><a href="高质量数据可视化案例.html#cb40-25" tabindex="-1"></a>        <span class="at">direction =</span> <span class="st">&quot;horizontal&quot;</span>,</span>
+<span id="cb40-26"><a href="高质量数据可视化案例.html#cb40-26" tabindex="-1"></a>        <span class="at">title.position =</span> <span class="st">&quot;top&quot;</span>,</span>
+<span id="cb40-27"><a href="高质量数据可视化案例.html#cb40-27" tabindex="-1"></a>        <span class="at">title.hjust =</span> .<span class="dv">5</span></span>
+<span id="cb40-28"><a href="高质量数据可视化案例.html#cb40-28" tabindex="-1"></a>      )</span>
+<span id="cb40-29"><a href="高质量数据可视化案例.html#cb40-29" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb40-30"><a href="高质量数据可视化案例.html#cb40-30" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
+<span id="cb40-31"><a href="高质量数据可视化案例.html#cb40-31" tabindex="-1"></a>      <span class="at">legend.position =</span> <span class="fu">c</span>(.<span class="dv">5</span>, .<span class="dv">085</span>), </span>
+<span id="cb40-32"><a href="高质量数据可视化案例.html#cb40-32" tabindex="-1"></a>      <span class="at">legend.key.width =</span> <span class="fu">unit</span>(<span class="dv">2</span>, <span class="st">&quot;lines&quot;</span>)</span>
+<span id="cb40-33"><a href="高质量数据可视化案例.html#cb40-33" tabindex="-1"></a>    )</span></code></pre></div>
+</div>
+<div id="保存" class="section level3 hasAnchor" number="6.2.4">
+<h3><span class="header-section-number">6.2.4</span> 保存<a href="高质量数据可视化案例.html#保存" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>使用通常的ggsave函数将图表保存为pdf格式：</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="高质量数据可视化案例.html#cb41-1" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;img/fromTheWeb/lollipop-plot-with-R-the-office.png&quot;</span>,p,</span>
+<span id="cb41-2"><a href="高质量数据可视化案例.html#cb41-2" tabindex="-1"></a>       <span class="at">width =</span> <span class="dv">15</span>, <span class="at">height =</span> <span class="dv">9</span>)</span></code></pre></div>
+<pre><code>## Warning: The `guide` argument in `scale_*()` cannot be `FALSE`. This was deprecated in
+## ggplot2 3.3.4.
+## ℹ Please use &quot;none&quot; instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
+<p><img src="img/fromTheWeb/lollipop-plot-with-R-the-office.png" />
+这篇文章介绍了如何使用R和ggplot2创建高度定制的棒棒糖图来可视化《办公室》(美国版)的IMDB评分。我们从加载和准备数据开始，然后构建图表，并最终添加标签、调整比例和保存图表。通过这个过程，我们展示了如何使用ggplot2以及一些其他有用的包来创建专业水平的可视化。</p>
+</div>
+</div>
+<div id="贪污感知指数" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> 贪污感知指数<a href="高质量数据可视化案例.html#贪污感知指数" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>在构建图表之前，通常需要先加载一些包。ggrepel提供了用于ggplot2的几何对象，用于排斥重叠的文本标签。文本标签会自动远离彼此、远离数据点和远离绘图区域的边缘。此外，加载colorspace以使用其函数darken()，cowplot贡献了其内置主题theme_minimal_hgrid()。</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="高质量数据可视化案例.html#cb43-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb43-2"><a href="高质量数据可视化案例.html#cb43-2" tabindex="-1"></a><span class="fu">library</span>(cowplot)</span>
+<span id="cb43-3"><a href="高质量数据可视化案例.html#cb43-3" tabindex="-1"></a><span class="fu">library</span>(colorspace)</span>
+<span id="cb43-4"><a href="高质量数据可视化案例.html#cb43-4" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span></code></pre></div>
+<p>加载和准备数据集
+今天的图表使用了practicalgg包中的corruption数据集。这个数据包含了176个国家从2012年到2015年的腐败感知指数（CPI）和人类发展指数（HDI）的信息。</p>
+<p>原始来源是透明国际发布的2016年腐败感知指数和联合国开发计划署的人类发展报告中提供的人类发展指数。这些数据集被合并并作为Claus O. Wilke在他的practicalgg包中提供的corruption数据集。感谢Claus的所有工作和使这一切成为可能！</p>
+<p>下面的代码加载数据，仅保留2015年的观测值，并删除包含缺失值的任何行。</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="高质量数据可视化案例.html#cb44-1" tabindex="-1"></a><span class="co"># remotes::install_github(&quot;wilkelab/practicalgg&quot;)</span></span>
+<span id="cb44-2"><a href="高质量数据可视化案例.html#cb44-2" tabindex="-1"></a>corrupt <span class="ot">&lt;-</span> practicalgg<span class="sc">::</span>corruption <span class="sc">%&gt;%</span> </span>
+<span id="cb44-3"><a href="高质量数据可视化案例.html#cb44-3" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2015</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb44-4"><a href="高质量数据可视化案例.html#cb44-4" tabindex="-1"></a>  <span class="fu">na.omit</span>()</span></code></pre></div>
+<p>接下来，将较长的地区名称拆分为多行，以便它们更好地适合图例中的顶部区域。</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="高质量数据可视化案例.html#cb45-1" tabindex="-1"></a>corrupt <span class="ot">&lt;-</span> corrupt <span class="sc">%&gt;%</span></span>
+<span id="cb45-2"><a href="高质量数据可视化案例.html#cb45-2" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb45-3"><a href="高质量数据可视化案例.html#cb45-3" tabindex="-1"></a>    <span class="at">region =</span> <span class="fu">case_when</span>(</span>
+<span id="cb45-4"><a href="高质量数据可视化案例.html#cb45-4" tabindex="-1"></a>      region <span class="sc">==</span> <span class="st">&quot;Middle East and North Africa&quot;</span> <span class="sc">~</span> <span class="st">&quot;Middle East</span><span class="sc">\n</span><span class="st">and North Africa&quot;</span>,</span>
+<span id="cb45-5"><a href="高质量数据可视化案例.html#cb45-5" tabindex="-1"></a>      region <span class="sc">==</span> <span class="st">&quot;Europe and Central Asia&quot;</span> <span class="sc">~</span> <span class="st">&quot;Europe and</span><span class="sc">\n</span><span class="st">Central Asia&quot;</span>,</span>
+<span id="cb45-6"><a href="高质量数据可视化案例.html#cb45-6" tabindex="-1"></a>      region <span class="sc">==</span> <span class="st">&quot;Sub Saharan Africa&quot;</span> <span class="sc">~</span> <span class="st">&quot;Sub-Saharan</span><span class="sc">\n</span><span class="st">Africa&quot;</span>,</span>
+<span id="cb45-7"><a href="高质量数据可视化案例.html#cb45-7" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> region <span class="co"># All the other remain the same</span></span>
+<span id="cb45-8"><a href="高质量数据可视化案例.html#cb45-8" tabindex="-1"></a>    )</span>
+<span id="cb45-9"><a href="高质量数据可视化案例.html#cb45-9" tabindex="-1"></a>  )</span></code></pre></div>
+<p>最后，我们添加一个新变量，label，其中包含一些选定国家的名称。这些国家将使用ggrepel包中的geom_text_repel()函数添加到图表中，该函数会自动调整它们的位置以避免重叠。</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="高质量数据可视化案例.html#cb46-1" tabindex="-1"></a>country_highlight <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb46-2"><a href="高质量数据可视化案例.html#cb46-2" tabindex="-1"></a>  <span class="st">&quot;Germany&quot;</span>, <span class="st">&quot;Norway&quot;</span>, <span class="st">&quot;United States&quot;</span>, <span class="st">&quot;Greece&quot;</span>, <span class="st">&quot;Singapore&quot;</span>, <span class="st">&quot;Rwanda&quot;</span>, </span>
+<span id="cb46-3"><a href="高质量数据可视化案例.html#cb46-3" tabindex="-1"></a>  <span class="st">&quot;Russia&quot;</span>, <span class="st">&quot;Venezuela&quot;</span>, <span class="st">&quot;Sudan&quot;</span>, <span class="st">&quot;Iraq&quot;</span>, <span class="st">&quot;Ghana&quot;</span>, <span class="st">&quot;Niger&quot;</span>, <span class="st">&quot;Chad&quot;</span>, <span class="st">&quot;Kuwait&quot;</span>, </span>
+<span id="cb46-4"><a href="高质量数据可视化案例.html#cb46-4" tabindex="-1"></a>  <span class="st">&quot;Qatar&quot;</span>, <span class="st">&quot;Myanmar&quot;</span>, <span class="st">&quot;Nepal&quot;</span>, <span class="st">&quot;Chile&quot;</span>, <span class="st">&quot;Argentina&quot;</span>, <span class="st">&quot;Japan&quot;</span>, <span class="st">&quot;China&quot;</span></span>
+<span id="cb46-5"><a href="高质量数据可视化案例.html#cb46-5" tabindex="-1"></a>)</span>
+<span id="cb46-6"><a href="高质量数据可视化案例.html#cb46-6" tabindex="-1"></a></span>
+<span id="cb46-7"><a href="高质量数据可视化案例.html#cb46-7" tabindex="-1"></a>corrupt <span class="ot">&lt;-</span> corrupt <span class="sc">%&gt;%</span></span>
+<span id="cb46-8"><a href="高质量数据可视化案例.html#cb46-8" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb46-9"><a href="高质量数据可视化案例.html#cb46-9" tabindex="-1"></a>    <span class="at">label =</span> <span class="fu">ifelse</span>(country <span class="sc">%in%</span> country_highlight, country, <span class="st">&quot;&quot;</span>)</span>
+<span id="cb46-10"><a href="高质量数据可视化案例.html#cb46-10" tabindex="-1"></a>  )</span></code></pre></div>
+<p>这就是数据准备步骤！现在让我们来构建图表吧！</p>
+<p>构建图表
+与本系列中的其他指南不同，本文直奔主题，在单个代码块中构建图表。原始文档已经是构建此图表的一个优秀逐步指南。仍然在代码中添加了一些注释，以解释某些行中发生的情况。</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="高质量数据可视化案例.html#cb47-1" tabindex="-1"></a><span class="co"># Okabe Ito颜色</span></span>
+<span id="cb47-2"><a href="高质量数据可视化案例.html#cb47-2" tabindex="-1"></a><span class="co"># 最后一种颜色用于回归拟合。</span></span>
+<span id="cb47-3"><a href="高质量数据可视化案例.html#cb47-3" tabindex="-1"></a>region_cols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;#E69F00&quot;</span>, <span class="st">&quot;#56B4E9&quot;</span>, <span class="st">&quot;#009E73&quot;</span>, <span class="st">&quot;#F0E442&quot;</span>, <span class="st">&quot;#0072B2&quot;</span>, <span class="st">&quot;#999999&quot;</span>)</span>
+<span id="cb47-4"><a href="高质量数据可视化案例.html#cb47-4" tabindex="-1"></a></span>
+<span id="cb47-5"><a href="高质量数据可视化案例.html#cb47-5" tabindex="-1"></a><span class="fu">ggplot</span>(corrupt, <span class="fu">aes</span>(cpi, hdi)) <span class="sc">+</span></span>
+<span id="cb47-6"><a href="高质量数据可视化案例.html#cb47-6" tabindex="-1"></a>  <span class="co"># 在点之前添加回归拟合以确保线条保持在点的后面。</span></span>
+<span id="cb47-7"><a href="高质量数据可视化案例.html#cb47-7" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(</span>
+<span id="cb47-8"><a href="高质量数据可视化案例.html#cb47-8" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">color =</span> <span class="st">&quot;y ~ log(x)&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;y ~ log(x)&quot;</span>),</span>
+<span id="cb47-9"><a href="高质量数据可视化案例.html#cb47-9" tabindex="-1"></a>    <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, </span>
+<span id="cb47-10"><a href="高质量数据可视化案例.html#cb47-10" tabindex="-1"></a>    <span class="at">formula =</span> y<span class="sc">~</span><span class="fu">log</span>(x), </span>
+<span id="cb47-11"><a href="高质量数据可视化案例.html#cb47-11" tabindex="-1"></a>    <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="co"># 仅绘制线条（不包括置信区间）</span></span>
+<span id="cb47-12"><a href="高质量数据可视化案例.html#cb47-12" tabindex="-1"></a>    <span class="at">fullrange =</span> <span class="cn">TRUE</span> <span class="co"># 拟合跨越水平轴的整个范围</span></span>
+<span id="cb47-13"><a href="高质量数据可视化案例.html#cb47-13" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb47-14"><a href="高质量数据可视化案例.html#cb47-14" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb47-15"><a href="高质量数据可视化案例.html#cb47-15" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">color =</span> region, <span class="at">fill =</span> region),</span>
+<span id="cb47-16"><a href="高质量数据可视化案例.html#cb47-16" tabindex="-1"></a>    <span class="at">size =</span> <span class="fl">2.5</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>, </span>
+<span id="cb47-17"><a href="高质量数据可视化案例.html#cb47-17" tabindex="-1"></a>    <span class="at">shape =</span> <span class="dv">21</span> <span class="co"># 这是一个同时具有边框（颜色）和填充的点。</span></span>
+<span id="cb47-18"><a href="高质量数据可视化案例.html#cb47-18" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb47-19"><a href="高质量数据可视化案例.html#cb47-19" tabindex="-1"></a>  <span class="co"># 添加自动定位的文本</span></span>
+<span id="cb47-20"><a href="高质量数据可视化案例.html#cb47-20" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(</span>
+<span id="cb47-21"><a href="高质量数据可视化案例.html#cb47-21" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">label =</span> label),</span>
+<span id="cb47-22"><a href="高质量数据可视化案例.html#cb47-22" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;black&quot;</span>,</span>
+<span id="cb47-23"><a href="高质量数据可视化案例.html#cb47-23" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">9</span><span class="sc">/</span>.pt, <span class="co"># 字体大小9 pt</span></span>
+<span id="cb47-24"><a href="高质量数据可视化案例.html#cb47-24" tabindex="-1"></a>    <span class="at">point.padding =</span> <span class="fl">0.1</span>, </span>
+<span id="cb47-25"><a href="高质量数据可视化案例.html#cb47-25" tabindex="-1"></a>    <span class="at">box.padding =</span> <span class="fl">0.6</span>,</span>
+<span id="cb47-26"><a href="高质量数据可视化案例.html#cb47-26" tabindex="-1"></a>    <span class="at">min.segment.length =</span> <span class="dv">0</span>,</span>
+<span id="cb47-27"><a href="高质量数据可视化案例.html#cb47-27" tabindex="-1"></a>    <span class="at">max.overlaps =</span> <span class="dv">1000</span>,</span>
+<span id="cb47-28"><a href="高质量数据可视化案例.html#cb47-28" tabindex="-1"></a>    <span class="at">seed =</span> <span class="dv">7654</span> <span class="co"># 为了可重复性</span></span>
+<span id="cb47-29"><a href="高质量数据可视化案例.html#cb47-29" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb47-30"><a href="高质量数据可视化案例.html#cb47-30" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(</span>
+<span id="cb47-31"><a href="高质量数据可视化案例.html#cb47-31" tabindex="-1"></a>    <span class="at">name =</span> <span class="cn">NULL</span>, <span class="co"># 忽略图例标题的一种方式</span></span>
+<span id="cb47-32"><a href="高质量数据可视化案例.html#cb47-32" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">darken</span>(region_cols, <span class="fl">0.3</span>) <span class="co"># 点的边框比填充要深</span></span>
+<span id="cb47-33"><a href="高质量数据可视化案例.html#cb47-33" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb47-34"><a href="高质量数据可视化案例.html#cb47-34" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(</span>
+<span id="cb47-35"><a href="高质量数据可视化案例.html#cb47-35" tabindex="-1"></a>    <span class="at">name =</span> <span class="cn">NULL</span>,</span>
+<span id="cb47-36"><a href="高质量数据可视化案例.html#cb47-36" tabindex="-1"></a>    <span class="at">values =</span> region_cols</span>
+<span id="cb47-37"><a href="高质量数据可视化案例.html#cb47-37" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb47-38"><a href="高质量数据可视化案例.html#cb47-38" tabindex="-1"></a>  <span class="co"># 添加标签并自</span></span>
+<span id="cb47-39"><a href="高质量数据可视化案例.html#cb47-39" tabindex="-1"></a></span>
+<span id="cb47-40"><a href="高质量数据可视化案例.html#cb47-40" tabindex="-1"></a><span class="co"># 定义轴</span></span>
+<span id="cb47-41"><a href="高质量数据可视化案例.html#cb47-41" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(</span>
+<span id="cb47-42"><a href="高质量数据可视化案例.html#cb47-42" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">&quot;2015年腐败感知指数（100 = 最不腐败）&quot;</span>,</span>
+<span id="cb47-43"><a href="高质量数据可视化案例.html#cb47-43" tabindex="-1"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">95</span>),</span>
+<span id="cb47-44"><a href="高质量数据可视化案例.html#cb47-44" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">20</span>, <span class="dv">40</span>, <span class="dv">60</span>, <span class="dv">80</span>, <span class="dv">100</span>),</span>
+<span id="cb47-45"><a href="高质量数据可视化案例.html#cb47-45" tabindex="-1"></a>    <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>) <span class="co"># 这会删除轴端的默认填充</span></span>
+<span id="cb47-46"><a href="高质量数据可视化案例.html#cb47-46" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb47-47"><a href="高质量数据可视化案例.html#cb47-47" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb47-48"><a href="高质量数据可视化案例.html#cb47-48" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">&quot;2015年人类发展指数</span><span class="sc">\n</span><span class="st">(1.0 = 最发达)&quot;</span>,</span>
+<span id="cb47-49"><a href="高质量数据可视化案例.html#cb47-49" tabindex="-1"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="fl">0.3</span>, <span class="fl">1.05</span>),</span>
+<span id="cb47-50"><a href="高质量数据可视化案例.html#cb47-50" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="fl">0.2</span>, <span class="fl">0.4</span>, <span class="fl">0.6</span>, <span class="fl">0.8</span>, <span class="fl">1.0</span>), <span class="co"># 手动设置轴断点</span></span>
+<span id="cb47-51"><a href="高质量数据可视化案例.html#cb47-51" tabindex="-1"></a>    <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb47-52"><a href="高质量数据可视化案例.html#cb47-52" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb47-53"><a href="高质量数据可视化案例.html#cb47-53" tabindex="-1"></a>  <span class="co"># 覆盖默认图例外观</span></span>
+<span id="cb47-54"><a href="高质量数据可视化案例.html#cb47-54" tabindex="-1"></a>  <span class="fu">guides</span>(</span>
+<span id="cb47-55"><a href="高质量数据可视化案例.html#cb47-55" tabindex="-1"></a>    <span class="at">color =</span> <span class="fu">guide_legend</span>(</span>
+<span id="cb47-56"><a href="高质量数据可视化案例.html#cb47-56" tabindex="-1"></a>      <span class="co"># 所有键放在同一行。</span></span>
+<span id="cb47-57"><a href="高质量数据可视化案例.html#cb47-57" tabindex="-1"></a>      <span class="at">nrow =</span> <span class="dv">1</span>,</span>
+<span id="cb47-58"><a href="高质量数据可视化案例.html#cb47-58" tabindex="-1"></a>      <span class="at">override.aes =</span> <span class="fu">list</span>(</span>
+<span id="cb47-59"><a href="高质量数据可视化案例.html#cb47-59" tabindex="-1"></a>        <span class="co"># 0表示没有线条，1表示实线</span></span>
+<span id="cb47-60"><a href="高质量数据可视化案例.html#cb47-60" tabindex="-1"></a>        <span class="co"># 结果是5个没有线条的键和1个有线条的键</span></span>
+<span id="cb47-61"><a href="高质量数据可视化案例.html#cb47-61" tabindex="-1"></a>        <span class="at">linetype =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">0</span>, <span class="dv">5</span>), <span class="dv">1</span>), </span>
+<span id="cb47-62"><a href="高质量数据可视化案例.html#cb47-62" tabindex="-1"></a>        <span class="co"># 现在，5个具有标记号21的键（在绘图中使用的标记号） </span></span>
+<span id="cb47-63"><a href="高质量数据可视化案例.html#cb47-63" tabindex="-1"></a>        <span class="co"># 和1个不带此标记的键。</span></span>
+<span id="cb47-64"><a href="高质量数据可视化案例.html#cb47-64" tabindex="-1"></a>        <span class="at">shape =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">21</span>, <span class="dv">5</span>), <span class="cn">NA</span>)</span>
+<span id="cb47-65"><a href="高质量数据可视化案例.html#cb47-65" tabindex="-1"></a>      )</span>
+<span id="cb47-66"><a href="高质量数据可视化案例.html#cb47-66" tabindex="-1"></a>    )</span>
+<span id="cb47-67"><a href="高质量数据可视化案例.html#cb47-67" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb47-68"><a href="高质量数据可视化案例.html#cb47-68" tabindex="-1"></a>  <span class="co"># 最小网格主题，只绘制水平线</span></span>
+<span id="cb47-69"><a href="高质量数据可视化案例.html#cb47-69" tabindex="-1"></a>  <span class="fu">theme_minimal_hgrid</span>(<span class="dv">12</span>, <span class="at">rel_small =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb47-70"><a href="高质量数据可视化案例.html#cb47-70" tabindex="-1"></a>  <span class="co"># 自定义图例的各个方面</span></span>
+<span id="cb47-71"><a href="高质量数据可视化案例.html#cb47-71" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb47-72"><a href="高质量数据可视化案例.html#cb47-72" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">&quot;top&quot;</span>,</span>
+<span id="cb47-73"><a href="高质量数据可视化案例.html#cb47-73" tabindex="-1"></a>    <span class="at">legend.justification =</span> <span class="st">&quot;right&quot;</span>,</span>
+<span id="cb47-74"><a href="高质量数据可视化案例.html#cb47-74" tabindex="-1"></a>    <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">9</span>),</span>
+<span id="cb47-75"><a href="高质量数据可视化案例.html#cb47-75" tabindex="-1"></a>    <span class="at">legend.box.spacing =</span> <span class="fu">unit</span>(<span class="dv">0</span>, <span class="st">&quot;pt&quot;</span>)</span>
+<span id="cb47-76"><a href="高质量数据可视化案例.html#cb47-76" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p>这就是这个图表的全部内容！通过这个例子，我们展示了如何使用ggplot2和其他一些有用的包来创建专业水平的可视化。</p>
+</div>
+<div id="每小时热力图" class="section level2 hasAnchor" number="6.4">
+<h2><span class="header-section-number">6.4</span> 每小时热力图<a href="高质量数据可视化案例.html#每小时热力图" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="高质量数据可视化案例.html#cb48-1" tabindex="-1"></a><span class="co">#devtools::install_github(&quot;cran/Interpol.T&quot;)</span></span>
+<span id="cb48-2"><a href="高质量数据可视化案例.html#cb48-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb48-3"><a href="高质量数据可视化案例.html#cb48-3" tabindex="-1"></a><span class="fu">library</span>(dplyr) <span class="co"># 更容易地进行数据整理</span></span>
+<span id="cb48-4"><a href="高质量数据可视化案例.html#cb48-4" tabindex="-1"></a><span class="fu">library</span>(viridis) <span class="co"># 适合色盲的调色板，也适用于黑白图</span></span></code></pre></div>
+<pre><code>## Loading required package: viridisLite</code></pre>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="高质量数据可视化案例.html#cb50-1" tabindex="-1"></a><span class="fu">library</span>(Interpol.T) <span class="co"># 初始加载时会生成一个大型数据集</span></span></code></pre></div>
+<pre><code>## Loading required package: date</code></pre>
+<pre><code>## Loading required package: chron</code></pre>
+<pre><code>## 
+## Attaching package: &#39;chron&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:lubridate&#39;:
+## 
+##     days, hours, minutes, seconds, years</code></pre>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="高质量数据可视化案例.html#cb55-1" tabindex="-1"></a><span class="fu">library</span>(lubridate) <span class="co"># 用于简单的日期处理</span></span>
+<span id="cb55-2"><a href="高质量数据可视化案例.html#cb55-2" tabindex="-1"></a><span class="fu">library</span>(ggExtra) <span class="co"># 因为我记不住ggplot主题选项</span></span>
+<span id="cb55-3"><a href="高质量数据可视化案例.html#cb55-3" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb55-4"><a href="高质量数据可视化案例.html#cb55-4" tabindex="-1"></a></span>
+<span id="cb55-5"><a href="高质量数据可视化案例.html#cb55-5" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data</span>(Trentino_hourly_T, <span class="at">package =</span> <span class="st">&quot;Interpol.T&quot;</span>)</span>
+<span id="cb55-6"><a href="高质量数据可视化案例.html#cb55-6" tabindex="-1"></a></span>
+<span id="cb55-7"><a href="高质量数据可视化案例.html#cb55-7" tabindex="-1"></a><span class="fu">names</span>(h_d_t)[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;stationid&quot;</span>, <span class="st">&quot;date&quot;</span>, <span class="st">&quot;hour&quot;</span>, <span class="st">&quot;temp&quot;</span>, <span class="st">&quot;flag&quot;</span>)</span>
+<span id="cb55-8"><a href="高质量数据可视化案例.html#cb55-8" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tbl_df</span>(h_d_t) <span class="sc">%&gt;%</span></span>
+<span id="cb55-9"><a href="高质量数据可视化案例.html#cb55-9" tabindex="-1"></a>  <span class="fu">filter</span>(stationid <span class="sc">==</span> <span class="st">&quot;T0001&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning: `tbl_df()` was deprecated in dplyr 1.0.0.
+## ℹ Please use `tibble::as_tibble()` instead.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="高质量数据可视化案例.html#cb57-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">year</span>(date),</span>
+<span id="cb57-2"><a href="高质量数据可视化案例.html#cb57-2" tabindex="-1"></a>                    <span class="at">month =</span> <span class="fu">month</span>(date, <span class="at">label =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb57-3"><a href="高质量数据可视化案例.html#cb57-3" tabindex="-1"></a>                    <span class="at">day =</span> <span class="fu">day</span>(date))</span></code></pre></div>
+<pre><code>## Warning: There were 3 warnings in `mutate()`.
+## The first warning was:
+## ℹ In argument: `year = year(date)`.
+## Caused by warning:
+## ! tz(): Don&#39;t know how to compute timezone for object of class factor; returning &quot;UTC&quot;.
+## ℹ Run `dplyr::last_dplyr_warnings()` to see the 2 remaining warnings.</code></pre>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="高质量数据可视化案例.html#cb59-1" tabindex="-1"></a>df<span class="sc">$</span>date <span class="ot">&lt;-</span> <span class="fu">ymd</span>(df<span class="sc">$</span>date) <span class="co"># 如果需要进一步处理数据，则有用</span></span>
+<span id="cb59-2"><a href="高质量数据可视化案例.html#cb59-2" tabindex="-1"></a></span>
+<span id="cb59-3"><a href="高质量数据可视化案例.html#cb59-3" tabindex="-1"></a><span class="co"># 清理</span></span>
+<span id="cb59-4"><a href="高质量数据可视化案例.html#cb59-4" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">c</span>(<span class="st">&quot;h_d_t&quot;</span>, <span class="st">&quot;mo_bias&quot;</span>, <span class="st">&quot;Tn&quot;</span>, <span class="st">&quot;Tx&quot;</span>,</span>
+<span id="cb59-5"><a href="高质量数据可视化案例.html#cb59-5" tabindex="-1"></a>            <span class="st">&quot;Th_int_list&quot;</span>, <span class="st">&quot;calibration_l&quot;</span>,</span>
+<span id="cb59-6"><a href="高质量数据可视化案例.html#cb59-6" tabindex="-1"></a>            <span class="st">&quot;calibration_shape&quot;</span>, <span class="st">&quot;Tm_list&quot;</span>))</span>
+<span id="cb59-7"><a href="高质量数据可视化案例.html#cb59-7" tabindex="-1"></a></span>
+<span id="cb59-8"><a href="高质量数据可视化案例.html#cb59-8" tabindex="-1"></a><span class="co"># 创建绘图数据框</span></span>
+<span id="cb59-9"><a href="高质量数据可视化案例.html#cb59-9" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">select</span>(stationid, day, hour, month, year, temp) <span class="sc">%&gt;%</span></span>
+<span id="cb59-10"><a href="高质量数据可视化案例.html#cb59-10" tabindex="-1"></a>  <span class="fu">fill</span>(temp) <span class="co"># 可选 - 参见下面的注释</span></span>
+<span id="cb59-11"><a href="高质量数据可视化案例.html#cb59-11" tabindex="-1"></a></span>
+<span id="cb59-12"><a href="高质量数据可视化案例.html#cb59-12" tabindex="-1"></a>statno <span class="ot">&lt;-</span> <span class="fu">unique</span>(df<span class="sc">$</span>stationid)</span>
+<span id="cb59-13"><a href="高质量数据可视化案例.html#cb59-13" tabindex="-1"></a></span>
+<span id="cb59-14"><a href="高质量数据可视化案例.html#cb59-14" tabindex="-1"></a><span class="co"># 绘图从这里开始</span></span>
+<span id="cb59-15"><a href="高质量数据可视化案例.html#cb59-15" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(day, hour, <span class="at">fill =</span> temp)) <span class="sc">+</span></span>
+<span id="cb59-16"><a href="高质量数据可视化案例.html#cb59-16" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="at">color =</span> <span class="st">&quot;white&quot;</span>, <span class="at">size =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb59-17"><a href="高质量数据可视化案例.html#cb59-17" tabindex="-1"></a>  <span class="fu">scale_fill_viridis</span>(<span class="at">name =</span> <span class="st">&quot;Hrly Temps C&quot;</span>, <span class="at">option =</span> <span class="st">&quot;C&quot;</span>)</span>
+<span id="cb59-18"><a href="高质量数据可视化案例.html#cb59-18" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">facet_grid</span>(year <span class="sc">~</span> month)</span>
+<span id="cb59-19"><a href="高质量数据可视化案例.html#cb59-19" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">scale_y_continuous</span>(<span class="at">trans =</span> <span class="st">&quot;reverse&quot;</span>, <span class="at">breaks =</span> <span class="fu">unique</span>(df<span class="sc">$</span>hour))</span>
+<span id="cb59-20"><a href="高质量数据可视化案例.html#cb59-20" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">31</span>))</span>
+<span id="cb59-21"><a href="高质量数据可视化案例.html#cb59-21" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">8</span>)</span>
+<span id="cb59-22"><a href="高质量数据可视化案例.html#cb59-22" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste</span>(<span class="st">&quot;Hourly Temps - Station&quot;</span>, statno), <span class="at">x =</span> <span class="st">&quot;Day&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Hour Commencing&quot;</span>)</span>
+<span id="cb59-23"><a href="高质量数据可视化案例.html#cb59-23" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>) <span class="sc">+</span></span>
+<span id="cb59-24"><a href="高质量数据可视化案例.html#cb59-24" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>)) <span class="sc">+</span></span>
+<span id="cb59-25"><a href="高质量数据可视化案例.html#cb59-25" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">6</span>)) <span class="sc">+</span></span>
+<span id="cb59-26"><a href="高质量数据可视化案例.html#cb59-26" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">colour =</span> <span class="st">&quot;white&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb59-27"><a href="高质量数据可视化案例.html#cb59-27" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb59-28"><a href="高质量数据可视化案例.html#cb59-28" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.ticks =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb59-29"><a href="高质量数据可视化案例.html#cb59-29" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">7</span>)) <span class="sc">+</span></span>
+<span id="cb59-30"><a href="高质量数据可视化案例.html#cb59-30" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>)) <span class="sc">+</span></span>
+<span id="cb59-31"><a href="高质量数据可视化案例.html#cb59-31" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">6</span>)) <span class="sc">+</span></span>
+<span id="cb59-32"><a href="高质量数据可视化案例.html#cb59-32" tabindex="-1"></a>  <span class="fu">removeGrid</span>() <span class="co"># ggExtra</span></span>
+<span id="cb59-33"><a href="高质量数据可视化案例.html#cb59-33" tabindex="-1"></a></span>
+<span id="cb59-34"><a href="高质量数据可视化案例.html#cb59-34" tabindex="-1"></a><span class="co"># 在此之前，您可能需要扩展绘图屏幕！</span></span>
+<span id="cb59-35"><a href="高质量数据可视化案例.html#cb59-35" tabindex="-1"></a>p <span class="co"># 真棒</span></span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+</div>
+<div id="小倍数线图" class="section level2 hasAnchor" number="6.5">
+<h2><span class="header-section-number">6.5</span> 小倍数线图<a href="高质量数据可视化案例.html#小倍数线图" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>这个图是一个小的多线图。它显示了一个指标(世界各地的消费者信心)在过去几年的演变。小倍数的每个项目都反映了一个特定国家的演变情况。</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="高质量数据可视化案例.html#cb60-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb60-2"><a href="高质量数据可视化案例.html#cb60-2" tabindex="-1"></a><span class="fu">library</span>(janitor)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;janitor&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     chisq.test, fisher.test</code></pre>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="高质量数据可视化案例.html#cb63-1" tabindex="-1"></a><span class="fu">library</span>(showtext)</span>
+<span id="cb63-2"><a href="高质量数据可视化案例.html#cb63-2" tabindex="-1"></a><span class="fu">library</span>(MetBrewer)</span>
+<span id="cb63-3"><a href="高质量数据可视化案例.html#cb63-3" tabindex="-1"></a><span class="fu">library</span>(scico)</span>
+<span id="cb63-4"><a href="高质量数据可视化案例.html#cb63-4" tabindex="-1"></a><span class="fu">library</span>(ggtext)</span>
+<span id="cb63-5"><a href="高质量数据可视化案例.html#cb63-5" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;patchwork&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:cowplot&#39;:
+## 
+##     align_plots</code></pre>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="高质量数据可视化案例.html#cb66-1" tabindex="-1"></a><span class="fu">library</span>(gghighlight)</span>
+<span id="cb66-2"><a href="高质量数据可视化案例.html#cb66-2" tabindex="-1"></a><span class="co"># 加载和准备数据</span></span>
+<span id="cb66-3"><a href="高质量数据可视化案例.html#cb66-3" tabindex="-1"></a><span class="co"># 数据托管在R图库的github页面上。你可以查看原始文章了解更多，因为我们这里只涵盖了图表创建的技术部分。</span></span>
+<span id="cb66-4"><a href="高质量数据可视化案例.html#cb66-4" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;dataConsumerConfidence.csv&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb66-5"><a href="高质量数据可视化案例.html#cb66-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">date =</span> lubridate<span class="sc">::</span><span class="fu">my</span>(Time)) <span class="sc">%&gt;%</span> </span>
+<span id="cb66-6"><a href="高质量数据可视化案例.html#cb66-6" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>Time) <span class="sc">%&gt;%</span> </span>
+<span id="cb66-7"><a href="高质量数据可视化案例.html#cb66-7" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">!</span>date, <span class="at">names_to =</span> <span class="st">&quot;country&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;value&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb66-8"><a href="高质量数据可视化案例.html#cb66-8" tabindex="-1"></a>  <span class="fu">na.omit</span>()</span>
+<span id="cb66-9"><a href="高质量数据可视化案例.html#cb66-9" tabindex="-1"></a></span>
+<span id="cb66-10"><a href="高质量数据可视化案例.html#cb66-10" tabindex="-1"></a><span class="co"># 杂项</span></span>
+<span id="cb66-11"><a href="高质量数据可视化案例.html#cb66-11" tabindex="-1"></a><span class="co"># 有一堆小工具将在后面用到：字体、主题、颜色、说明。所有这些都是制作专业图表所需的。</span></span>
+<span id="cb66-12"><a href="高质量数据可视化案例.html#cb66-12" tabindex="-1"></a>font <span class="ot">&lt;-</span> <span class="st">&quot;Gudea&quot;</span></span>
+<span id="cb66-13"><a href="高质量数据可视化案例.html#cb66-13" tabindex="-1"></a><span class="fu">font_add_google</span>(<span class="at">family =</span> font, font, <span class="at">db_cache =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb66-14"><a href="高质量数据可视化案例.html#cb66-14" tabindex="-1"></a>fa_path <span class="ot">&lt;-</span> systemfonts<span class="sc">::</span><span class="fu">font_info</span>(<span class="at">family =</span> <span class="st">&quot;Font Awesome 6 Brands&quot;</span>)[[<span class="st">&quot;path&quot;</span>]]</span>
+<span id="cb66-15"><a href="高质量数据可视化案例.html#cb66-15" tabindex="-1"></a><span class="fu">font_add</span>(<span class="at">family =</span> <span class="st">&quot;fa-brands&quot;</span>, <span class="at">regular =</span> fa_path)</span>
+<span id="cb66-16"><a href="高质量数据可视化案例.html#cb66-16" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_minimal</span>(<span class="at">base_family =</span> font, <span class="at">base_size =</span> <span class="dv">10</span>))</span>
+<span id="cb66-17"><a href="高质量数据可视化案例.html#cb66-17" tabindex="-1"></a>bg <span class="ot">&lt;-</span> <span class="st">&quot;#F4F5F1&quot;</span></span>
+<span id="cb66-18"><a href="高质量数据可视化案例.html#cb66-18" tabindex="-1"></a>txt_col <span class="ot">&lt;-</span> <span class="st">&quot;black&quot;</span></span>
+<span id="cb66-19"><a href="高质量数据可视化案例.html#cb66-19" tabindex="-1"></a><span class="fu">showtext_auto</span>(<span class="at">enable =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb66-20"><a href="高质量数据可视化案例.html#cb66-20" tabindex="-1"></a></span>
+<span id="cb66-21"><a href="高质量数据可视化案例.html#cb66-21" tabindex="-1"></a>caption_text <span class="ot">&lt;-</span> <span class="fu">str_glue</span>(<span class="st">&quot;**设计:** Gilbert Fontana&lt;br&gt;&quot;</span>, <span class="st">&quot;**数据:** OECD, 2022&quot;</span>)</span>
+<span id="cb66-22"><a href="高质量数据可视化案例.html#cb66-22" tabindex="-1"></a></span>
+<span id="cb66-23"><a href="高质量数据可视化案例.html#cb66-23" tabindex="-1"></a><span class="co"># 主要折线图</span></span>
+<span id="cb66-24"><a href="高质量数据可视化案例.html#cb66-24" tabindex="-1"></a><span class="co"># 在ggplot2中将图表从直角坐标转换为圆形（极坐标）是很容易的，只需在绘图中添加coord_polar()调用即可。</span></span>
+<span id="cb66-25"><a href="高质量数据可视化案例.html#cb66-25" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> df1 <span class="sc">%&gt;%</span> </span>
+<span id="cb66-26"><a href="高质量数据可视化案例.html#cb66-26" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb66-27"><a href="高质量数据可视化案例.html#cb66-27" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">100</span>, <span class="at">linetype =</span> <span class="st">&quot;solid&quot;</span>, <span class="at">size =</span> .<span class="dv">25</span>) <span class="sc">+</span></span>
+<span id="cb66-28"><a href="高质量数据可视化案例.html#cb66-28" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> df1 <span class="sc">%&gt;%</span> </span>
+<span id="cb66-29"><a href="高质量数据可视化案例.html#cb66-29" tabindex="-1"></a>               <span class="fu">group_by</span>(country) <span class="sc">%&gt;%</span> </span>
+<span id="cb66-30"><a href="高质量数据可视化案例.html#cb66-30" tabindex="-1"></a>               <span class="fu">slice_max</span>(date),</span>
+<span id="cb66-31"><a href="高质量数据可视化案例.html#cb66-31" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> value, <span class="at">color =</span> country), <span class="at">shape =</span> <span class="dv">16</span>) <span class="sc">+</span></span>
+<span id="cb66-32"><a href="高质量数据可视化案例.html#cb66-32" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> value, <span class="at">color =</span> country)) <span class="sc">+</span></span>
+<span id="cb66-33"><a href="高质量数据可视化案例.html#cb66-33" tabindex="-1"></a>  <span class="fu">gghighlight</span>(<span class="at">use_direct_label =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb66-34"><a href="高质量数据可视化案例.html#cb66-34" tabindex="-1"></a>              <span class="at">unhighlighted_params =</span> <span class="fu">list</span>(<span class="at">colour =</span> <span class="fu">alpha</span>(<span class="st">&quot;grey85&quot;</span>, <span class="dv">1</span>))) <span class="sc">+</span></span>
+<span id="cb66-35"><a href="高质量数据可视化案例.html#cb66-35" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data =</span> df1 <span class="sc">%&gt;%</span> </span>
+<span id="cb66-36"><a href="高质量数据可视化案例.html#cb66-36" tabindex="-1"></a>               <span class="fu">group_by</span>(country) <span class="sc">%&gt;%</span> </span>
+<span id="cb66-37"><a href="高质量数据可视化案例.html#cb66-37" tabindex="-1"></a>               <span class="fu">slice_max</span>(date),</span>
+<span id="cb66-38"><a href="高质量数据可视化案例.html#cb66-38" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> value, <span class="at">color =</span> country, <span class="at">label =</span> <span class="fu">round</span>(value)),</span>
+<span id="cb66-39"><a href="高质量数据可视化案例.html#cb66-39" tabindex="-1"></a>             <span class="at">hjust =</span> <span class="sc">-</span>.<span class="dv">5</span>, <span class="at">vjust =</span> .<span class="dv">5</span>, <span class="at">size =</span> <span class="fl">2.5</span>, <span class="at">family =</span> font, <span class="at">fontface =</span> <span class="st">&quot;bold&quot;</span>) <span class="sc">+</span></span>
+<span id="cb66-40"><a href="高质量数据可视化案例.html#cb66-40" tabindex="-1"></a>  <span class="fu">scale_color_met_d</span>(<span class="at">name =</span> <span class="st">&quot;Redon&quot;</span>) <span class="sc">+</span></span>
+<span id="cb66-41"><a href="高质量数据可视化案例.html#cb66-41" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="at">date_labels =</span> <span class="st">&quot;%y&quot;</span>) <span class="sc">+</span></span>
+<span id="cb66-42"><a href="高质量数据可视化案例.html#cb66-42" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">90</span>, <span class="dv">95</span>, <span class="dv">100</span>, <span class="dv">105</span>, <span class="dv">110</span>),</span>
+<span id="cb66-43"><a href="高质量数据可视化案例.html#cb66-43" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;100&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb66-44"><a href="高质量数据可视化案例.html#cb66-44" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> <span class="fu">factor</span>(country, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&#39;USA&#39;</span>, <span class="st">&#39;China&#39;</span>, <span class="st">&#39;Japan&#39;</span>, <span class="st">&#39;Germany&#39;</span>, <span class="st">&#39;UK&#39;</span>, <span class="st">&#39;France&#39;</span>, <span class="st">&#39;Italy&#39;</span>, <span class="st">&#39;South Korea&#39;</span>, <span class="st">&#39;Australia&#39;</span>))) <span class="sc">+</span></span>
+<span id="cb66-45"><a href="高质量数据可视化案例.html#cb66-45" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">clip =</span> <span class="st">&quot;off&quot;</span>) <span class="sc">+</span></span>
+<span id="cb66-46"><a href="高质量数据可视化案例.html#cb66-46" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb66-47"><a href="高质量数据可视化案例.html#cb66-47" tabindex="-1"></a>    <span class="at">axis.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb66-48"><a href="高质量数据可视化案例.html#cb66-48" tabindex="-1"></a>    <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">color =</span> txt_col, <span class="at">size =</span> <span class="dv">7</span>),</span>
+<span id="cb66-49"><a href="高质量数据可视化案例.html#cb66-49" tabindex="-1"></a>    <span class="at">strip.text.x =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
+<span id="cb66-50"><a href="高质量数据可视化案例.html#cb66-50" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_markdown</span>(<span class="at">hjust =</span> .<span class="dv">5</span>, <span class="at">size =</span> <span class="dv">34</span>, <span class="at">color =</span> txt_col, <span class="at">lineheight =</span> .<span class="dv">8</span>, <span class="at">face =</span> <span class="st">&quot;bold&quot;</span>, <span class="at">margin =</span> <span class="fu">margin</span>(<span class="dv">20</span>, <span class="dv">0</span>, <span class="dv">30</span>, <span class="dv">0</span>)),</span>
+<span id="cb66-51"><a href="高质量数据可视化案例.html#cb66-51" tabindex="-1"></a>    <span class="at">plot.subtitle =</span> <span class="fu">element_markdown</span>(<span class="at">hjust =</span> .<span class="dv">5</span>, <span class="at">size =</span> <span class="dv">18</span>, <span class="at">color =</span> txt_col, <span class="at">lineheight =</span> <span class="dv">1</span>, <span class="at">margin =</span> <span class="fu">margin</span>(<span class="dv">10</span>, <span class="dv">0</span>, <span class="dv">30</span>, <span class="dv">0</span>)),</span>
+<span id="cb66-52"><a href="高质量数据可视化案例.html#cb66-52" tabindex="-1"></a>    <span class="at">plot.caption =</span> <span class="fu">element_markdown</span>(<span class="at">hjust =</span> .<span class="dv">5</span>, <span class="at">margin =</span> <span class="fu">margin</span>(<span class="dv">60</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>), <span class="at">size =</span> <span class="dv">8</span>, <span class="at">color =</span> txt_col, <span class="at">lineheight =</span> <span class="fl">1.2</span>),</span>
+<span id="cb66-53"><a href="高质量数据可视化案例.html#cb66-53" tabindex="-1"></a>    <span class="at">plot.caption.position =</span> <span class="st">&quot;plot&quot;</span>,</span>
+<span id="cb66-54"><a href="高质量数据可视化案例.html#cb66-54" tabindex="-1"></a>    <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">color =</span> bg, <span class="at">fill =</span> bg),</span>
+<span id="cb66-55"><a href="高质量数据可视化案例.html#cb66-55" tabindex="-1"></a>    <span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">10</span>),</span>
+<span id="cb66-56"><a href="高质量数据可视化案例.html#cb66-56" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>,</span>
+<span id="cb66-57"><a href="高质量数据可视化案例.html#cb66-57" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>)</span>
+<span id="cb66-58"><a href="高质量数据可视化案例.html#cb66-58" tabindex="-1"></a>  )</span>
+<span id="cb66-59"><a href="高质量数据可视化案例.html#cb66-59" tabindex="-1"></a></span>
+<span id="cb66-60"><a href="高质量数据可视化案例.html#cb66-60" tabindex="-1"></a><span class="co"># 标题和副标题</span></span>
+<span id="cb66-61"><a href="高质量数据可视化案例.html#cb66-61" tabindex="-1"></a><span class="co"># 最后一步：添加标题和副标题以获得完整的图表：</span></span>
+<span id="cb66-62"><a href="高质量数据可视化案例.html#cb66-62" tabindex="-1"></a>text <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb66-63"><a href="高质量数据可视化案例.html#cb66-63" tabindex="-1"></a>  <span class="at">x =</span> <span class="dv">0</span>, <span class="at">y =</span> <span class="dv">0</span>,</span>
+<span id="cb66-64"><a href="高质量数据可视化案例.html#cb66-64" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">&quot;The consumer confidence indicator provides an indication of future developments of households’ consumption and saving. An indicator above 100 signals a boost in the consumers’ confidence towards the future economic situation. Values below 100 indicate a pessimistic attitude towards future developments in the economy, possibly resulting in a tendency to save more and consume less. During 2022, the consumer confidence indicators have declined in many major economies around the world.&lt;br&gt;&quot;</span></span>
+<span id="cb66-65"><a href="高质量数据可视化案例.html#cb66-65" tabindex="-1"></a>)</span>
+<span id="cb66-66"><a href="高质量数据可视化案例.html#cb66-66" tabindex="-1"></a></span>
+<span id="cb66-67"><a href="高质量数据可视化案例.html#cb66-67" tabindex="-1"></a>sub <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(text, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb66-68"><a href="高质量数据可视化案例.html#cb66-68" tabindex="-1"></a>  <span class="fu">geom_textbox</span>(</span>
+<span id="cb66-69"><a href="高质量数据可视化案例.html#cb66-69" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">label =</span> label),</span>
+<span id="cb66-70"><a href="高质量数据可视化案例.html#cb66-70" tabindex="-1"></a>    <span class="at">box.color =</span> bg, <span class="at">fill =</span> bg, <span class="at">width =</span> <span class="fu">unit</span>(<span class="dv">10</span>, <span class="st">&quot;lines&quot;</span>),</span>
+<span id="cb66-71"><a href="高质量数据可视化案例.html#cb66-71" tabindex="-1"></a>    <span class="at">family =</span> font, <span class="at">size =</span> <span class="dv">3</span>, <span class="at">lineheight =</span> <span class="dv">1</span></span>
+<span id="cb66-72"><a href="高质量数据可视化案例.html#cb66-72" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb66-73"><a href="高质量数据可视化案例.html#cb66-73" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">expand =</span> <span class="cn">FALSE</span>, <span class="at">clip =</span> <span class="st">&quot;off&quot;</span>) <span class="sc">+</span></span>
+<span id="cb66-74"><a href="高质量数据可视化案例.html#cb66-74" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb66-75"><a href="高质量数据可视化案例.html#cb66-75" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">color =</span> bg, <span class="at">fill =</span> bg))</span>
+<span id="cb66-76"><a href="高质量数据可视化案例.html#cb66-76" tabindex="-1"></a></span>
+<span id="cb66-77"><a href="高质量数据可视化案例.html#cb66-77" tabindex="-1"></a>text2 <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb66-78"><a href="高质量数据可视化案例.html#cb66-78" tabindex="-1"></a>  <span class="at">x =</span> <span class="dv">0</span>, <span class="at">y =</span> <span class="dv">0</span>,</span>
+<span id="cb66-79"><a href="高质量数据可视化案例.html#cb66-79" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">&quot;**Consumer Confidence Around the World**&lt;br&gt;&quot;</span></span>
+<span id="cb66-80"><a href="高质量数据可视化案例.html#cb66-80" tabindex="-1"></a>)</span>
+<span id="cb66-81"><a href="高质量数据可视化案例.html#cb66-81" tabindex="-1"></a></span>
+<span id="cb66-82"><a href="高质量数据可视化案例.html#cb66-82" tabindex="-1"></a>title <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(text2, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb66-83"><a href="高质量数据可视化案例.html#cb66-83" tabindex="-1"></a>  <span class="fu">geom_textbox</span>(</span>
+<span id="cb66-84"><a href="高质量数据可视化案例.html#cb66-84" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">label =</span> label),</span>
+<span id="cb66-85"><a href="高质量数据可视化案例.html#cb66-85" tabindex="-1"></a>    <span class="at">box.color =</span> bg, <span class="at">fill =</span> bg, <span class="at">width =</span> <span class="fu">unit</span>(<span class="dv">12</span>,</span>
+<span id="cb66-86"><a href="高质量数据可视化案例.html#cb66-86" tabindex="-1"></a></span>
+<span id="cb66-87"><a href="高质量数据可视化案例.html#cb66-87" tabindex="-1"></a> <span class="st">&quot;lines&quot;</span>),</span>
+<span id="cb66-88"><a href="高质量数据可视化案例.html#cb66-88" tabindex="-1"></a>    <span class="at">family =</span> font, <span class="at">size =</span> <span class="dv">10</span>, <span class="at">lineheight =</span> <span class="dv">1</span></span>
+<span id="cb66-89"><a href="高质量数据可视化案例.html#cb66-89" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb66-90"><a href="高质量数据可视化案例.html#cb66-90" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">expand =</span> <span class="cn">FALSE</span>, <span class="at">clip =</span> <span class="st">&quot;off&quot;</span>) <span class="sc">+</span></span>
+<span id="cb66-91"><a href="高质量数据可视化案例.html#cb66-91" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb66-92"><a href="高质量数据可视化案例.html#cb66-92" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">color =</span> bg, <span class="at">fill =</span> bg))</span>
+<span id="cb66-93"><a href="高质量数据可视化案例.html#cb66-93" tabindex="-1"></a></span>
+<span id="cb66-94"><a href="高质量数据可视化案例.html#cb66-94" tabindex="-1"></a>finalPlot <span class="ot">&lt;-</span> (title <span class="sc">+</span> sub) <span class="sc">/</span> p1 <span class="sc">+</span></span>
+<span id="cb66-95"><a href="高质量数据可视化案例.html#cb66-95" tabindex="-1"></a>  <span class="fu">plot_layout</span>(<span class="at">heights =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)) <span class="sc">+</span></span>
+<span id="cb66-96"><a href="高质量数据可视化案例.html#cb66-96" tabindex="-1"></a>  <span class="fu">plot_annotation</span>(</span>
+<span id="cb66-97"><a href="高质量数据可视化案例.html#cb66-97" tabindex="-1"></a>    <span class="at">caption =</span> caption_text,</span>
+<span id="cb66-98"><a href="高质量数据可视化案例.html#cb66-98" tabindex="-1"></a>    <span class="at">theme =</span> <span class="fu">theme</span>(<span class="at">plot.caption =</span> <span class="fu">element_markdown</span>(<span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">margin =</span> <span class="fu">margin</span>(<span class="dv">20</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>), <span class="at">size =</span> <span class="dv">6</span>, <span class="at">color =</span> txt_col, <span class="at">lineheight =</span> <span class="fl">1.2</span>),</span>
+<span id="cb66-99"><a href="高质量数据可视化案例.html#cb66-99" tabindex="-1"></a>                  <span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="dv">20</span>, <span class="dv">20</span>, <span class="dv">20</span>, <span class="dv">20</span>))</span>
+<span id="cb66-100"><a href="高质量数据可视化案例.html#cb66-100" tabindex="-1"></a>  )</span>
+<span id="cb66-101"><a href="高质量数据可视化案例.html#cb66-101" tabindex="-1"></a></span>
+<span id="cb66-102"><a href="高质量数据可视化案例.html#cb66-102" tabindex="-1"></a><span class="co"># # 保存图表</span></span>
+<span id="cb66-103"><a href="高质量数据可视化案例.html#cb66-103" tabindex="-1"></a><span class="co"># ggsave(&quot;consumer_confidence.png&quot;,finalPlot,</span></span>
+<span id="cb66-104"><a href="高质量数据可视化案例.html#cb66-104" tabindex="-1"></a><span class="co">#        bg = bg,</span></span>
+<span id="cb66-105"><a href="高质量数据可视化案例.html#cb66-105" tabindex="-1"></a><span class="co">#        height = 8,</span></span>
+<span id="cb66-106"><a href="高质量数据可视化案例.html#cb66-106" tabindex="-1"></a><span class="co">#        width = 5,</span></span>
+<span id="cb66-107"><a href="高质量数据可视化案例.html#cb66-107" tabindex="-1"></a><span class="co">#        dpi = 600)</span></span>
+<span id="cb66-108"><a href="高质量数据可视化案例.html#cb66-108" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb66-109"><a href="高质量数据可视化案例.html#cb66-109" tabindex="-1"></a><span class="co"># finalPlot</span></span></code></pre></div>
+<p><img src="we-line-chart-consumer-confidence.png" /></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="其他绘图工具.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="绘图注意事项.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/05-blocks.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

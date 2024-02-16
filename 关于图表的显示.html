@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 关于图表的显示 | From Data to Viz</title>
+  <meta name="description" content="R语言数据可视化相关数据" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 关于图表的显示 | From Data to Viz" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="R语言数据可视化相关数据" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 关于图表的显示 | From Data to Viz" />
+  
+  <meta name="twitter:description" content="R语言数据可视化相关数据" />
+  
+
+<meta name="author" content="米霖" />
+
+
+<meta name="date" content="2024-01-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="ggplot2-拓展包.html"/>
+<link rel="next" href="footnotes-and-citations.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.31/datatables.js"></script>
+<link href="libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<script src="libs/jszip-1.13.6/jszip.min.js"></script>
+<link href="libs/dt-ext-buttons-1.13.6/css/buttons.dataTables.min.css" rel="stylesheet" />
+<script src="libs/dt-ext-buttons-1.13.6/js/dataTables.buttons.min.js"></script>
+<script src="libs/dt-ext-buttons-1.13.6/js/buttons.html5.min.js"></script>
+<script src="libs/dt-ext-buttons-1.13.6/js/buttons.colVis.min.js"></script>
+<script src="libs/dt-ext-buttons-1.13.6/js/buttons.print.min.js"></script>
+<script src="libs/core-js-2.5.3/shim.min.js"></script>
+<script src="libs/react-17.0.0/react.min.js"></script>
+<script src="libs/react-17.0.0/react-dom.min.js"></script>
+<script src="libs/reactwidget-1.0.0/react-tools.js"></script>
+<link href="libs/reactable-0.4.4/reactable.css" rel="stylesheet" />
+<script src="libs/reactable-binding-0.4.4/reactable.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">From Data to Viz</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> url: your book url like https://bookdown.org/yihui/bookdown</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#从数据到图形"><i class="fa fa-check"></i><b>1.1</b> 从数据到图形</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#numeric"><i class="fa fa-check"></i><b>1.1.1</b> Numeric</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#categoric"><i class="fa fa-check"></i><b>1.1.2</b> Categoric</a></li>
+<li class="chapter" data-level="1.1.3" data-path="index.html"><a href="index.html#numeric-catogoric"><i class="fa fa-check"></i><b>1.1.3</b> Numeric &amp; Catogoric</a></li>
+<li class="chapter" data-level="1.1.4" data-path="index.html"><a href="index.html#network"><i class="fa fa-check"></i><b>1.1.4</b> Network</a></li>
+<li class="chapter" data-level="1.1.5" data-path="index.html"><a href="index.html#times-series"><i class="fa fa-check"></i><b>1.1.5</b> Times Series</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html"><i class="fa fa-check"></i><b>2</b> R 语言可视化核心包</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#ggplot2"><i class="fa fa-check"></i><b>2.1</b> ggplot2</a></li>
+<li class="chapter" data-level="2.2" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#基础使用"><i class="fa fa-check"></i><b>2.2</b> 基础使用</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#安装和加载"><i class="fa fa-check"></i><b>2.2.1</b> 安装和加载</a></li>
+<li class="chapter" data-level="2.2.2" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#创建一个简单的图形"><i class="fa fa-check"></i><b>2.2.2</b> 创建一个简单的图形</a></li>
+<li class="chapter" data-level="2.2.3" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#添加图层"><i class="fa fa-check"></i><b>2.2.3</b> 添加图层</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#高级使用"><i class="fa fa-check"></i><b>2.3</b> 高级使用</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#自定义主题"><i class="fa fa-check"></i><b>2.3.1</b> 自定义主题</a></li>
+<li class="chapter" data-level="2.3.2" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#多统计图形"><i class="fa fa-check"></i><b>2.3.2</b> 多统计图形</a></li>
+<li class="chapter" data-level="2.3.3" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#调整图形细节"><i class="fa fa-check"></i><b>2.3.3</b> 调整图形细节</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#plotly"><i class="fa fa-check"></i><b>2.4</b> plotly</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#安装和设置"><i class="fa fa-check"></i><b>2.4.1</b> 安装和设置</a></li>
+<li class="chapter" data-level="2.4.2" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#基础图表创建"><i class="fa fa-check"></i><b>2.4.2</b> 基础图表创建</a></li>
+<li class="chapter" data-level="2.4.3" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#基础图表创建-1"><i class="fa fa-check"></i><b>2.4.3</b> 基础图表创建</a></li>
+<li class="chapter" data-level="2.4.4" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#交互式数据可视化"><i class="fa fa-check"></i><b>2.4.4</b> 交互式数据可视化</a></li>
+<li class="chapter" data-level="2.4.5" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#高级自定义和优化技术"><i class="fa fa-check"></i><b>2.4.5</b> 高级自定义和优化技术</a></li>
+<li class="chapter" data-level="2.4.6" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#高级交互功能"><i class="fa fa-check"></i><b>2.4.6</b> 高级交互功能</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#patchwork"><i class="fa fa-check"></i><b>2.5</b> patchwork</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#简介与安装"><i class="fa fa-check"></i><b>2.5.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="2.5.2" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#基本用法"><i class="fa fa-check"></i><b>2.5.2</b> 基本用法</a></li>
+<li class="chapter" data-level="2.5.3" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#高级布局"><i class="fa fa-check"></i><b>2.5.3</b> 高级布局</a></li>
+<li class="chapter" data-level="2.5.4" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#添加注释和共享图例"><i class="fa fa-check"></i><b>2.5.4</b> 添加注释和共享图例</a></li>
+<li class="chapter" data-level="2.5.5" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#实战示例"><i class="fa fa-check"></i><b>2.5.5</b> 实战示例</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#hrbrthemes"><i class="fa fa-check"></i><b>2.6</b> hrbrthemes</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#简介与安装-1"><i class="fa fa-check"></i><b>2.6.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="2.6.2" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#基本使用"><i class="fa fa-check"></i><b>2.6.2</b> 基本使用</a></li>
+<li class="chapter" data-level="2.6.3" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#高级定制"><i class="fa fa-check"></i><b>2.6.3</b> 高级定制</a></li>
+<li class="chapter" data-level="2.6.4" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#实战示例-1"><i class="fa fa-check"></i><b>2.6.4</b> 实战示例</a></li>
+<li class="chapter" data-level="2.6.5" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#注意事项"><i class="fa fa-check"></i><b>2.6.5</b> 注意事项</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html"><i class="fa fa-check"></i><b>3</b> ggplot2 拓展包</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#ggstatsplot"><i class="fa fa-check"></i><b>3.1</b> ggstatsplot</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#简介与安装-2"><i class="fa fa-check"></i><b>3.1.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="3.1.2" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#基本用法-1"><i class="fa fa-check"></i><b>3.1.2</b> 基本用法</a></li>
+<li class="chapter" data-level="3.1.3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#特色功能"><i class="fa fa-check"></i><b>3.1.3</b> 特色功能</a></li>
+<li class="chapter" data-level="3.1.4" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#高级定制-1"><i class="fa fa-check"></i><b>3.1.4</b> 高级定制</a></li>
+<li class="chapter" data-level="3.1.5" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#实战示例-2"><i class="fa fa-check"></i><b>3.1.5</b> 实战示例</a></li>
+<li class="chapter" data-level="3.1.6" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#注意事项-1"><i class="fa fa-check"></i><b>3.1.6</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#gghighlight"><i class="fa fa-check"></i><b>3.2</b> gghighlight</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#简介与安装-3"><i class="fa fa-check"></i><b>3.2.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="3.2.2" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#基本使用方法"><i class="fa fa-check"></i><b>3.2.2</b> 基本使用方法</a></li>
+<li class="chapter" data-level="3.2.3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#高亮多个系列"><i class="fa fa-check"></i><b>3.2.3</b> 高亮多个系列</a></li>
+<li class="chapter" data-level="3.2.4" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#高级定制-2"><i class="fa fa-check"></i><b>3.2.4</b> 高级定制</a></li>
+<li class="chapter" data-level="3.2.5" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#实战示例-3"><i class="fa fa-check"></i><b>3.2.5</b> 实战示例</a></li>
+<li class="chapter" data-level="3.2.6" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#注意事项-2"><i class="fa fa-check"></i><b>3.2.6</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#ggpattern"><i class="fa fa-check"></i><b>3.3</b> ggpattern</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#简介与安装-4"><i class="fa fa-check"></i><b>3.3.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="3.3.2" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#基本使用方法-1"><i class="fa fa-check"></i><b>3.3.2</b> 基本使用方法</a></li>
+<li class="chapter" data-level="3.3.3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#图案属性定制"><i class="fa fa-check"></i><b>3.3.3</b> 图案属性定制</a></li>
+<li class="chapter" data-level="3.3.4" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#高级应用"><i class="fa fa-check"></i><b>3.3.4</b> 高级应用</a></li>
+<li class="chapter" data-level="3.3.5" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#实战示例-4"><i class="fa fa-check"></i><b>3.3.5</b> 实战示例</a></li>
+<li class="chapter" data-level="3.3.6" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#注意事项-3"><i class="fa fa-check"></i><b>3.3.6</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#geomtextpath"><i class="fa fa-check"></i><b>3.4</b> geomtextpath</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#简介与安装-5"><i class="fa fa-check"></i><b>3.4.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="3.4.2" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#基本使用方法-2"><i class="fa fa-check"></i><b>3.4.2</b> 基本使用方法</a></li>
+<li class="chapter" data-level="3.4.3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#文本属性定制"><i class="fa fa-check"></i><b>3.4.3</b> 文本属性定制</a></li>
+<li class="chapter" data-level="3.4.4" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#高级应用-1"><i class="fa fa-check"></i><b>3.4.4</b> 高级应用</a></li>
+<li class="chapter" data-level="3.4.5" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#实战示例-5"><i class="fa fa-check"></i><b>3.4.5</b> 实战示例</a></li>
+<li class="chapter" data-level="3.4.6" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#注意事项-4"><i class="fa fa-check"></i><b>3.4.6</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#gganimate"><i class="fa fa-check"></i><b>3.5</b> gganimate</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#简介与安装-6"><i class="fa fa-check"></i><b>3.5.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="3.5.2" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#基本使用方法-3"><i class="fa fa-check"></i><b>3.5.2</b> 基本使用方法</a></li>
+<li class="chapter" data-level="3.5.3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#时间轴和标签"><i class="fa fa-check"></i><b>3.5.3</b> 时间轴和标签</a></li>
+<li class="chapter" data-level="3.5.4" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#高级定制-3"><i class="fa fa-check"></i><b>3.5.4</b> 高级定制</a></li>
+<li class="chapter" data-level="3.5.5" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#输出和保存动画"><i class="fa fa-check"></i><b>3.5.5</b> 输出和保存动画</a></li>
+<li class="chapter" data-level="3.5.6" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#注意事项-5"><i class="fa fa-check"></i><b>3.5.6</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#ggiraph"><i class="fa fa-check"></i><b>3.6</b> ggiraph</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#简介与安装-7"><i class="fa fa-check"></i><b>3.6.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="3.6.2" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#基本使用方法-4"><i class="fa fa-check"></i><b>3.6.2</b> 基本使用方法</a></li>
+<li class="chapter" data-level="3.6.3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#增强交互性"><i class="fa fa-check"></i><b>3.6.3</b> 增强交互性</a></li>
+<li class="chapter" data-level="3.6.4" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#高级功能"><i class="fa fa-check"></i><b>3.6.4</b> 高级功能</a></li>
+<li class="chapter" data-level="3.6.5" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#实战示例-6"><i class="fa fa-check"></i><b>3.6.5</b> 实战示例</a></li>
+<li class="chapter" data-level="3.6.6" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#注意事项-6"><i class="fa fa-check"></i><b>3.6.6</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#esquisse"><i class="fa fa-check"></i><b>3.7</b> esquisse</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#简介与安装-8"><i class="fa fa-check"></i><b>3.7.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="3.7.2" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#启动esquisse界面"><i class="fa fa-check"></i><b>3.7.2</b> 启动<code>esquisse</code>界面</a></li>
+<li class="chapter" data-level="3.7.3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#创建图形"><i class="fa fa-check"></i><b>3.7.3</b> 创建图形</a></li>
+<li class="chapter" data-level="3.7.4" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#导出和使用代码"><i class="fa fa-check"></i><b>3.7.4</b> 导出和使用代码</a></li>
+<li class="chapter" data-level="3.7.5" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#esquisse与shiny集成"><i class="fa fa-check"></i><b>3.7.5</b> <code>esquisse</code>与Shiny集成</a></li>
+<li class="chapter" data-level="3.7.6" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#注意事项-7"><i class="fa fa-check"></i><b>3.7.6</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#ggthemes"><i class="fa fa-check"></i><b>3.8</b> ggthemes</a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#简介与安装-9"><i class="fa fa-check"></i><b>3.8.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="3.8.2" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#基本使用方法-5"><i class="fa fa-check"></i><b>3.8.2</b> 基本使用方法</a></li>
+<li class="chapter" data-level="3.8.3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#流行主题介绍"><i class="fa fa-check"></i><b>3.8.3</b> 流行主题介绍</a></li>
+<li class="chapter" data-level="3.8.4" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#自定义和扩展"><i class="fa fa-check"></i><b>3.8.4</b> 自定义和扩展</a></li>
+<li class="chapter" data-level="3.8.5" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#实战示例-7"><i class="fa fa-check"></i><b>3.8.5</b> 实战示例</a></li>
+<li class="chapter" data-level="3.8.6" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#注意事项-8"><i class="fa fa-check"></i><b>3.8.6</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#ggbump"><i class="fa fa-check"></i><b>3.9</b> ggbump</a>
+<ul>
+<li class="chapter" data-level="3.9.1" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#简介与安装-10"><i class="fa fa-check"></i><b>3.9.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="3.9.2" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#基本使用方法-6"><i class="fa fa-check"></i><b>3.9.2</b> 基本使用方法</a></li>
+<li class="chapter" data-level="3.9.3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#自定义图表"><i class="fa fa-check"></i><b>3.9.3</b> 自定义图表</a></li>
+<li class="chapter" data-level="3.9.4" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#高级功能-1"><i class="fa fa-check"></i><b>3.9.4</b> 高级功能</a></li>
+<li class="chapter" data-level="3.9.5" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#注意事项-9"><i class="fa fa-check"></i><b>3.9.5</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="3.10" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#ggtext"><i class="fa fa-check"></i><b>3.10</b> ggtext</a>
+<ul>
+<li class="chapter" data-level="3.10.1" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#简介与安装-11"><i class="fa fa-check"></i><b>3.10.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="3.10.2" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#基本使用方法-7"><i class="fa fa-check"></i><b>3.10.2</b> 基本使用方法</a></li>
+<li class="chapter" data-level="3.10.3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#增强文本表现力"><i class="fa fa-check"></i><b>3.10.3</b> 增强文本表现力</a></li>
+<li class="chapter" data-level="3.10.4" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#实战示例-8"><i class="fa fa-check"></i><b>3.10.4</b> 实战示例</a></li>
+<li class="chapter" data-level="3.10.5" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#注意事项-10"><i class="fa fa-check"></i><b>3.10.5</b> 注意事项</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="关于图表的显示.html"><a href="关于图表的显示.html"><i class="fa fa-check"></i><b>4</b> 关于图表的显示</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="关于图表的显示.html"><a href="关于图表的显示.html#dt"><i class="fa fa-check"></i><b>4.1</b> DT</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="关于图表的显示.html"><a href="关于图表的显示.html#简介与安装-12"><i class="fa fa-check"></i><b>4.1.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="4.1.2" data-path="关于图表的显示.html"><a href="关于图表的显示.html#基本使用方法-8"><i class="fa fa-check"></i><b>4.1.2</b> 基本使用方法</a></li>
+<li class="chapter" data-level="4.1.3" data-path="关于图表的显示.html"><a href="关于图表的显示.html#自定义表格样式"><i class="fa fa-check"></i><b>4.1.3</b> 自定义表格样式</a></li>
+<li class="chapter" data-level="4.1.4" data-path="关于图表的显示.html"><a href="关于图表的显示.html#高级功能-2"><i class="fa fa-check"></i><b>4.1.4</b> 高级功能</a></li>
+<li class="chapter" data-level="4.1.5" data-path="关于图表的显示.html"><a href="关于图表的显示.html#dt与shiny集成"><i class="fa fa-check"></i><b>4.1.5</b> <code>DT</code>与Shiny集成</a></li>
+<li class="chapter" data-level="4.1.6" data-path="关于图表的显示.html"><a href="关于图表的显示.html#注意事项-11"><i class="fa fa-check"></i><b>4.1.6</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="关于图表的显示.html"><a href="关于图表的显示.html#reactable"><i class="fa fa-check"></i><b>4.2</b> ReacTable</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="关于图表的显示.html"><a href="关于图表的显示.html#简介"><i class="fa fa-check"></i><b>4.2.1</b> 简介</a></li>
+<li class="chapter" data-level="4.2.2" data-path="关于图表的显示.html"><a href="关于图表的显示.html#安装"><i class="fa fa-check"></i><b>4.2.2</b> 安装</a></li>
+<li class="chapter" data-level="4.2.3" data-path="关于图表的显示.html"><a href="关于图表的显示.html#基本使用方法-9"><i class="fa fa-check"></i><b>4.2.3</b> 基本使用方法</a></li>
+<li class="chapter" data-level="4.2.4" data-path="关于图表的显示.html"><a href="关于图表的显示.html#自定义表格样式-1"><i class="fa fa-check"></i><b>4.2.4</b> 自定义表格样式</a></li>
+<li class="chapter" data-level="4.2.5" data-path="关于图表的显示.html"><a href="关于图表的显示.html#高级功能-3"><i class="fa fa-check"></i><b>4.2.5</b> 高级功能</a></li>
+<li class="chapter" data-level="4.2.6" data-path="关于图表的显示.html"><a href="关于图表的显示.html#reactable与shiny集成"><i class="fa fa-check"></i><b>4.2.6</b> <code>ReacTable</code>与Shiny集成</a></li>
+<li class="chapter" data-level="4.2.7" data-path="关于图表的显示.html"><a href="关于图表的显示.html#注意事项-12"><i class="fa fa-check"></i><b>4.2.7</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="关于图表的显示.html"><a href="关于图表的显示.html#kableextra"><i class="fa fa-check"></i><b>4.3</b> kableExtra</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="关于图表的显示.html"><a href="关于图表的显示.html#基本使用-1"><i class="fa fa-check"></i><b>4.3.1</b> 基本使用</a></li>
+<li class="chapter" data-level="4.3.2" data-path="关于图表的显示.html"><a href="关于图表的显示.html#高级定制-4"><i class="fa fa-check"></i><b>4.3.2</b> 高级定制</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="关于图表的显示.html"><a href="关于图表的显示.html#总结"><i class="fa fa-check"></i><b>4.4</b> 总结</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html"><i class="fa fa-check"></i><b>5</b> Footnotes and citations</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#footnotes"><i class="fa fa-check"></i><b>5.1</b> Footnotes</a></li>
+<li class="chapter" data-level="5.2" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#citations"><i class="fa fa-check"></i><b>5.2</b> Citations</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="blocks.html"><a href="blocks.html"><i class="fa fa-check"></i><b>6</b> Blocks</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="blocks.html"><a href="blocks.html#equations"><i class="fa fa-check"></i><b>6.1</b> Equations</a></li>
+<li class="chapter" data-level="6.2" data-path="blocks.html"><a href="blocks.html#theorems-and-proofs"><i class="fa fa-check"></i><b>6.2</b> Theorems and proofs</a></li>
+<li class="chapter" data-level="6.3" data-path="blocks.html"><a href="blocks.html#callout-blocks"><i class="fa fa-check"></i><b>6.3</b> Callout blocks</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="sharing-your-book.html"><a href="sharing-your-book.html"><i class="fa fa-check"></i><b>7</b> Sharing your book</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="sharing-your-book.html"><a href="sharing-your-book.html#publishing"><i class="fa fa-check"></i><b>7.1</b> Publishing</a></li>
+<li class="chapter" data-level="7.2" data-path="sharing-your-book.html"><a href="sharing-your-book.html#pages"><i class="fa fa-check"></i><b>7.2</b> 404 pages</a></li>
+<li class="chapter" data-level="7.3" data-path="sharing-your-book.html"><a href="sharing-your-book.html#metadata-for-sharing"><i class="fa fa-check"></i><b>7.3</b> Metadata for sharing</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/liamamilin" target="blank">From Data to Viz</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">From Data to Viz</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="关于图表的显示" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> 关于图表的显示<a href="关于图表的显示.html#关于图表的显示" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><img src="VIZfortable.jpg" /></p>
+<div id="dt" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> DT<a href="关于图表的显示.html#dt" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><code>DT</code>是一个R包，基于JavaScript库DataTables，提供了一种灵活的方式来创建交互式的数据表格。这些表格允许用户对数据进行排序、搜索、分页和格式化，使得数据的展示和交互更加直观和有效。本教程将介绍<code>DT</code>的安装、基本使用方法、如何自定义表格样式和功能，以及如何将<code>DT</code>表格集成到Shiny应用中。</p>
+<div id="简介与安装-12" class="section level3 hasAnchor" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> 简介与安装<a href="关于图表的显示.html#简介与安装-12" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="dt简介" class="section level4 hasAnchor" number="4.1.1.1">
+<h4><span class="header-section-number">4.1.1.1</span> <code>DT</code>简介<a href="关于图表的显示.html#dt简介" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>DT</code>包使得在R Markdown文档、Jupyter笔记本和Shiny应用中创建和操作交互式表格变得简单。它提供了丰富的API来自定义表格的外观和行为。</p>
+</div>
+<div id="安装dt" class="section level4 hasAnchor" number="4.1.1.2">
+<h4><span class="header-section-number">4.1.1.2</span> 安装<code>DT</code><a href="关于图表的显示.html#安装dt" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>通过CRAN安装<code>DT</code>是最直接的方式：</p>
+<pre><code>install.packages(&quot;DT&quot;)</code></pre>
+</div>
+</div>
+<div id="基本使用方法-8" class="section level3 hasAnchor" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span> 基本使用方法<a href="关于图表的显示.html#基本使用方法-8" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="创建第一个dt表格" class="section level4 hasAnchor" number="4.1.2.1">
+<h4><span class="header-section-number">4.1.2.1</span> 创建第一个DT表格<a href="关于图表的显示.html#创建第一个dt表格" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>使用<code>DT</code>包的<code>datatable()</code>函数，你可以快速将R中的数据帧转换为交互式表格。</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="关于图表的显示.html#cb2-1" tabindex="-1"></a><span class="fu">library</span>(DT)</span>
+<span id="cb2-2"><a href="关于图表的显示.html#cb2-2" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="关于图表的显示.html#cb2-3" tabindex="-1"></a><span class="co"># 示例数据</span></span>
+<span id="cb2-4"><a href="关于图表的显示.html#cb2-4" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb2-5"><a href="关于图表的显示.html#cb2-5" tabindex="-1"></a>  <span class="at">Name =</span> <span class="fu">c</span>(<span class="st">&quot;John&quot;</span>, <span class="st">&quot;Anna&quot;</span>, <span class="st">&quot;Peter&quot;</span>, <span class="st">&quot;Linda&quot;</span>),</span>
+<span id="cb2-6"><a href="关于图表的显示.html#cb2-6" tabindex="-1"></a>  <span class="at">Age =</span> <span class="fu">c</span>(<span class="dv">28</span>, <span class="dv">34</span>, <span class="dv">29</span>, <span class="dv">31</span>),</span>
+<span id="cb2-7"><a href="关于图表的显示.html#cb2-7" tabindex="-1"></a>  <span class="at">Height =</span> <span class="fu">c</span>(<span class="fl">5.9</span>, <span class="fl">5.6</span>, <span class="fl">5.7</span>, <span class="fl">5.8</span>)</span>
+<span id="cb2-8"><a href="关于图表的显示.html#cb2-8" tabindex="-1"></a>)</span>
+<span id="cb2-9"><a href="关于图表的显示.html#cb2-9" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="关于图表的显示.html#cb2-10" tabindex="-1"></a><span class="co"># 创建DT表格</span></span>
+<span id="cb2-11"><a href="关于图表的显示.html#cb2-11" tabindex="-1"></a><span class="fu">datatable</span>(df)</span></code></pre></div>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-15c8e83a3190864501bb" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-15c8e83a3190864501bb">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4"],["John","Anna","Peter","Linda"],[28,34,29,31],[5.9,5.6,5.7,5.8]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Name<\/th>\n      <th>Age<\/th>\n      <th>Height<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"Name","targets":1},{"name":"Age","targets":2},{"name":"Height","targets":3}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="数据表的选项和交互功能" class="section level4 hasAnchor" number="4.1.2.2">
+<h4><span class="header-section-number">4.1.2.2</span> 数据表的选项和交互功能<a href="关于图表的显示.html#数据表的选项和交互功能" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>datatable()</code>函数提供了多种选项来自定义表格的行为，如分页、搜索和排序。</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="关于图表的显示.html#cb3-1" tabindex="-1"></a><span class="fu">datatable</span>(df, <span class="at">options =</span> <span class="fu">list</span>(<span class="at">pageLength =</span> <span class="dv">5</span>, <span class="at">autoWidth =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-f940ec541dbfb0519258" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-f940ec541dbfb0519258">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4"],["John","Anna","Peter","Linda"],[28,34,29,31],[5.9,5.6,5.7,5.8]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Name<\/th>\n      <th>Age<\/th>\n      <th>Height<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":5,"autoWidth":true,"columnDefs":[{"className":"dt-right","targets":[2,3]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"Name","targets":1},{"name":"Age","targets":2},{"name":"Height","targets":3}],"order":[],"orderClasses":false,"lengthMenu":[5,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div id="自定义表格样式" class="section level3 hasAnchor" number="4.1.3">
+<h3><span class="header-section-number">4.1.3</span> 自定义表格样式<a href="关于图表的显示.html#自定义表格样式" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="使用选项自定义表格" class="section level4 hasAnchor" number="4.1.3.1">
+<h4><span class="header-section-number">4.1.3.1</span> 使用选项自定义表格<a href="关于图表的显示.html#使用选项自定义表格" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>DT</code>允许通过选项定制表格的外观和功能，如调整列宽、设置滚动条、自定义语言等。</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="关于图表的显示.html#cb4-1" tabindex="-1"></a><span class="fu">datatable</span>(df, <span class="at">options =</span> <span class="fu">list</span>(<span class="at">scrollX =</span> <span class="cn">TRUE</span>, <span class="at">language =</span> <span class="fu">list</span>(<span class="at">url =</span> <span class="st">&#39;//cdn.datatables.net/plug-ins/1.10.19/i18n/Chinese.json&#39;</span>)))</span></code></pre></div>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-c2e5529fb1aeafe0f6a9" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-c2e5529fb1aeafe0f6a9">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4"],["John","Anna","Peter","Linda"],[28,34,29,31],[5.9,5.6,5.7,5.8]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Name<\/th>\n      <th>Age<\/th>\n      <th>Height<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"scrollX":true,"language":{"url":"//cdn.datatables.net/plug-ins/1.10.19/i18n/Chinese.json"},"columnDefs":[{"className":"dt-right","targets":[2,3]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"Name","targets":1},{"name":"Age","targets":2},{"name":"Height","targets":3}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="格式化列和单元格" class="section level4 hasAnchor" number="4.1.3.2">
+<h4><span class="header-section-number">4.1.3.2</span> 格式化列和单元格<a href="关于图表的显示.html#格式化列和单元格" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>使用<code>formatStyle()</code>和<code>formatNumber()</code>等函数，可以对表格的列和单元格进行格式化，如改变颜色、字体或格式。</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="关于图表的显示.html#cb5-1" tabindex="-1"></a><span class="fu">datatable</span>(df) <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="关于图表的显示.html#cb5-2" tabindex="-1"></a>  <span class="fu">formatStyle</span>(<span class="st">&#39;Age&#39;</span>, <span class="at">backgroundColor =</span> <span class="fu">styleInterval</span>(<span class="fu">c</span>(<span class="dv">30</span>), <span class="fu">c</span>(<span class="st">&#39;gray&#39;</span>, <span class="st">&#39;yellow&#39;</span>)))</span></code></pre></div>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-234d52862178719efed1" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-234d52862178719efed1">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4"],["John","Anna","Peter","Linda"],[28,34,29,31],[5.9,5.6,5.7,5.8]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Name<\/th>\n      <th>Age<\/th>\n      <th>Height<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"Name","targets":1},{"name":"Age","targets":2},{"name":"Height","targets":3}],"order":[],"autoWidth":false,"orderClasses":false,"rowCallback":"function(row, data, displayNum, displayIndex, dataIndex) {\nvar value=data[2]; $(this.api().cell(row, 2).node()).css({'background-color':isNaN(parseFloat(value)) ? '' : value <= 30 ? \"gray\" : \"yellow\"});\n}"}},"evals":["options.rowCallback"],"jsHooks":[]}</script>
+</div>
+</div>
+<div id="高级功能-2" class="section level3 hasAnchor" number="4.1.4">
+<h3><span class="header-section-number">4.1.4</span> 高级功能<a href="关于图表的显示.html#高级功能-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="添加按钮和扩展" class="section level4 hasAnchor" number="4.1.4.1">
+<h4><span class="header-section-number">4.1.4.1</span> 添加按钮和扩展<a href="关于图表的显示.html#添加按钮和扩展" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>DT</code>支持DataTables的扩展，如按钮、选择和固定列。你可以轻松地向表格添加导出按钮、列选择器等功能。</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="关于图表的显示.html#cb6-1" tabindex="-1"></a><span class="fu">datatable</span>(df, <span class="at">extensions =</span> <span class="st">&#39;Buttons&#39;</span>, <span class="at">options =</span> <span class="fu">list</span>(<span class="at">dom =</span> <span class="st">&#39;Bfrtip&#39;</span>, <span class="at">buttons =</span> <span class="fu">c</span>(<span class="st">&#39;copy&#39;</span>, <span class="st">&#39;csv&#39;</span>, <span class="st">&#39;excel&#39;</span>)))</span></code></pre></div>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-bb23c078173adb4da3db" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-bb23c078173adb4da3db">{"x":{"filter":"none","vertical":false,"extensions":["Buttons"],"data":[["1","2","3","4"],["John","Anna","Peter","Linda"],[28,34,29,31],[5.9,5.6,5.7,5.8]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Name<\/th>\n      <th>Age<\/th>\n      <th>Height<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bfrtip","buttons":["copy","csv","excel"],"columnDefs":[{"className":"dt-right","targets":[2,3]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"Name","targets":1},{"name":"Age","targets":2},{"name":"Height","targets":3}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="使用回调函数处理事件" class="section level4 hasAnchor" number="4.1.4.2">
+<h4><span class="header-section-number">4.1.4.2</span> 使用回调函数处理事件<a href="关于图表的显示.html#使用回调函数处理事件" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>DT</code>提供了回调函数功能，允许你在用户与表格交互时执行R代码，如点击行或选择单元格。</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="关于图表的显示.html#cb7-1" tabindex="-1"></a><span class="fu">datatable</span>(df, <span class="at">callback =</span> <span class="fu">JS</span>(<span class="st">&#39;function(table) { $(table.table().node()).css(&quot;background-color&quot;, &quot;lightblue&quot;); }&#39;</span>))</span></code></pre></div>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-141fbeb2a32257aedf63" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-141fbeb2a32257aedf63">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4"],["John","Anna","Peter","Linda"],[28,34,29,31],[5.9,5.6,5.7,5.8]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Name<\/th>\n      <th>Age<\/th>\n      <th>Height<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"Name","targets":1},{"name":"Age","targets":2},{"name":"Height","targets":3}],"order":[],"autoWidth":false,"orderClasses":false},"callback":"function(table) {\nfunction(table) { $(table.table().node()).css(\"background-color\", \"lightblue\"); }\n}"},"evals":["callback"],"jsHooks":[]}</script>
+</div>
+</div>
+<div id="dt与shiny集成" class="section level3 hasAnchor" number="4.1.5">
+<h3><span class="header-section-number">4.1.5</span> <code>DT</code>与Shiny集成<a href="关于图表的显示.html#dt与shiny集成" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="在shiny应用中使用dt" class="section level4 hasAnchor" number="4.1.5.1">
+<h4><span class="header-section-number">4.1.5.1</span> 在Shiny应用中使用<code>DT</code><a href="关于图表的显示.html#在shiny应用中使用dt" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>DT</code>与Shiny应用的集成非常紧密，使得创建交互式的数据探索和报告应用变得简单。</p>
+<pre><code>library(shiny)
+
+ui &lt;- fluidPage(
+  DTOutput(&#39;myTable&#39;)
+)
+
+server &lt;- function(input, output) {
+  output$myTable &lt;- renderDT({ df })
+}
+
+shinyApp(ui, server)</code></pre>
+</div>
+<div id="交互式数据处理" class="section level4 hasAnchor" number="4.1.5.2">
+<h4><span class="header-section-number">4.1.5.2</span> 交互式数据处理<a href="关于图表的显示.html#交互式数据处理" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>在Shiny应用中，你可以利用<code>DT</code>提供的服务器端处理功能来优化大规模数据集的性能，并处理用户的交互输入。</p>
+</div>
+</div>
+<div id="注意事项-11" class="section level3 hasAnchor" number="4.1.6">
+<h3><span class="header-section-number">4.1.6</span> 注意事项<a href="关于图表的显示.html#注意事项-11" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><strong>性能考量</strong>：在处理大型数据集时，考虑使用服务器端处理或预处理数据以提升性能。</li>
+<li><strong>安全性和数据保护</strong>：当在网络应用中使用<code>DT</code>展示敏感数据时，确保适当地管理访问权限和数据保护。</li>
+</ul>
+</div>
+</div>
+<div id="reactable" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> ReacTable<a href="关于图表的显示.html#reactable" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><code>ReacTable</code>是一个用于创建交互式数据表的R包，它利用React Table库提供的功能，使得在Shiny应用和R Markdown文档中嵌入富交互性的表格变得简单。<code>ReacTable</code>支持多种数据操作，包括排序、筛选、分页和编辑，非常适合需要高度交互性数据展示的应用场景。本教程将介绍<code>ReacTable</code>的基本使用方法、如何自定义表格样式、以及如何将<code>ReacTable</code>集成到Shiny应用中。</p>
+<div id="简介" class="section level3 hasAnchor" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> 简介<a href="关于图表的显示.html#简介" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><code>ReacTable</code>利用了React Table库的强大功能，为R用户提供了一个简单的接口来创建富交互性的表格。它特别适合于数据分析和报告，让最终用户能够直观地操作和探索数据。</p>
+</div>
+<div id="安装" class="section level3 hasAnchor" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> 安装<a href="关于图表的显示.html#安装" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>目前，<code>ReacTable</code>并不是一个实际存在的R包。这个部分基于一个假设的场景进行说明。如果你正在寻找具有类似功能的R包，可以考虑使用<code>DT</code>（基于DataTables的R接口），或是<code>reactable</code>包，后者提供了类似的功能。以下是<code>reactable</code>的安装方法：</p>
+<pre><code>install.packages(&quot;reactable&quot;)</code></pre>
+</div>
+<div id="基本使用方法-9" class="section level3 hasAnchor" number="4.2.3">
+<h3><span class="header-section-number">4.2.3</span> 基本使用方法<a href="关于图表的显示.html#基本使用方法-9" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="在shiny应用中使用reactable" class="section level4 hasAnchor" number="4.2.3.1">
+<h4><span class="header-section-number">4.2.3.1</span> 在Shiny应用中使用<code>ReacTable</code><a href="关于图表的显示.html#在shiny应用中使用reactable" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>以下是一个简单的示例，展示了如何在Shiny应用中使用<code>reactable</code>（作为<code>ReacTable</code>功能的近似实现）。</p>
+<pre><code>library(shiny)
+library(reactable)
+
+ui &lt;- fluidPage(
+  reactableOutput(&quot;myTable&quot;)
+)
+
+server &lt;- function(input, output) {
+  output$myTable &lt;- renderReactable({
+    reactable(mtcars)
+  })
+}
+
+shinyApp(ui, server)</code></pre>
+</div>
+<div id="在r-markdown文档中使用reactable" class="section level4 hasAnchor" number="4.2.3.2">
+<h4><span class="header-section-number">4.2.3.2</span> 在R Markdown文档中使用<code>ReacTable</code><a href="关于图表的显示.html#在r-markdown文档中使用reactable" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>在R Markdown中嵌入交互式表格同样简单：</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="关于图表的显示.html#cb11-1" tabindex="-1"></a><span class="fu">library</span>(reactable)</span>
+<span id="cb11-2"><a href="关于图表的显示.html#cb11-2" tabindex="-1"></a><span class="fu">reactable</span>(mtcars)</span></code></pre></div>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-57fd9b047c70cc316619" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-57fd9b047c70cc316619">{"x":{"tag":{"name":"Reactable","attribs":{"data":{".rownames":["Mazda RX4","Mazda RX4 Wag","Datsun 710","Hornet 4 Drive","Hornet Sportabout","Valiant","Duster 360","Merc 240D","Merc 230","Merc 280","Merc 280C","Merc 450SE","Merc 450SL","Merc 450SLC","Cadillac Fleetwood","Lincoln Continental","Chrysler Imperial","Fiat 128","Honda Civic","Toyota Corolla","Toyota Corona","Dodge Challenger","AMC Javelin","Camaro Z28","Pontiac Firebird","Fiat X1-9","Porsche 914-2","Lotus Europa","Ford Pantera L","Ferrari Dino","Maserati Bora","Volvo 142E"],"mpg":[21,21,22.8,21.4,18.7,18.1,14.3,24.4,22.8,19.2,17.8,16.4,17.3,15.2,10.4,10.4,14.7,32.4,30.4,33.9,21.5,15.5,15.2,13.3,19.2,27.3,26,30.4,15.8,19.7,15,21.4],"cyl":[6,6,4,6,8,6,8,4,4,6,6,8,8,8,8,8,8,4,4,4,4,8,8,8,8,4,4,4,8,6,8,4],"disp":[160,160,108,258,360,225,360,146.7,140.8,167.6,167.6,275.8,275.8,275.8,472,460,440,78.7,75.7,71.1,120.1,318,304,350,400,79,120.3,95.1,351,145,301,121],"hp":[110,110,93,110,175,105,245,62,95,123,123,180,180,180,205,215,230,66,52,65,97,150,150,245,175,66,91,113,264,175,335,109],"drat":[3.9,3.9,3.85,3.08,3.15,2.76,3.21,3.69,3.92,3.92,3.92,3.07,3.07,3.07,2.93,3,3.23,4.08,4.93,4.22,3.7,2.76,3.15,3.73,3.08,4.08,4.43,3.77,4.22,3.62,3.54,4.11],"wt":[2.62,2.875,2.32,3.215,3.44,3.46,3.57,3.19,3.15,3.44,3.44,4.07,3.73,3.78,5.25,5.424,5.345,2.2,1.615,1.835,2.465,3.52,3.435,3.84,3.845,1.935,2.14,1.513,3.17,2.77,3.57,2.78],"qsec":[16.46,17.02,18.61,19.44,17.02,20.22,15.84,20,22.9,18.3,18.9,17.4,17.6,18,17.98,17.82,17.42,19.47,18.52,19.9,20.01,16.87,17.3,15.41,17.05,18.9,16.7,16.9,14.5,15.5,14.6,18.6],"vs":[0,0,1,1,0,1,0,1,1,1,1,0,0,0,0,0,0,1,1,1,1,0,0,0,0,1,0,1,0,0,0,1],"am":[1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1],"gear":[4,4,4,3,3,3,3,4,4,4,4,3,3,3,3,3,3,4,4,4,3,3,3,3,3,4,5,5,5,5,5,4],"carb":[4,4,1,1,2,1,4,2,2,4,4,3,3,3,4,4,4,1,2,1,1,2,2,4,2,1,2,2,4,6,8,2]},"columns":[{"id":".rownames","name":"","type":"character","sortable":false,"filterable":false,"rowHeader":true},{"id":"mpg","name":"mpg","type":"numeric"},{"id":"cyl","name":"cyl","type":"numeric"},{"id":"disp","name":"disp","type":"numeric"},{"id":"hp","name":"hp","type":"numeric"},{"id":"drat","name":"drat","type":"numeric"},{"id":"wt","name":"wt","type":"numeric"},{"id":"qsec","name":"qsec","type":"numeric"},{"id":"vs","name":"vs","type":"numeric"},{"id":"am","name":"am","type":"numeric"},{"id":"gear","name":"gear","type":"numeric"},{"id":"carb","name":"carb","type":"numeric"}],"dataKey":"5b3b1b9433e88dd26cbc4c3644e92607"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div id="自定义表格样式-1" class="section level3 hasAnchor" number="4.2.4">
+<h3><span class="header-section-number">4.2.4</span> 自定义表格样式<a href="关于图表的显示.html#自定义表格样式-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="调整表格外观" class="section level4 hasAnchor" number="4.2.4.1">
+<h4><span class="header-section-number">4.2.4.1</span> 调整表格外观<a href="关于图表的显示.html#调整表格外观" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>reactable</code>允许通过一系列参数自定义表格的样式，包括行高、字体大小、颜色等。</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="关于图表的显示.html#cb12-1" tabindex="-1"></a><span class="fu">reactable</span>(mtcars, <span class="at">defaultPageSize =</span> <span class="dv">10</span>, <span class="at">striped =</span> <span class="cn">TRUE</span>, <span class="at">highlight =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-6c3b44d13ba30b98b4b2" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-6c3b44d13ba30b98b4b2">{"x":{"tag":{"name":"Reactable","attribs":{"data":{".rownames":["Mazda RX4","Mazda RX4 Wag","Datsun 710","Hornet 4 Drive","Hornet Sportabout","Valiant","Duster 360","Merc 240D","Merc 230","Merc 280","Merc 280C","Merc 450SE","Merc 450SL","Merc 450SLC","Cadillac Fleetwood","Lincoln Continental","Chrysler Imperial","Fiat 128","Honda Civic","Toyota Corolla","Toyota Corona","Dodge Challenger","AMC Javelin","Camaro Z28","Pontiac Firebird","Fiat X1-9","Porsche 914-2","Lotus Europa","Ford Pantera L","Ferrari Dino","Maserati Bora","Volvo 142E"],"mpg":[21,21,22.8,21.4,18.7,18.1,14.3,24.4,22.8,19.2,17.8,16.4,17.3,15.2,10.4,10.4,14.7,32.4,30.4,33.9,21.5,15.5,15.2,13.3,19.2,27.3,26,30.4,15.8,19.7,15,21.4],"cyl":[6,6,4,6,8,6,8,4,4,6,6,8,8,8,8,8,8,4,4,4,4,8,8,8,8,4,4,4,8,6,8,4],"disp":[160,160,108,258,360,225,360,146.7,140.8,167.6,167.6,275.8,275.8,275.8,472,460,440,78.7,75.7,71.1,120.1,318,304,350,400,79,120.3,95.1,351,145,301,121],"hp":[110,110,93,110,175,105,245,62,95,123,123,180,180,180,205,215,230,66,52,65,97,150,150,245,175,66,91,113,264,175,335,109],"drat":[3.9,3.9,3.85,3.08,3.15,2.76,3.21,3.69,3.92,3.92,3.92,3.07,3.07,3.07,2.93,3,3.23,4.08,4.93,4.22,3.7,2.76,3.15,3.73,3.08,4.08,4.43,3.77,4.22,3.62,3.54,4.11],"wt":[2.62,2.875,2.32,3.215,3.44,3.46,3.57,3.19,3.15,3.44,3.44,4.07,3.73,3.78,5.25,5.424,5.345,2.2,1.615,1.835,2.465,3.52,3.435,3.84,3.845,1.935,2.14,1.513,3.17,2.77,3.57,2.78],"qsec":[16.46,17.02,18.61,19.44,17.02,20.22,15.84,20,22.9,18.3,18.9,17.4,17.6,18,17.98,17.82,17.42,19.47,18.52,19.9,20.01,16.87,17.3,15.41,17.05,18.9,16.7,16.9,14.5,15.5,14.6,18.6],"vs":[0,0,1,1,0,1,0,1,1,1,1,0,0,0,0,0,0,1,1,1,1,0,0,0,0,1,0,1,0,0,0,1],"am":[1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1],"gear":[4,4,4,3,3,3,3,4,4,4,4,3,3,3,3,3,3,4,4,4,3,3,3,3,3,4,5,5,5,5,5,4],"carb":[4,4,1,1,2,1,4,2,2,4,4,3,3,3,4,4,4,1,2,1,1,2,2,4,2,1,2,2,4,6,8,2]},"columns":[{"id":".rownames","name":"","type":"character","sortable":false,"filterable":false,"rowHeader":true},{"id":"mpg","name":"mpg","type":"numeric"},{"id":"cyl","name":"cyl","type":"numeric"},{"id":"disp","name":"disp","type":"numeric"},{"id":"hp","name":"hp","type":"numeric"},{"id":"drat","name":"drat","type":"numeric"},{"id":"wt","name":"wt","type":"numeric"},{"id":"qsec","name":"qsec","type":"numeric"},{"id":"vs","name":"vs","type":"numeric"},{"id":"am","name":"am","type":"numeric"},{"id":"gear","name":"gear","type":"numeric"},{"id":"carb","name":"carb","type":"numeric"}],"defaultPageSize":10,"highlight":true,"striped":true,"dataKey":"5b3b1b9433e88dd26cbc4c3644e92607"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="配置列格式" class="section level4 hasAnchor" number="4.2.4.2">
+<h4><span class="header-section-number">4.2.4.2</span> 配置列格式<a href="关于图表的显示.html#配置列格式" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>你还可以针对特定的列进行格式化，例如设置列宽、文本对齐方式、内容格式化等。</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="关于图表的显示.html#cb13-1" tabindex="-1"></a><span class="fu">reactable</span>(mtcars, <span class="at">columns =</span> <span class="fu">list</span>(</span>
+<span id="cb13-2"><a href="关于图表的显示.html#cb13-2" tabindex="-1"></a>  <span class="at">mpg =</span> <span class="fu">colDef</span>(<span class="at">name =</span> <span class="st">&quot;Miles/Gallon&quot;</span>, <span class="at">minWidth =</span> <span class="dv">150</span>),</span>
+<span id="cb13-3"><a href="关于图表的显示.html#cb13-3" tabindex="-1"></a>  <span class="at">cyl =</span> <span class="fu">colDef</span>(<span class="at">align =</span> <span class="st">&quot;center&quot;</span>),</span>
+<span id="cb13-4"><a href="关于图表的显示.html#cb13-4" tabindex="-1"></a>  <span class="at">disp =</span> <span class="fu">colDef</span>(<span class="at">format =</span> <span class="fu">colFormat</span>(<span class="at">digits =</span> <span class="dv">2</span>))</span>
+<span id="cb13-5"><a href="关于图表的显示.html#cb13-5" tabindex="-1"></a>))</span></code></pre></div>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-91a53a02428ec5630d8b" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-91a53a02428ec5630d8b">{"x":{"tag":{"name":"Reactable","attribs":{"data":{".rownames":["Mazda RX4","Mazda RX4 Wag","Datsun 710","Hornet 4 Drive","Hornet Sportabout","Valiant","Duster 360","Merc 240D","Merc 230","Merc 280","Merc 280C","Merc 450SE","Merc 450SL","Merc 450SLC","Cadillac Fleetwood","Lincoln Continental","Chrysler Imperial","Fiat 128","Honda Civic","Toyota Corolla","Toyota Corona","Dodge Challenger","AMC Javelin","Camaro Z28","Pontiac Firebird","Fiat X1-9","Porsche 914-2","Lotus Europa","Ford Pantera L","Ferrari Dino","Maserati Bora","Volvo 142E"],"mpg":[21,21,22.8,21.4,18.7,18.1,14.3,24.4,22.8,19.2,17.8,16.4,17.3,15.2,10.4,10.4,14.7,32.4,30.4,33.9,21.5,15.5,15.2,13.3,19.2,27.3,26,30.4,15.8,19.7,15,21.4],"cyl":[6,6,4,6,8,6,8,4,4,6,6,8,8,8,8,8,8,4,4,4,4,8,8,8,8,4,4,4,8,6,8,4],"disp":[160,160,108,258,360,225,360,146.7,140.8,167.6,167.6,275.8,275.8,275.8,472,460,440,78.7,75.7,71.1,120.1,318,304,350,400,79,120.3,95.1,351,145,301,121],"hp":[110,110,93,110,175,105,245,62,95,123,123,180,180,180,205,215,230,66,52,65,97,150,150,245,175,66,91,113,264,175,335,109],"drat":[3.9,3.9,3.85,3.08,3.15,2.76,3.21,3.69,3.92,3.92,3.92,3.07,3.07,3.07,2.93,3,3.23,4.08,4.93,4.22,3.7,2.76,3.15,3.73,3.08,4.08,4.43,3.77,4.22,3.62,3.54,4.11],"wt":[2.62,2.875,2.32,3.215,3.44,3.46,3.57,3.19,3.15,3.44,3.44,4.07,3.73,3.78,5.25,5.424,5.345,2.2,1.615,1.835,2.465,3.52,3.435,3.84,3.845,1.935,2.14,1.513,3.17,2.77,3.57,2.78],"qsec":[16.46,17.02,18.61,19.44,17.02,20.22,15.84,20,22.9,18.3,18.9,17.4,17.6,18,17.98,17.82,17.42,19.47,18.52,19.9,20.01,16.87,17.3,15.41,17.05,18.9,16.7,16.9,14.5,15.5,14.6,18.6],"vs":[0,0,1,1,0,1,0,1,1,1,1,0,0,0,0,0,0,1,1,1,1,0,0,0,0,1,0,1,0,0,0,1],"am":[1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1],"gear":[4,4,4,3,3,3,3,4,4,4,4,3,3,3,3,3,3,4,4,4,3,3,3,3,3,4,5,5,5,5,5,4],"carb":[4,4,1,1,2,1,4,2,2,4,4,3,3,3,4,4,4,1,2,1,1,2,2,4,2,1,2,2,4,6,8,2]},"columns":[{"id":".rownames","name":"","type":"character","sortable":false,"filterable":false,"rowHeader":true},{"id":"mpg","name":"Miles/Gallon","type":"numeric","minWidth":150},{"id":"cyl","name":"cyl","type":"numeric","align":"center"},{"id":"disp","name":"disp","type":"numeric","format":{"cell":{"digits":2},"aggregated":{"digits":2}}},{"id":"hp","name":"hp","type":"numeric"},{"id":"drat","name":"drat","type":"numeric"},{"id":"wt","name":"wt","type":"numeric"},{"id":"qsec","name":"qsec","type":"numeric"},{"id":"vs","name":"vs","type":"numeric"},{"id":"am","name":"am","type":"numeric"},{"id":"gear","name":"gear","type":"numeric"},{"id":"carb","name":"carb","type":"numeric"}],"dataKey":"0f47154fa3664a8c1b17ddcdc5824319"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div id="高级功能-3" class="section level3 hasAnchor" number="4.2.5">
+<h3><span class="header-section-number">4.2.5</span> 高级功能<a href="关于图表的显示.html#高级功能-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="启用筛选排序和分页" class="section level4 hasAnchor" number="4.2.5.1">
+<h4><span class="header-section-number">4.2.5.1</span> 启用筛选、排序和分页<a href="关于图表的显示.html#启用筛选排序和分页" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>reactable</code>默认支持筛选、排序和分页功能，使得用户可以更灵活地浏览数据。</p>
+</div>
+<div id="实现单元格编辑" class="section level4 hasAnchor" number="4.2.5.2">
+<h4><span class="header-section-number">4.2.5.2</span> 实现单元格编辑<a href="关于图表的显示.html#实现单元格编辑" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>虽然<code>reactable</code>本身不支持单元格编辑，但在集成到Shiny应用时，可以通过Shiny的输入和输出机制实现单元格或行的编辑功能。</p>
+</div>
+</div>
+<div id="reactable与shiny集成" class="section level3 hasAnchor" number="4.2.6">
+<h3><span class="header-section-number">4.2.6</span> <code>ReacTable</code>与Shiny集成<a href="关于图表的显示.html#reactable与shiny集成" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="在shiny中动态更新reactable" class="section level4 hasAnchor" number="4.2.6.1">
+<h4><span class="header-section-number">4.2.6.1</span> 在Shiny中动态更新<code>ReacTable</code><a href="关于图表的显示.html#在shiny中动态更新reactable" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>利用Shiny的反应式编程模型，可以根据用户输入动态更新<code>reactable</code>表格的内容。</p>
+</div>
+</div>
+<div id="注意事项-12" class="section level3 hasAnchor" number="4.2.7">
+<h3><span class="header-section-number">4.2.7</span> 注意事项<a href="关于图表的显示.html#注意事项-12" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><strong>性能考量</strong>：在处理大型数据集时，应考虑数据的预处理和分页显示，以优化性能和用户体验。</li>
+<li><strong>兼容性和限制</strong>：虽然<code>reactable</code>提供了丰富的功能，但某些高级交互（如单元格编辑）可能需要额外的开发工作，尤其是在Shiny环境中。</li>
+</ul>
+</div>
+</div>
+<div id="kableextra" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> kableExtra<a href="关于图表的显示.html#kableextra" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><code>kableExtra</code>是R语言中一个强大的包，用于美化和定制<code>knitr::kable()</code>生成的表格。这个教程将带您了解如何使用<code>kableExtra</code>来提升您的数据展示效果。</p>
+<p>在开始之前，确保您已经安装了<code>kableExtra</code>包。如果没有，可以通过以下命令安装：</p>
+<pre><code>install.packages(&quot;kableExtra&quot;)</code></pre>
+<p>安装完成后，加载包以便使用：</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="关于图表的显示.html#cb15-1" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span></code></pre></div>
+<div id="基本使用-1" class="section level3 hasAnchor" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> 基本使用<a href="关于图表的显示.html#基本使用-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><code>kableExtra</code>扩展了<code>knitr::kable()</code>的功能，让表格支持更多的定制选项。首先，让我们创建一个简单的表格作为示例：</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="关于图表的显示.html#cb16-1" tabindex="-1"></a><span class="co"># 加载knitr包</span></span>
+<span id="cb16-2"><a href="关于图表的显示.html#cb16-2" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb16-3"><a href="关于图表的显示.html#cb16-3" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="关于图表的显示.html#cb16-4" tabindex="-1"></a><span class="co"># 示例数据框</span></span>
+<span id="cb16-5"><a href="关于图表的显示.html#cb16-5" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb16-6"><a href="关于图表的显示.html#cb16-6" tabindex="-1"></a>  名字 <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;张三&quot;</span>, <span class="st">&quot;李四&quot;</span>, <span class="st">&quot;王五&quot;</span>),</span>
+<span id="cb16-7"><a href="关于图表的显示.html#cb16-7" tabindex="-1"></a>  年龄 <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">28</span>, <span class="dv">34</span>, <span class="dv">29</span>),</span>
+<span id="cb16-8"><a href="关于图表的显示.html#cb16-8" tabindex="-1"></a>  性别 <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;男&quot;</span>, <span class="st">&quot;男&quot;</span>, <span class="st">&quot;女&quot;</span>)</span>
+<span id="cb16-9"><a href="关于图表的显示.html#cb16-9" tabindex="-1"></a>)</span>
+<span id="cb16-10"><a href="关于图表的显示.html#cb16-10" tabindex="-1"></a></span>
+<span id="cb16-11"><a href="关于图表的显示.html#cb16-11" tabindex="-1"></a><span class="co"># 使用kable()创建基本表格</span></span>
+<span id="cb16-12"><a href="关于图表的显示.html#cb16-12" tabindex="-1"></a><span class="fu">kable</span>(df, <span class="st">&quot;html&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb16-13"><a href="关于图表的显示.html#cb16-13" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">&quot;striped&quot;</span>, <span class="st">&quot;hover&quot;</span>))</span></code></pre></div>
+<table class="table table-striped table-hover" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+名字
+</th>
+<th style="text-align:right;">
+年龄
+</th>
+<th style="text-align:left;">
+性别
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+张三
+</td>
+<td style="text-align:right;">
+28
+</td>
+<td style="text-align:left;">
+男
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+李四
+</td>
+<td style="text-align:right;">
+34
+</td>
+<td style="text-align:left;">
+男
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+王五
+</td>
+<td style="text-align:right;">
+29
+</td>
+<td style="text-align:left;">
+女
+</td>
+</tr>
+</tbody>
+</table>
+<p>在这个例子中，我们使用了<code>kable_styling()</code>函数来应用Bootstrap的<code>striped</code>和<code>hover</code>样式，使表格更加美观。</p>
+</div>
+<div id="高级定制-4" class="section level3 hasAnchor" number="4.3.2">
+<h3><span class="header-section-number">4.3.2</span> 高级定制<a href="关于图表的显示.html#高级定制-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><code>kableExtra</code>提供了许多函数来进一步定制表格。</p>
+<div id="调整列的格式" class="section level4 hasAnchor" number="4.3.2.1">
+<h4><span class="header-section-number">4.3.2.1</span> 调整列的格式<a href="关于图表的显示.html#调整列的格式" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>使用<code>column_spec()</code>可以调整列的宽度、字体、背景色等属性：</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="关于图表的显示.html#cb17-1" tabindex="-1"></a><span class="fu">kable</span>(df, <span class="st">&quot;html&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="关于图表的显示.html#cb17-2" tabindex="-1"></a>  <span class="fu">column_spec</span>(<span class="dv">1</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb17-3"><a href="关于图表的显示.html#cb17-3" tabindex="-1"></a>  <span class="fu">column_spec</span>(<span class="dv">2</span>, <span class="at">width =</span> <span class="st">&quot;2cm&quot;</span>)</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+名字
+</th>
+<th style="text-align:right;">
+年龄
+</th>
+<th style="text-align:left;">
+性别
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;font-weight: bold;color: red !important;">
+张三
+</td>
+<td style="text-align:right;width: 2cm; ">
+28
+</td>
+<td style="text-align:left;">
+男
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;color: red !important;">
+李四
+</td>
+<td style="text-align:right;width: 2cm; ">
+34
+</td>
+<td style="text-align:left;">
+男
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;color: red !important;">
+王五
+</td>
+<td style="text-align:right;width: 2cm; ">
+29
+</td>
+<td style="text-align:left;">
+女
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="表格标题和脚注" class="section level4 hasAnchor" number="4.3.2.2">
+<h4><span class="header-section-number">4.3.2.2</span> 表格标题和脚注<a href="关于图表的显示.html#表格标题和脚注" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>使用<code>add_header_above()</code>添加多级标题，<code>footnote()</code>添加脚注：</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="关于图表的显示.html#cb18-1" tabindex="-1"></a><span class="fu">kable</span>(df, <span class="st">&quot;html&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb18-2"><a href="关于图表的显示.html#cb18-2" tabindex="-1"></a>  <span class="fu">add_header_above</span>(<span class="fu">c</span>(<span class="st">&quot; &quot;</span> <span class="ot">=</span> <span class="dv">1</span>, <span class="st">&quot;基本信息&quot;</span> <span class="ot">=</span> <span class="dv">2</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb18-3"><a href="关于图表的显示.html#cb18-3" tabindex="-1"></a>  <span class="fu">footnote</span>(<span class="at">general =</span> <span class="st">&quot;这是一个示例表格。&quot;</span>)</span></code></pre></div>
+<table style="NAborder-bottom: 0;">
+<thead>
+<tr>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+基本信息
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+名字
+</th>
+<th style="text-align:right;">
+年龄
+</th>
+<th style="text-align:left;">
+性别
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+张三
+</td>
+<td style="text-align:right;">
+28
+</td>
+<td style="text-align:left;">
+男
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+李四
+</td>
+<td style="text-align:right;">
+34
+</td>
+<td style="text-align:left;">
+男
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+王五
+</td>
+<td style="text-align:right;">
+29
+</td>
+<td style="text-align:left;">
+女
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="padding: 0; " colspan="100%">
+<span style="font-style: italic;">Note: </span>
+</td>
+</tr>
+<tr>
+<td style="padding: 0; " colspan="100%">
+<sup></sup> 这是一个示例表格。
+</td>
+</tr>
+</tfoot>
+</table>
+</div>
+<div id="行列的条件格式化" class="section level4 hasAnchor" number="4.3.2.3">
+<h4><span class="header-section-number">4.3.2.3</span> 行列的条件格式化<a href="关于图表的显示.html#行列的条件格式化" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>kableExtra</code>允许根据条件对行列进行格式化，如改变特定单元格的背景色：</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="关于图表的显示.html#cb19-1" tabindex="-1"></a><span class="fu">kable</span>(df, <span class="st">&quot;html&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb19-2"><a href="关于图表的显示.html#cb19-2" tabindex="-1"></a>  <span class="fu">row_spec</span>(<span class="fu">which</span>(df<span class="sc">$</span>年龄 <span class="sc">&gt;</span> <span class="dv">30</span>), <span class="at">bold =</span> <span class="cn">TRUE</span>, <span class="at">italic =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb19-3"><a href="关于图表的显示.html#cb19-3" tabindex="-1"></a>  <span class="fu">column_spec</span>(<span class="dv">3</span>, <span class="at">background =</span> <span class="st">&quot;yellow&quot;</span>)</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+名字
+</th>
+<th style="text-align:right;">
+年龄
+</th>
+<th style="text-align:left;">
+性别
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+张三
+</td>
+<td style="text-align:right;">
+28
+</td>
+<td style="text-align:left;background-color: yellow !important;">
+男
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-weight: bold;font-style: italic;">
+李四
+</td>
+<td style="text-align:right;font-weight: bold;font-style: italic;">
+34
+</td>
+<td style="text-align:left;font-weight: bold;font-style: italic;background-color: yellow !important;">
+男
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+王五
+</td>
+<td style="text-align:right;">
+29
+</td>
+<td style="text-align:left;background-color: yellow !important;">
+女
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="总结" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> 总结<a href="关于图表的显示.html#总结" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><code>kableExtra</code>提供了丰富的功能来增强和定制R中的表格展示。通过本教程，您应该能够开始使用这些工具来改进您的数据可视化和报告制作。更多详细信息和高级功能，请参考<a href="https://haozhu233.github.io/kableExtra/"><code>kableExtra</code>官方文档</a>。</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="ggplot2-拓展包.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="footnotes-and-citations.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/03-parts.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

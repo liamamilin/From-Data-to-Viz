@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 其他绘图工具 | From Data to Viz</title>
+  <meta name="description" content="R语言数据可视化相关数据" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 其他绘图工具 | From Data to Viz" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="R语言数据可视化相关数据" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 其他绘图工具 | From Data to Viz" />
+  
+  <meta name="twitter:description" content="R语言数据可视化相关数据" />
+  
+
+<meta name="author" content="米霖" />
+
+
+<meta name="date" content="2024-01-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="关于图表的显示.html"/>
+<link rel="next" href="高质量数据可视化案例.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="libs/d3-3.5.3/d3.min.js"></script>
+<link href="libs/colorbrewer-1/colorbrewer.css" rel="stylesheet" />
+<script src="libs/colorbrewer-1/colorbrewer.js"></script>
+<link href="libs/streamgraph-1/streamgraph.css" rel="stylesheet" />
+<script src="libs/streamgraph-binding-0.9.0/streamgraph.js"></script>
+<link href="libs/wordcloud2-0.0.1/wordcloud.css" rel="stylesheet" />
+<script src="libs/wordcloud2-0.0.1/wordcloud2-all.js"></script>
+<script src="libs/wordcloud2-0.0.1/hover.js"></script>
+<script src="libs/wordcloud2-binding-0.2.1/wordcloud2.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">From Data to Viz</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> url: your book url like https://bookdown.org/yihui/bookdown</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#从数据到图形"><i class="fa fa-check"></i><b>1.1</b> 从数据到图形</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#numeric"><i class="fa fa-check"></i><b>1.1.1</b> Numeric</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#categoric"><i class="fa fa-check"></i><b>1.1.2</b> Categoric</a></li>
+<li class="chapter" data-level="1.1.3" data-path="index.html"><a href="index.html#numeric-catogoric"><i class="fa fa-check"></i><b>1.1.3</b> Numeric &amp; Catogoric</a></li>
+<li class="chapter" data-level="1.1.4" data-path="index.html"><a href="index.html#network"><i class="fa fa-check"></i><b>1.1.4</b> Network</a></li>
+<li class="chapter" data-level="1.1.5" data-path="index.html"><a href="index.html#times-series"><i class="fa fa-check"></i><b>1.1.5</b> Times Series</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html"><i class="fa fa-check"></i><b>2</b> R 语言可视化核心包</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#ggplot2"><i class="fa fa-check"></i><b>2.1</b> ggplot2</a></li>
+<li class="chapter" data-level="2.2" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#基础使用"><i class="fa fa-check"></i><b>2.2</b> 基础使用</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#安装和加载"><i class="fa fa-check"></i><b>2.2.1</b> 安装和加载</a></li>
+<li class="chapter" data-level="2.2.2" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#创建一个简单的图形"><i class="fa fa-check"></i><b>2.2.2</b> 创建一个简单的图形</a></li>
+<li class="chapter" data-level="2.2.3" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#添加图层"><i class="fa fa-check"></i><b>2.2.3</b> 添加图层</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#高级使用"><i class="fa fa-check"></i><b>2.3</b> 高级使用</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#自定义主题"><i class="fa fa-check"></i><b>2.3.1</b> 自定义主题</a></li>
+<li class="chapter" data-level="2.3.2" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#多统计图形"><i class="fa fa-check"></i><b>2.3.2</b> 多统计图形</a></li>
+<li class="chapter" data-level="2.3.3" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#调整图形细节"><i class="fa fa-check"></i><b>2.3.3</b> 调整图形细节</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#plotly"><i class="fa fa-check"></i><b>2.4</b> plotly</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#安装和设置"><i class="fa fa-check"></i><b>2.4.1</b> 安装和设置</a></li>
+<li class="chapter" data-level="2.4.2" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#基础图表创建"><i class="fa fa-check"></i><b>2.4.2</b> 基础图表创建</a></li>
+<li class="chapter" data-level="2.4.3" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#基础图表创建-1"><i class="fa fa-check"></i><b>2.4.3</b> 基础图表创建</a></li>
+<li class="chapter" data-level="2.4.4" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#交互式数据可视化"><i class="fa fa-check"></i><b>2.4.4</b> 交互式数据可视化</a></li>
+<li class="chapter" data-level="2.4.5" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#高级自定义和优化技术"><i class="fa fa-check"></i><b>2.4.5</b> 高级自定义和优化技术</a></li>
+<li class="chapter" data-level="2.4.6" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#高级交互功能"><i class="fa fa-check"></i><b>2.4.6</b> 高级交互功能</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#patchwork"><i class="fa fa-check"></i><b>2.5</b> patchwork</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#简介与安装"><i class="fa fa-check"></i><b>2.5.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="2.5.2" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#基本用法"><i class="fa fa-check"></i><b>2.5.2</b> 基本用法</a></li>
+<li class="chapter" data-level="2.5.3" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#高级布局"><i class="fa fa-check"></i><b>2.5.3</b> 高级布局</a></li>
+<li class="chapter" data-level="2.5.4" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#添加注释和共享图例"><i class="fa fa-check"></i><b>2.5.4</b> 添加注释和共享图例</a></li>
+<li class="chapter" data-level="2.5.5" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#实战示例"><i class="fa fa-check"></i><b>2.5.5</b> 实战示例</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#hrbrthemes"><i class="fa fa-check"></i><b>2.6</b> hrbrthemes</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#简介与安装-1"><i class="fa fa-check"></i><b>2.6.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="2.6.2" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#基本使用"><i class="fa fa-check"></i><b>2.6.2</b> 基本使用</a></li>
+<li class="chapter" data-level="2.6.3" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#高级定制"><i class="fa fa-check"></i><b>2.6.3</b> 高级定制</a></li>
+<li class="chapter" data-level="2.6.4" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#实战示例-1"><i class="fa fa-check"></i><b>2.6.4</b> 实战示例</a></li>
+<li class="chapter" data-level="2.6.5" data-path="r-语言可视化核心包.html"><a href="r-语言可视化核心包.html#注意事项"><i class="fa fa-check"></i><b>2.6.5</b> 注意事项</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html"><i class="fa fa-check"></i><b>3</b> ggplot2 拓展包</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#ggstatsplot"><i class="fa fa-check"></i><b>3.1</b> ggstatsplot</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#简介与安装-2"><i class="fa fa-check"></i><b>3.1.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="3.1.2" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#基本用法-1"><i class="fa fa-check"></i><b>3.1.2</b> 基本用法</a></li>
+<li class="chapter" data-level="3.1.3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#特色功能"><i class="fa fa-check"></i><b>3.1.3</b> 特色功能</a></li>
+<li class="chapter" data-level="3.1.4" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#高级定制-1"><i class="fa fa-check"></i><b>3.1.4</b> 高级定制</a></li>
+<li class="chapter" data-level="3.1.5" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#实战示例-2"><i class="fa fa-check"></i><b>3.1.5</b> 实战示例</a></li>
+<li class="chapter" data-level="3.1.6" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#注意事项-1"><i class="fa fa-check"></i><b>3.1.6</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#gghighlight"><i class="fa fa-check"></i><b>3.2</b> gghighlight</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#简介与安装-3"><i class="fa fa-check"></i><b>3.2.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="3.2.2" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#基本使用方法"><i class="fa fa-check"></i><b>3.2.2</b> 基本使用方法</a></li>
+<li class="chapter" data-level="3.2.3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#高亮多个系列"><i class="fa fa-check"></i><b>3.2.3</b> 高亮多个系列</a></li>
+<li class="chapter" data-level="3.2.4" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#高级定制-2"><i class="fa fa-check"></i><b>3.2.4</b> 高级定制</a></li>
+<li class="chapter" data-level="3.2.5" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#实战示例-3"><i class="fa fa-check"></i><b>3.2.5</b> 实战示例</a></li>
+<li class="chapter" data-level="3.2.6" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#注意事项-2"><i class="fa fa-check"></i><b>3.2.6</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#ggpattern"><i class="fa fa-check"></i><b>3.3</b> ggpattern</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#简介与安装-4"><i class="fa fa-check"></i><b>3.3.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="3.3.2" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#基本使用方法-1"><i class="fa fa-check"></i><b>3.3.2</b> 基本使用方法</a></li>
+<li class="chapter" data-level="3.3.3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#图案属性定制"><i class="fa fa-check"></i><b>3.3.3</b> 图案属性定制</a></li>
+<li class="chapter" data-level="3.3.4" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#高级应用"><i class="fa fa-check"></i><b>3.3.4</b> 高级应用</a></li>
+<li class="chapter" data-level="3.3.5" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#实战示例-4"><i class="fa fa-check"></i><b>3.3.5</b> 实战示例</a></li>
+<li class="chapter" data-level="3.3.6" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#注意事项-3"><i class="fa fa-check"></i><b>3.3.6</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#geomtextpath"><i class="fa fa-check"></i><b>3.4</b> geomtextpath</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#简介与安装-5"><i class="fa fa-check"></i><b>3.4.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="3.4.2" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#基本使用方法-2"><i class="fa fa-check"></i><b>3.4.2</b> 基本使用方法</a></li>
+<li class="chapter" data-level="3.4.3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#文本属性定制"><i class="fa fa-check"></i><b>3.4.3</b> 文本属性定制</a></li>
+<li class="chapter" data-level="3.4.4" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#高级应用-1"><i class="fa fa-check"></i><b>3.4.4</b> 高级应用</a></li>
+<li class="chapter" data-level="3.4.5" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#实战示例-5"><i class="fa fa-check"></i><b>3.4.5</b> 实战示例</a></li>
+<li class="chapter" data-level="3.4.6" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#注意事项-4"><i class="fa fa-check"></i><b>3.4.6</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#gganimate"><i class="fa fa-check"></i><b>3.5</b> gganimate</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#简介与安装-6"><i class="fa fa-check"></i><b>3.5.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="3.5.2" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#基本使用方法-3"><i class="fa fa-check"></i><b>3.5.2</b> 基本使用方法</a></li>
+<li class="chapter" data-level="3.5.3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#时间轴和标签"><i class="fa fa-check"></i><b>3.5.3</b> 时间轴和标签</a></li>
+<li class="chapter" data-level="3.5.4" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#高级定制-3"><i class="fa fa-check"></i><b>3.5.4</b> 高级定制</a></li>
+<li class="chapter" data-level="3.5.5" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#输出和保存动画"><i class="fa fa-check"></i><b>3.5.5</b> 输出和保存动画</a></li>
+<li class="chapter" data-level="3.5.6" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#注意事项-5"><i class="fa fa-check"></i><b>3.5.6</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#ggiraph"><i class="fa fa-check"></i><b>3.6</b> ggiraph</a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#简介与安装-7"><i class="fa fa-check"></i><b>3.6.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="3.6.2" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#基本使用方法-4"><i class="fa fa-check"></i><b>3.6.2</b> 基本使用方法</a></li>
+<li class="chapter" data-level="3.6.3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#增强交互性"><i class="fa fa-check"></i><b>3.6.3</b> 增强交互性</a></li>
+<li class="chapter" data-level="3.6.4" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#高级功能"><i class="fa fa-check"></i><b>3.6.4</b> 高级功能</a></li>
+<li class="chapter" data-level="3.6.5" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#实战示例-6"><i class="fa fa-check"></i><b>3.6.5</b> 实战示例</a></li>
+<li class="chapter" data-level="3.6.6" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#注意事项-6"><i class="fa fa-check"></i><b>3.6.6</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#esquisse"><i class="fa fa-check"></i><b>3.7</b> esquisse</a>
+<ul>
+<li class="chapter" data-level="3.7.1" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#简介与安装-8"><i class="fa fa-check"></i><b>3.7.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="3.7.2" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#启动esquisse界面"><i class="fa fa-check"></i><b>3.7.2</b> 启动<code>esquisse</code>界面</a></li>
+<li class="chapter" data-level="3.7.3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#创建图形"><i class="fa fa-check"></i><b>3.7.3</b> 创建图形</a></li>
+<li class="chapter" data-level="3.7.4" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#导出和使用代码"><i class="fa fa-check"></i><b>3.7.4</b> 导出和使用代码</a></li>
+<li class="chapter" data-level="3.7.5" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#esquisse与shiny集成"><i class="fa fa-check"></i><b>3.7.5</b> <code>esquisse</code>与Shiny集成</a></li>
+<li class="chapter" data-level="3.7.6" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#注意事项-7"><i class="fa fa-check"></i><b>3.7.6</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#ggthemes"><i class="fa fa-check"></i><b>3.8</b> ggthemes</a>
+<ul>
+<li class="chapter" data-level="3.8.1" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#简介与安装-9"><i class="fa fa-check"></i><b>3.8.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="3.8.2" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#基本使用方法-5"><i class="fa fa-check"></i><b>3.8.2</b> 基本使用方法</a></li>
+<li class="chapter" data-level="3.8.3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#流行主题介绍"><i class="fa fa-check"></i><b>3.8.3</b> 流行主题介绍</a></li>
+<li class="chapter" data-level="3.8.4" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#自定义和扩展"><i class="fa fa-check"></i><b>3.8.4</b> 自定义和扩展</a></li>
+<li class="chapter" data-level="3.8.5" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#实战示例-7"><i class="fa fa-check"></i><b>3.8.5</b> 实战示例</a></li>
+<li class="chapter" data-level="3.8.6" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#注意事项-8"><i class="fa fa-check"></i><b>3.8.6</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#ggbump"><i class="fa fa-check"></i><b>3.9</b> ggbump</a>
+<ul>
+<li class="chapter" data-level="3.9.1" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#简介与安装-10"><i class="fa fa-check"></i><b>3.9.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="3.9.2" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#基本使用方法-6"><i class="fa fa-check"></i><b>3.9.2</b> 基本使用方法</a></li>
+<li class="chapter" data-level="3.9.3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#自定义图表"><i class="fa fa-check"></i><b>3.9.3</b> 自定义图表</a></li>
+<li class="chapter" data-level="3.9.4" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#高级功能-1"><i class="fa fa-check"></i><b>3.9.4</b> 高级功能</a></li>
+<li class="chapter" data-level="3.9.5" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#注意事项-9"><i class="fa fa-check"></i><b>3.9.5</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="3.10" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#ggtext"><i class="fa fa-check"></i><b>3.10</b> ggtext</a>
+<ul>
+<li class="chapter" data-level="3.10.1" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#简介与安装-11"><i class="fa fa-check"></i><b>3.10.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="3.10.2" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#基本使用方法-7"><i class="fa fa-check"></i><b>3.10.2</b> 基本使用方法</a></li>
+<li class="chapter" data-level="3.10.3" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#增强文本表现力"><i class="fa fa-check"></i><b>3.10.3</b> 增强文本表现力</a></li>
+<li class="chapter" data-level="3.10.4" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#实战示例-8"><i class="fa fa-check"></i><b>3.10.4</b> 实战示例</a></li>
+<li class="chapter" data-level="3.10.5" data-path="ggplot2-拓展包.html"><a href="ggplot2-拓展包.html#注意事项-10"><i class="fa fa-check"></i><b>3.10.5</b> 注意事项</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="关于图表的显示.html"><a href="关于图表的显示.html"><i class="fa fa-check"></i><b>4</b> 关于图表的显示</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="关于图表的显示.html"><a href="关于图表的显示.html#dt"><i class="fa fa-check"></i><b>4.1</b> DT</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="关于图表的显示.html"><a href="关于图表的显示.html#简介与安装-12"><i class="fa fa-check"></i><b>4.1.1</b> 简介与安装</a></li>
+<li class="chapter" data-level="4.1.2" data-path="关于图表的显示.html"><a href="关于图表的显示.html#基本使用方法-8"><i class="fa fa-check"></i><b>4.1.2</b> 基本使用方法</a></li>
+<li class="chapter" data-level="4.1.3" data-path="关于图表的显示.html"><a href="关于图表的显示.html#自定义表格样式"><i class="fa fa-check"></i><b>4.1.3</b> 自定义表格样式</a></li>
+<li class="chapter" data-level="4.1.4" data-path="关于图表的显示.html"><a href="关于图表的显示.html#高级功能-2"><i class="fa fa-check"></i><b>4.1.4</b> 高级功能</a></li>
+<li class="chapter" data-level="4.1.5" data-path="关于图表的显示.html"><a href="关于图表的显示.html#dt与shiny集成"><i class="fa fa-check"></i><b>4.1.5</b> <code>DT</code>与Shiny集成</a></li>
+<li class="chapter" data-level="4.1.6" data-path="关于图表的显示.html"><a href="关于图表的显示.html#注意事项-11"><i class="fa fa-check"></i><b>4.1.6</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="关于图表的显示.html"><a href="关于图表的显示.html#reactable"><i class="fa fa-check"></i><b>4.2</b> ReacTable</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="关于图表的显示.html"><a href="关于图表的显示.html#简介"><i class="fa fa-check"></i><b>4.2.1</b> 简介</a></li>
+<li class="chapter" data-level="4.2.2" data-path="关于图表的显示.html"><a href="关于图表的显示.html#安装"><i class="fa fa-check"></i><b>4.2.2</b> 安装</a></li>
+<li class="chapter" data-level="4.2.3" data-path="关于图表的显示.html"><a href="关于图表的显示.html#基本使用方法-9"><i class="fa fa-check"></i><b>4.2.3</b> 基本使用方法</a></li>
+<li class="chapter" data-level="4.2.4" data-path="关于图表的显示.html"><a href="关于图表的显示.html#自定义表格样式-1"><i class="fa fa-check"></i><b>4.2.4</b> 自定义表格样式</a></li>
+<li class="chapter" data-level="4.2.5" data-path="关于图表的显示.html"><a href="关于图表的显示.html#高级功能-3"><i class="fa fa-check"></i><b>4.2.5</b> 高级功能</a></li>
+<li class="chapter" data-level="4.2.6" data-path="关于图表的显示.html"><a href="关于图表的显示.html#reactable与shiny集成"><i class="fa fa-check"></i><b>4.2.6</b> <code>ReacTable</code>与Shiny集成</a></li>
+<li class="chapter" data-level="4.2.7" data-path="关于图表的显示.html"><a href="关于图表的显示.html#注意事项-12"><i class="fa fa-check"></i><b>4.2.7</b> 注意事项</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="关于图表的显示.html"><a href="关于图表的显示.html#kableextra"><i class="fa fa-check"></i><b>4.3</b> kableExtra</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="关于图表的显示.html"><a href="关于图表的显示.html#基本使用-1"><i class="fa fa-check"></i><b>4.3.1</b> 基本使用</a></li>
+<li class="chapter" data-level="4.3.2" data-path="关于图表的显示.html"><a href="关于图表的显示.html#高级定制-4"><i class="fa fa-check"></i><b>4.3.2</b> 高级定制</a></li>
+<li class="chapter" data-level="4.3.3" data-path="关于图表的显示.html"><a href="关于图表的显示.html#总结"><i class="fa fa-check"></i><b>4.3.3</b> 总结</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="关于图表的显示.html"><a href="关于图表的显示.html#gt"><i class="fa fa-check"></i><b>4.4</b> gt</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="关于图表的显示.html"><a href="关于图表的显示.html#创建你的第一个gt表格"><i class="fa fa-check"></i><b>4.4.1</b> 创建你的第一个<code>gt</code>表格</a></li>
+<li class="chapter" data-level="4.4.2" data-path="关于图表的显示.html"><a href="关于图表的显示.html#定制表格"><i class="fa fa-check"></i><b>4.4.2</b> 定制表格</a></li>
+<li class="chapter" data-level="4.4.3" data-path="关于图表的显示.html"><a href="关于图表的显示.html#导出表格"><i class="fa fa-check"></i><b>4.4.3</b> 导出表格</a></li>
+<li class="chapter" data-level="4.4.4" data-path="关于图表的显示.html"><a href="关于图表的显示.html#总结-1"><i class="fa fa-check"></i><b>4.4.4</b> 总结</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="关于图表的显示.html"><a href="关于图表的显示.html#gtsummary"><i class="fa fa-check"></i><b>4.5</b> gtsummary</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="关于图表的显示.html"><a href="关于图表的显示.html#创建第一个摘要表格"><i class="fa fa-check"></i><b>4.5.1</b> 创建第一个摘要表格</a></li>
+<li class="chapter" data-level="4.5.2" data-path="关于图表的显示.html"><a href="关于图表的显示.html#定制摘要表格"><i class="fa fa-check"></i><b>4.5.2</b> 定制摘要表格</a></li>
+<li class="chapter" data-level="4.5.3" data-path="关于图表的显示.html"><a href="关于图表的显示.html#导出表格-1"><i class="fa fa-check"></i><b>4.5.3</b> 导出表格</a></li>
+<li class="chapter" data-level="4.5.4" data-path="关于图表的显示.html"><a href="关于图表的显示.html#总结-2"><i class="fa fa-check"></i><b>4.5.4</b> 总结</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="其他绘图工具.html"><a href="其他绘图工具.html"><i class="fa fa-check"></i><b>5</b> 其他绘图工具</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="其他绘图工具.html"><a href="其他绘图工具.html#upsetr"><i class="fa fa-check"></i><b>5.1</b> <code>UpSetR</code></a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="其他绘图工具.html"><a href="其他绘图工具.html#准备数据"><i class="fa fa-check"></i><b>5.1.1</b> 准备数据</a></li>
+<li class="chapter" data-level="5.1.2" data-path="其他绘图工具.html"><a href="其他绘图工具.html#创建upset图"><i class="fa fa-check"></i><b>5.1.2</b> 创建UpSet图</a></li>
+<li class="chapter" data-level="5.1.3" data-path="其他绘图工具.html"><a href="其他绘图工具.html#定制upset图"><i class="fa fa-check"></i><b>5.1.3</b> 定制UpSet图</a></li>
+<li class="chapter" data-level="5.1.4" data-path="其他绘图工具.html"><a href="其他绘图工具.html#分析数据框中的集合"><i class="fa fa-check"></i><b>5.1.4</b> 分析数据框中的集合</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="其他绘图工具.html"><a href="其他绘图工具.html#streamgraph"><i class="fa fa-check"></i><b>5.2</b> <code>streamgraph</code></a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="其他绘图工具.html"><a href="其他绘图工具.html#准备数据-1"><i class="fa fa-check"></i><b>5.2.1</b> 准备数据</a></li>
+<li class="chapter" data-level="5.2.2" data-path="其他绘图工具.html"><a href="其他绘图工具.html#创建流图"><i class="fa fa-check"></i><b>5.2.2</b> 创建流图</a></li>
+<li class="chapter" data-level="5.2.3" data-path="其他绘图工具.html"><a href="其他绘图工具.html#定制流图"><i class="fa fa-check"></i><b>5.2.3</b> 定制流图</a></li>
+<li class="chapter" data-level="5.2.4" data-path="其他绘图工具.html"><a href="其他绘图工具.html#导出和嵌入"><i class="fa fa-check"></i><b>5.2.4</b> 导出和嵌入</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="其他绘图工具.html"><a href="其他绘图工具.html#wordcloud2"><i class="fa fa-check"></i><b>5.3</b> <code>wordcloud2</code></a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="其他绘图工具.html"><a href="其他绘图工具.html#安装和加载-1"><i class="fa fa-check"></i><b>5.3.1</b> 安装和加载</a></li>
+<li class="chapter" data-level="5.3.2" data-path="其他绘图工具.html"><a href="其他绘图工具.html#准备数据-2"><i class="fa fa-check"></i><b>5.3.2</b> 准备数据</a></li>
+<li class="chapter" data-level="5.3.3" data-path="其他绘图工具.html"><a href="其他绘图工具.html#创建词云"><i class="fa fa-check"></i><b>5.3.3</b> 创建词云</a></li>
+<li class="chapter" data-level="5.3.4" data-path="其他绘图工具.html"><a href="其他绘图工具.html#定制词云"><i class="fa fa-check"></i><b>5.3.4</b> 定制词云</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="其他绘图工具.html"><a href="其他绘图工具.html#ggridges"><i class="fa fa-check"></i><b>5.4</b> <code>ggridges</code></a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="其他绘图工具.html"><a href="其他绘图工具.html#准备数据-3"><i class="fa fa-check"></i><b>5.4.1</b> 准备数据</a></li>
+<li class="chapter" data-level="5.4.2" data-path="其他绘图工具.html"><a href="其他绘图工具.html#创建山脊线图"><i class="fa fa-check"></i><b>5.4.2</b> 创建山脊线图</a></li>
+<li class="chapter" data-level="5.4.3" data-path="其他绘图工具.html"><a href="其他绘图工具.html#定制山脊线图"><i class="fa fa-check"></i><b>5.4.3</b> 定制山脊线图</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="高质量数据可视化案例.html"><a href="高质量数据可视化案例.html"><i class="fa fa-check"></i><b>6</b> 高质量数据可视化案例</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="高质量数据可视化案例.html"><a href="高质量数据可视化案例.html#带有标签的线图"><i class="fa fa-check"></i><b>6.1</b> 带有标签的线图</a></li>
+<li class="chapter" data-level="6.2" data-path="高质量数据可视化案例.html"><a href="高质量数据可视化案例.html#办公室评级"><i class="fa fa-check"></i><b>6.2</b> 办公室评级</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="高质量数据可视化案例.html"><a href="高质量数据可视化案例.html#加载和准备数据集"><i class="fa fa-check"></i><b>6.2.1</b> 加载和准备数据集</a></li>
+<li class="chapter" data-level="6.2.2" data-path="高质量数据可视化案例.html"><a href="高质量数据可视化案例.html#第一个棒棒糖图版本"><i class="fa fa-check"></i><b>6.2.2</b> 第一个棒棒糖图版本</a></li>
+<li class="chapter" data-level="6.2.3" data-path="高质量数据可视化案例.html"><a href="高质量数据可视化案例.html#添加标签和调整比例"><i class="fa fa-check"></i><b>6.2.3</b> 添加标签和调整比例</a></li>
+<li class="chapter" data-level="6.2.4" data-path="高质量数据可视化案例.html"><a href="高质量数据可视化案例.html#保存"><i class="fa fa-check"></i><b>6.2.4</b> 保存</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="高质量数据可视化案例.html"><a href="高质量数据可视化案例.html#贪污感知指数"><i class="fa fa-check"></i><b>6.3</b> 贪污感知指数</a></li>
+<li class="chapter" data-level="6.4" data-path="高质量数据可视化案例.html"><a href="高质量数据可视化案例.html#每小时热力图"><i class="fa fa-check"></i><b>6.4</b> 每小时热力图</a></li>
+<li class="chapter" data-level="6.5" data-path="高质量数据可视化案例.html"><a href="高质量数据可视化案例.html#小倍数线图"><i class="fa fa-check"></i><b>6.5</b> 小倍数线图</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="绘图注意事项.html"><a href="绘图注意事项.html"><i class="fa fa-check"></i><b>7</b> 绘图注意事项</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/liamamilin" target="blank">From Data to Viz</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">From Data to Viz</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="其他绘图工具" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> 其他绘图工具<a href="其他绘图工具.html#其他绘图工具" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="upsetr" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> <code>UpSetR</code><a href="其他绘图工具.html#upsetr" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><code>UpSetR</code>是一个R包，旨在用于分析和可视化复杂的集合交集，提供了一种比传统文氏图更加清晰和信息丰富的方式来展示集合之间的交集和唯一元素。</p>
+<p>首先，确保你已经安装了<code>UpSetR</code>包。如果没有，请运行以下命令来安装：</p>
+<pre><code>install.packages(&quot;UpSetR&quot;)</code></pre>
+<p>安装完成后，加载<code>UpSetR</code>包以便使用：</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="其他绘图工具.html#cb2-1" tabindex="-1"></a><span class="fu">library</span>(UpSetR)</span></code></pre></div>
+<div id="准备数据" class="section level3 hasAnchor" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> 准备数据<a href="其他绘图工具.html#准备数据" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><code>UpSetR</code>可以处理不同格式的数据，包括列表、数据框或矩阵。这里，我们以一个简单的例子开始，展示包含几个集合的列表：</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="其他绘图工具.html#cb3-1" tabindex="-1"></a><span class="co"># 创建示例数据</span></span>
+<span id="cb3-2"><a href="其他绘图工具.html#cb3-2" tabindex="-1"></a>list_input <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb3-3"><a href="其他绘图工具.html#cb3-3" tabindex="-1"></a>  <span class="at">Set1 =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">8</span>),</span>
+<span id="cb3-4"><a href="其他绘图工具.html#cb3-4" tabindex="-1"></a>  <span class="at">Set2 =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">7</span>),</span>
+<span id="cb3-5"><a href="其他绘图工具.html#cb3-5" tabindex="-1"></a>  <span class="at">Set3 =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>)</span>
+<span id="cb3-6"><a href="其他绘图工具.html#cb3-6" tabindex="-1"></a>)</span></code></pre></div>
+</div>
+<div id="创建upset图" class="section level3 hasAnchor" number="5.1.2">
+<h3><span class="header-section-number">5.1.2</span> 创建UpSet图<a href="其他绘图工具.html#创建upset图" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>使用<code>upset</code>函数，我们可以基于上述数据创建一个UpSet图：</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="其他绘图工具.html#cb4-1" tabindex="-1"></a><span class="fu">upset</span>(<span class="fu">fromList</span>(list_input), <span class="at">order.by =</span> <span class="st">&quot;freq&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>这个命令将生成一个UpSet图，其中包含了三个集合<code>Set1</code>、<code>Set2</code>和<code>Set3</code>的交集情况。<code>order.by = "freq"</code>参数意味着交集将根据频率（大小）进行排序。</p>
+</div>
+<div id="定制upset图" class="section level3 hasAnchor" number="5.1.3">
+<h3><span class="header-section-number">5.1.3</span> 定制UpSet图<a href="其他绘图工具.html#定制upset图" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><code>UpSetR</code>提供了多种定制选项，以适应不同的分析需求和视觉偏好。</p>
+<div id="改变集合和交集的排序" class="section level4 hasAnchor" number="5.1.3.1">
+<h4><span class="header-section-number">5.1.3.1</span> 改变集合和交集的排序<a href="其他绘图工具.html#改变集合和交集的排序" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>你可以根据需要改变集合和交集的排序方式，例如，根据集合大小或名称排序：</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="其他绘图工具.html#cb5-1" tabindex="-1"></a><span class="fu">upset</span>(<span class="fu">fromList</span>(list_input), <span class="at">sets =</span> <span class="fu">c</span>(<span class="st">&quot;Set3&quot;</span>, <span class="st">&quot;Set1&quot;</span>, <span class="st">&quot;Set2&quot;</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+</div>
+<div id="调整图表元素" class="section level4 hasAnchor" number="5.1.3.2">
+<h4><span class="header-section-number">5.1.3.2</span> 调整图表元素<a href="其他绘图工具.html#调整图表元素" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>你还可以选择性地显示或隐藏图表的不同组成部分，例如，仅显示交集的大小：</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="其他绘图工具.html#cb6-1" tabindex="-1"></a><span class="fu">upset</span>(<span class="fu">fromList</span>(list_input), <span class="at">main.bar.color =</span> <span class="st">&quot;skyblue&quot;</span>, <span class="at">matrix.color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">order.by =</span> <span class="st">&quot;freq&quot;</span>, <span class="at">show.numbers =</span> <span class="st">&quot;yes&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+</div>
+</div>
+<div id="分析数据框中的集合" class="section level3 hasAnchor" number="5.1.4">
+<h3><span class="header-section-number">5.1.4</span> 分析数据框中的集合<a href="其他绘图工具.html#分析数据框中的集合" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>除了列表，<code>UpSetR</code>也可以直接处理数据框格式的数据。以下是如何使用数据框来创建UpSet图的例子：</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="其他绘图工具.html#cb7-1" tabindex="-1"></a><span class="co"># 创建示例数据框</span></span>
+<span id="cb7-2"><a href="其他绘图工具.html#cb7-2" tabindex="-1"></a>df_input <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb7-3"><a href="其他绘图工具.html#cb7-3" tabindex="-1"></a>  <span class="at">ID =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>),</span>
+<span id="cb7-4"><a href="其他绘图工具.html#cb7-4" tabindex="-1"></a>  <span class="at">Set1 =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>),</span>
+<span id="cb7-5"><a href="其他绘图工具.html#cb7-5" tabindex="-1"></a>  <span class="at">Set2 =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb7-6"><a href="其他绘图工具.html#cb7-6" tabindex="-1"></a>  <span class="at">Set3 =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb7-7"><a href="其他绘图工具.html#cb7-7" tabindex="-1"></a>)</span>
+<span id="cb7-8"><a href="其他绘图工具.html#cb7-8" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="其他绘图工具.html#cb7-9" tabindex="-1"></a><span class="co"># 使用数据框创建UpSet图</span></span>
+<span id="cb7-10"><a href="其他绘图工具.html#cb7-10" tabindex="-1"></a><span class="fu">upset</span>(<span class="fu">as.data.frame</span>(df_input), <span class="at">sets =</span> <span class="fu">c</span>(<span class="st">&quot;Set1&quot;</span>, <span class="st">&quot;Set2&quot;</span>, <span class="st">&quot;Set3&quot;</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+</div>
+</div>
+<div id="streamgraph" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> <code>streamgraph</code><a href="其他绘图工具.html#streamgraph" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><code>streamgraph</code>是一个基于<code>htmlwidgets</code>和<code>d3.js</code>的R包，它允许用户在R中创建交互式的流图。流图是一种美观的数据可视化方式，适合展示数据随时间的流动和变化。</p>
+<p><code>streamgraph</code>包可能不在CRAN上直接可用，因此你需要使用<code>devtools</code>包从GitHub安装它：</p>
+<pre><code> 
+# 从GitHub安装streamgraph
+devtools::install_github(&quot;hrbrmstr/streamgraph&quot;)</code></pre>
+<p>安装完成后，加载<code>streamgraph</code>包以便使用：</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="其他绘图工具.html#cb9-1" tabindex="-1"></a><span class="fu">library</span>(streamgraph)</span></code></pre></div>
+<div id="准备数据-1" class="section level3 hasAnchor" number="5.2.1">
+<h3><span class="header-section-number">5.2.1</span> 准备数据<a href="其他绘图工具.html#准备数据-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><code>streamgraph</code>要求数据以特定格式提供：一个数据框，其中包含至少三个列，分别代表时间（或日期）、类别和数值。</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="其他绘图工具.html#cb10-1" tabindex="-1"></a><span class="co"># 创建示例数据</span></span>
+<span id="cb10-2"><a href="其他绘图工具.html#cb10-2" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb10-3"><a href="其他绘图工具.html#cb10-3" tabindex="-1"></a>  <span class="at">date =</span> <span class="fu">rep</span>(<span class="fu">seq</span>(<span class="fu">as.Date</span>(<span class="st">&quot;2020-01-01&quot;</span>), <span class="fu">as.Date</span>(<span class="st">&quot;2020-12-31&quot;</span>), <span class="at">by=</span><span class="st">&quot;month&quot;</span>), <span class="dv">3</span>),</span>
+<span id="cb10-4"><a href="其他绘图工具.html#cb10-4" tabindex="-1"></a>  <span class="at">category =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Category 1&quot;</span>, <span class="st">&quot;Category 2&quot;</span>, <span class="st">&quot;Category 3&quot;</span>), <span class="at">each=</span><span class="dv">12</span>),</span>
+<span id="cb10-5"><a href="其他绘图工具.html#cb10-5" tabindex="-1"></a>  <span class="at">value =</span> <span class="fu">rnorm</span>(<span class="dv">36</span>, <span class="at">mean=</span><span class="dv">100</span>, <span class="at">sd=</span><span class="dv">20</span>)</span>
+<span id="cb10-6"><a href="其他绘图工具.html#cb10-6" tabindex="-1"></a>)</span></code></pre></div>
+</div>
+<div id="创建流图" class="section level3 hasAnchor" number="5.2.2">
+<h3><span class="header-section-number">5.2.2</span> 创建流图<a href="其他绘图工具.html#创建流图" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>使用<code>streamgraph</code>函数，你可以基于上述数据创建一个流图。以下是创建基本流图的代码：</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="其他绘图工具.html#cb11-1" tabindex="-1"></a><span class="fu">streamgraph</span>(data, <span class="at">key=</span><span class="st">&quot;category&quot;</span>, <span class="at">date=</span><span class="st">&quot;date&quot;</span>, <span class="at">value=</span><span class="st">&quot;value&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning in widget_html(name, package, id = x$id, style = css(width =
+## validateCssUnit(sizeInfo$width), : streamgraph_html returned an object of class
+## `list` instead of a `shiny.tag`.</code></pre>
+<pre><code>## Warning: `bindFillRole()` only works on htmltools::tag() objects (e.g., div(),
+## p(), etc.), not objects of type &#39;list&#39;.</code></pre>
+<div id="htmlwidget-557b7278069340ef3406" class="streamgraph html-widget" style="width:672px;height:480px;"></div>
+<div id="htmlwidget-557b7278069340ef3406-legend" style="width:672" class="streamgraph html-widget-legend"><center><label style='padding-right:5px' for='htmlwidget-557b7278069340ef3406-select'></label><select id='htmlwidget-557b7278069340ef3406-select' style='visibility:hidden;'></select></center></div>
+<script type="application/json" data-for="htmlwidget-557b7278069340ef3406">{"x":{"data":{"key":["Category 1","Category 2","Category 3","Category 1","Category 2","Category 3","Category 1","Category 2","Category 3","Category 1","Category 2","Category 3","Category 1","Category 2","Category 3","Category 1","Category 2","Category 3","Category 1","Category 2","Category 3","Category 1","Category 2","Category 3","Category 1","Category 2","Category 3","Category 1","Category 2","Category 3","Category 1","Category 2","Category 3","Category 1","Category 2","Category 3"],"value":[123.4340431282101,71.08297663109133,71.36738655188245,83.94725691817996,136.9996472371806,99.46763884914645,97.00427185716616,110.7246501698748,113.6224553382699,90.34361667283774,142.0713600506318,74.72753702159488,131.1619225133294,81.11129709888263,95.85936294202419,88.66537792066818,103.5593364261033,114.6506242815293,93.35950008013062,86.23866156563389,74.92015220928874,136.8805764657023,87.57769051178583,103.5217161347746,117.1672699858386,103.2893691074627,88.87715020730344,115.4272305454773,109.6495696817334,93.67966531756537,118.7720736483123,102.4516330046807,129.2152447353601,87.62235674227794,69.9728075552153,79.77654611165084],"date":["2020-01-01","2020-01-01","2020-01-01","2020-02-01","2020-02-01","2020-02-01","2020-03-01","2020-03-01","2020-03-01","2020-04-01","2020-04-01","2020-04-01","2020-05-01","2020-05-01","2020-05-01","2020-06-01","2020-06-01","2020-06-01","2020-07-01","2020-07-01","2020-07-01","2020-08-01","2020-08-01","2020-08-01","2020-09-01","2020-09-01","2020-09-01","2020-10-01","2020-10-01","2020-10-01","2020-11-01","2020-11-01","2020-11-01","2020-12-01","2020-12-01","2020-12-01"]},"markers":null,"annotations":null,"offset":"silhouette","interactive":true,"interpolate":"cardinal","palette":"Spectral","text":"black","tooltip":"black","x_tick_interval":1,"x_tick_units":"month","x_tick_format":"%b","y_tick_count":5,"y_tick_format":",g","top":20,"right":40,"bottom":30,"left":50,"legend":false,"legend_label":"","fill":"brewer","label_col":"black","x_scale":"date","sort":true,"order":"none"},"evals":[],"jsHooks":[]}</script>
+<p>这个命令将生成一个流图，显示每个类别随时间变化的数值。</p>
+</div>
+<div id="定制流图" class="section level3 hasAnchor" number="5.2.3">
+<h3><span class="header-section-number">5.2.3</span> 定制流图<a href="其他绘图工具.html#定制流图" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><code>streamgraph</code>提供了多种定制选项，让你可以根据需求调整流图的外观和行为。</p>
+<div id="调整宽度和高度" class="section level4 hasAnchor" number="5.2.3.1">
+<h4><span class="header-section-number">5.2.3.1</span> 调整宽度和高度<a href="其他绘图工具.html#调整宽度和高度" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>你还可以调整流图的宽度和高度，以适应不同的显示需求：</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="其他绘图工具.html#cb14-1" tabindex="-1"></a><span class="fu">streamgraph</span>(data, <span class="at">key=</span><span class="st">&quot;category&quot;</span>, <span class="at">date=</span><span class="st">&quot;date&quot;</span>, <span class="at">value=</span><span class="st">&quot;value&quot;</span>, <span class="at">width=</span><span class="st">&quot;100%&quot;</span>, <span class="at">height=</span><span class="st">&quot;600&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning in widget_html(name, package, id = x$id, style = css(width =
+## validateCssUnit(sizeInfo$width), : streamgraph_html returned an object of class
+## `list` instead of a `shiny.tag`.</code></pre>
+<pre><code>## Warning: `bindFillRole()` only works on htmltools::tag() objects (e.g., div(),
+## p(), etc.), not objects of type &#39;list&#39;.</code></pre>
+<div id="htmlwidget-e58f8af7f4a7750ebd0e" class="streamgraph html-widget" style="width:100%;height:600px;"></div>
+<div id="htmlwidget-e58f8af7f4a7750ebd0e-legend" style="width:100%" class="streamgraph html-widget-legend"><center><label style='padding-right:5px' for='htmlwidget-e58f8af7f4a7750ebd0e-select'></label><select id='htmlwidget-e58f8af7f4a7750ebd0e-select' style='visibility:hidden;'></select></center></div>
+<script type="application/json" data-for="htmlwidget-e58f8af7f4a7750ebd0e">{"x":{"data":{"key":["Category 1","Category 2","Category 3","Category 1","Category 2","Category 3","Category 1","Category 2","Category 3","Category 1","Category 2","Category 3","Category 1","Category 2","Category 3","Category 1","Category 2","Category 3","Category 1","Category 2","Category 3","Category 1","Category 2","Category 3","Category 1","Category 2","Category 3","Category 1","Category 2","Category 3","Category 1","Category 2","Category 3","Category 1","Category 2","Category 3"],"value":[123.4340431282101,71.08297663109133,71.36738655188245,83.94725691817996,136.9996472371806,99.46763884914645,97.00427185716616,110.7246501698748,113.6224553382699,90.34361667283774,142.0713600506318,74.72753702159488,131.1619225133294,81.11129709888263,95.85936294202419,88.66537792066818,103.5593364261033,114.6506242815293,93.35950008013062,86.23866156563389,74.92015220928874,136.8805764657023,87.57769051178583,103.5217161347746,117.1672699858386,103.2893691074627,88.87715020730344,115.4272305454773,109.6495696817334,93.67966531756537,118.7720736483123,102.4516330046807,129.2152447353601,87.62235674227794,69.9728075552153,79.77654611165084],"date":["2020-01-01","2020-01-01","2020-01-01","2020-02-01","2020-02-01","2020-02-01","2020-03-01","2020-03-01","2020-03-01","2020-04-01","2020-04-01","2020-04-01","2020-05-01","2020-05-01","2020-05-01","2020-06-01","2020-06-01","2020-06-01","2020-07-01","2020-07-01","2020-07-01","2020-08-01","2020-08-01","2020-08-01","2020-09-01","2020-09-01","2020-09-01","2020-10-01","2020-10-01","2020-10-01","2020-11-01","2020-11-01","2020-11-01","2020-12-01","2020-12-01","2020-12-01"]},"markers":null,"annotations":null,"offset":"silhouette","interactive":true,"interpolate":"cardinal","palette":"Spectral","text":"black","tooltip":"black","x_tick_interval":1,"x_tick_units":"month","x_tick_format":"%b","y_tick_count":5,"y_tick_format":",g","top":20,"right":40,"bottom":30,"left":50,"legend":false,"legend_label":"","fill":"brewer","label_col":"black","x_scale":"date","sort":true,"order":"none"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div id="导出和嵌入" class="section level3 hasAnchor" number="5.2.4">
+<h3><span class="header-section-number">5.2.4</span> 导出和嵌入<a href="其他绘图工具.html#导出和嵌入" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>生成的流图是交互式的，可以直接在RStudio的Viewer窗口中查看，也可以导出为HTML文件或嵌入网页中。</p>
+<pre><code># 导出为HTML
+sg &lt;- streamgraph(data, key=&quot;category&quot;, date=&quot;date&quot;, value=&quot;value&quot;)
+htmlwidgets::saveWidget(sg, &quot;streamgraph.html&quot;)</code></pre>
+<p>为了创建一篇面向有一定基础的用户的、注重实用性的、全面介绍<code>wordcloud2</code>包及其应用的教程，下面将以Markdown格式详细介绍如何使用<code>wordcloud2</code>包来创建和定制词云。</p>
+</div>
+</div>
+<div id="wordcloud2" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> <code>wordcloud2</code><a href="其他绘图工具.html#wordcloud2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><code>wordcloud2</code>是一个R包，允许用户创建交互式词云。这种词云可以直观地展示文本数据中词汇的频率，其中词的大小表示其在数据集中的相对重要性或频率。<code>wordcloud2</code>基于<code>htmlwidgets</code>和JavaScript库，因此生成的词云可以嵌入R Markdown文档或Shiny应用中，并支持交互性功能。</p>
+<div id="安装和加载-1" class="section level3 hasAnchor" number="5.3.1">
+<h3><span class="header-section-number">5.3.1</span> 安装和加载<a href="其他绘图工具.html#安装和加载-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>首先，确保你已经安装了<code>wordcloud2</code>包。如果没有，请运行以下命令来安装：</p>
+<pre><code>install.packages(&quot;wordcloud2&quot;)</code></pre>
+<p>安装完成后，加载<code>wordcloud2</code>包以便使用：</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="其他绘图工具.html#cb19-1" tabindex="-1"></a><span class="fu">library</span>(wordcloud2)</span></code></pre></div>
+</div>
+<div id="准备数据-2" class="section level3 hasAnchor" number="5.3.2">
+<h3><span class="header-section-number">5.3.2</span> 准备数据<a href="其他绘图工具.html#准备数据-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><code>wordcloud2</code>函数需要一个数据框作为输入，该数据框包含两列：一列是单词（word），另一列是频率（freq）。</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="其他绘图工具.html#cb20-1" tabindex="-1"></a><span class="co"># 创建示例数据</span></span>
+<span id="cb20-2"><a href="其他绘图工具.html#cb20-2" tabindex="-1"></a>words_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb20-3"><a href="其他绘图工具.html#cb20-3" tabindex="-1"></a>  <span class="at">word =</span> <span class="fu">c</span>(<span class="st">&quot;R&quot;</span>, <span class="st">&quot;Data&quot;</span>, <span class="st">&quot;Visualization&quot;</span>, <span class="st">&quot;wordcloud&quot;</span>, <span class="st">&quot;Analysis&quot;</span>, <span class="st">&quot;Shiny&quot;</span>, <span class="st">&quot;HTMLWidgets&quot;</span>, <span class="st">&quot;Interactive&quot;</span>),</span>
+<span id="cb20-4"><a href="其他绘图工具.html#cb20-4" tabindex="-1"></a>  <span class="at">freq =</span> <span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">60</span>, <span class="dv">30</span>, <span class="dv">90</span>, <span class="dv">20</span>, <span class="dv">50</span>, <span class="dv">80</span>, <span class="dv">40</span>)</span>
+<span id="cb20-5"><a href="其他绘图工具.html#cb20-5" tabindex="-1"></a>)</span></code></pre></div>
+</div>
+<div id="创建词云" class="section level3 hasAnchor" number="5.3.3">
+<h3><span class="header-section-number">5.3.3</span> 创建词云<a href="其他绘图工具.html#创建词云" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>使用<code>wordcloud2</code>函数，你可以基于上述数据创建一个词云：</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="其他绘图工具.html#cb21-1" tabindex="-1"></a><span class="fu">wordcloud2</span>(words_data)</span></code></pre></div>
+<div class="wordcloud2 html-widget html-fill-item" id="htmlwidget-51f8f2752d4d55090d5b" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-51f8f2752d4d55090d5b">{"x":{"word":["R","Data","Visualization","wordcloud","Analysis","Shiny","HTMLWidgets","Interactive"],"freq":[100,60,30,90,20,50,80,40],"fontFamily":"Segoe UI","fontWeight":"bold","color":"random-dark","minSize":0,"weightFactor":1.8,"backgroundColor":"white","gridSize":0,"minRotation":-0.7853981633974483,"maxRotation":0.7853981633974483,"shuffle":true,"rotateRatio":0.4,"shape":"circle","ellipticity":0.65,"figBase64":null,"hover":null},"evals":[],"jsHooks":{"render":[{"code":"function(el,x){\n                        console.log(123);\n                        if(!iii){\n                          window.location.reload();\n                          iii = False;\n\n                        }\n  }","data":null}]}}</script>
+<p>这个命令将生成一个词云，其中包含了我们的示例数据集中的词汇。</p>
+</div>
+<div id="定制词云" class="section level3 hasAnchor" number="5.3.4">
+<h3><span class="header-section-number">5.3.4</span> 定制词云<a href="其他绘图工具.html#定制词云" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><code>wordcloud2</code>提供了多种定制选项，让你可以根据需求调整词云的外观和行为。</p>
+<div id="改变形状" class="section level4 hasAnchor" number="5.3.4.1">
+<h4><span class="header-section-number">5.3.4.1</span> 改变形状<a href="其他绘图工具.html#改变形状" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>你可以通过设置<code>shape</code>参数来改变词云的形状，<code>wordcloud2</code>支持多种形状，如<code>circle</code>、<code>cardioid</code>（心形）、<code>diamond</code>、<code>triangle-forward</code>、<code>triangle</code>、<code>pentagon</code>、<code>star</code>等。</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="其他绘图工具.html#cb22-1" tabindex="-1"></a><span class="fu">wordcloud2</span>(words_data, <span class="at">shape =</span> <span class="st">&#39;star&#39;</span>)</span></code></pre></div>
+<div class="wordcloud2 html-widget html-fill-item" id="htmlwidget-b5d54e133d0032cefdd1" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-b5d54e133d0032cefdd1">{"x":{"word":["R","Data","Visualization","wordcloud","Analysis","Shiny","HTMLWidgets","Interactive"],"freq":[100,60,30,90,20,50,80,40],"fontFamily":"Segoe UI","fontWeight":"bold","color":"random-dark","minSize":0,"weightFactor":1.8,"backgroundColor":"white","gridSize":0,"minRotation":-0.7853981633974483,"maxRotation":0.7853981633974483,"shuffle":true,"rotateRatio":0.4,"shape":"star","ellipticity":0.65,"figBase64":null,"hover":null},"evals":[],"jsHooks":{"render":[{"code":"function(el,x){\n                        console.log(123);\n                        if(!iii){\n                          window.location.reload();\n                          iii = False;\n\n                        }\n  }","data":null}]}}</script>
+</div>
+<div id="设置颜色" class="section level4 hasAnchor" number="5.3.4.2">
+<h4><span class="header-section-number">5.3.4.2</span> 设置颜色<a href="其他绘图工具.html#设置颜色" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>通过<code>color</code>参数，你可以自定义词云中词汇的颜色：</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="其他绘图工具.html#cb23-1" tabindex="-1"></a><span class="fu">wordcloud2</span>(words_data, <span class="at">color =</span> <span class="st">&#39;random-light&#39;</span>)</span></code></pre></div>
+<div class="wordcloud2 html-widget html-fill-item" id="htmlwidget-04787a1148bfcefd309a" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-04787a1148bfcefd309a">{"x":{"word":["R","Data","Visualization","wordcloud","Analysis","Shiny","HTMLWidgets","Interactive"],"freq":[100,60,30,90,20,50,80,40],"fontFamily":"Segoe UI","fontWeight":"bold","color":"random-light","minSize":0,"weightFactor":1.8,"backgroundColor":"white","gridSize":0,"minRotation":-0.7853981633974483,"maxRotation":0.7853981633974483,"shuffle":true,"rotateRatio":0.4,"shape":"circle","ellipticity":0.65,"figBase64":null,"hover":null},"evals":[],"jsHooks":{"render":[{"code":"function(el,x){\n                        console.log(123);\n                        if(!iii){\n                          window.location.reload();\n                          iii = False;\n\n                        }\n  }","data":null}]}}</script>
+</div>
+<div id="调整大小和旋转" class="section level4 hasAnchor" number="5.3.4.3">
+<h4><span class="header-section-number">5.3.4.3</span> 调整大小和旋转<a href="其他绘图工具.html#调整大小和旋转" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>使用<code>minSize</code>和<code>rotateRatio</code>参数来调整词汇的最小大小和旋转比例：</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="其他绘图工具.html#cb24-1" tabindex="-1"></a><span class="fu">wordcloud2</span>(words_data, <span class="at">minSize =</span> <span class="fl">0.5</span>, <span class="at">rotateRatio =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<div class="wordcloud2 html-widget html-fill-item" id="htmlwidget-b6c4cd05d55fa5ae8b58" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-b6c4cd05d55fa5ae8b58">{"x":{"word":["R","Data","Visualization","wordcloud","Analysis","Shiny","HTMLWidgets","Interactive"],"freq":[100,60,30,90,20,50,80,40],"fontFamily":"Segoe UI","fontWeight":"bold","color":"random-dark","minSize":0.5,"weightFactor":1.8,"backgroundColor":"white","gridSize":0,"minRotation":-0.7853981633974483,"maxRotation":0.7853981633974483,"shuffle":true,"rotateRatio":0.5,"shape":"circle","ellipticity":0.65,"figBase64":null,"hover":null},"evals":[],"jsHooks":{"render":[{"code":"function(el,x){\n                        console.log(123);\n                        if(!iii){\n                          window.location.reload();\n                          iii = False;\n\n                        }\n  }","data":null}]}}</script>
+<p>为了创建一篇面向有一定基础的用户的、注重实用性的、全面介绍<code>ggridges</code>包及其应用的教程，下面将以Markdown格式详细介绍如何使用<code>ggridges</code>包来创建和定制山脊线图（Ridgeline Plots），一种用于展示分布变化的优美图形。</p>
+</div>
+</div>
+</div>
+<div id="ggridges" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> <code>ggridges</code><a href="其他绘图工具.html#ggridges" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><code>ggridges</code>包是<code>ggplot2</code>的扩展，提供了一种创建山脊线图（也称为joy plots）的方法。山脊线图是展示一组分布的有效方式，尤其适合展示随某一变量（通常是时间）变化的多个分布。</p>
+<p>首先，确保你已经安装了<code>ggridges</code>包。如果没有，请运行以下命令来安装：</p>
+<pre><code>install.packages(&quot;ggridges&quot;)</code></pre>
+<p>安装完成后，加载<code>ggridges</code>包以便使用：</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="其他绘图工具.html#cb26-1" tabindex="-1"></a><span class="fu">library</span>(ggridges)</span></code></pre></div>
+<div id="准备数据-3" class="section level3 hasAnchor" number="5.4.1">
+<h3><span class="header-section-number">5.4.1</span> 准备数据<a href="其他绘图工具.html#准备数据-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><code>ggridges</code>包与<code>ggplot2</code>紧密集成，因此你需要准备一个适合<code>ggplot2</code>的数据框。这里，我们以一个简单的示例数据集开始：</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="其他绘图工具.html#cb27-1" tabindex="-1"></a><span class="co"># 加载ggplot2包</span></span>
+<span id="cb27-2"><a href="其他绘图工具.html#cb27-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb27-3"><a href="其他绘图工具.html#cb27-3" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="其他绘图工具.html#cb27-4" tabindex="-1"></a><span class="co"># 创建示例数据</span></span>
+<span id="cb27-5"><a href="其他绘图工具.html#cb27-5" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb27-6"><a href="其他绘图工具.html#cb27-6" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb27-7"><a href="其他绘图工具.html#cb27-7" tabindex="-1"></a>  <span class="at">group =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>), <span class="at">each=</span><span class="dv">100</span>),</span>
+<span id="cb27-8"><a href="其他绘图工具.html#cb27-8" tabindex="-1"></a>  <span class="at">value =</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>), <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean=</span><span class="dv">2</span>, <span class="at">sd=</span><span class="fl">1.5</span>), <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean=</span><span class="sc">-</span><span class="dv">1</span>, <span class="at">sd=</span><span class="dv">2</span>))</span>
+<span id="cb27-9"><a href="其他绘图工具.html#cb27-9" tabindex="-1"></a>)</span></code></pre></div>
+</div>
+<div id="创建山脊线图" class="section level3 hasAnchor" number="5.4.2">
+<h3><span class="header-section-number">5.4.2</span> 创建山脊线图<a href="其他绘图工具.html#创建山脊线图" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>使用<code>ggridges</code>创建山脊线图的基本方法如下：</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="其他绘图工具.html#cb28-1" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> value, <span class="at">y =</span> group)) <span class="sc">+</span></span>
+<span id="cb28-2"><a href="其他绘图工具.html#cb28-2" tabindex="-1"></a>  <span class="fu">geom_density_ridges</span>()</span></code></pre></div>
+<pre><code>## Picking joint bandwidth of 0.502</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p>这段代码将为每个组创建一个山脊线图，其中<code>group</code>为不同的山脊线，<code>value</code>代表分布的数据。</p>
+</div>
+<div id="定制山脊线图" class="section level3 hasAnchor" number="5.4.3">
+<h3><span class="header-section-number">5.4.3</span> 定制山脊线图<a href="其他绘图工具.html#定制山脊线图" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><code>ggridges</code>提供了多种选项来定制山脊线图，包括调整颜色、填充、透明度等。</p>
+<div id="调整颜色和填充" class="section level4 hasAnchor" number="5.4.3.1">
+<h4><span class="header-section-number">5.4.3.1</span> 调整颜色和填充<a href="其他绘图工具.html#调整颜色和填充" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>你可以通过<code>aes</code>函数的<code>fill</code>参数为不同的山脊线指定颜色：</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="其他绘图工具.html#cb30-1" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> value, <span class="at">y =</span> group, <span class="at">fill =</span> group)) <span class="sc">+</span></span>
+<span id="cb30-2"><a href="其他绘图工具.html#cb30-2" tabindex="-1"></a>  <span class="fu">geom_density_ridges_gradient</span>(<span class="at">scale =</span> <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## Picking joint bandwidth of 0.502</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+</div>
+<div id="更改山脊线的外观" class="section level4 hasAnchor" number="5.4.3.2">
+<h4><span class="header-section-number">5.4.3.2</span> 更改山脊线的外观<a href="其他绘图工具.html#更改山脊线的外观" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>使用<code>geom_density_ridges</code>函数的参数来调整山脊线的外观，例如线条粗细、透明度等：</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="其他绘图工具.html#cb32-1" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> value, <span class="at">y =</span> group, <span class="at">fill =</span> group)) <span class="sc">+</span></span>
+<span id="cb32-2"><a href="其他绘图工具.html#cb32-2" tabindex="-1"></a>  <span class="fu">geom_density_ridges</span>(<span class="at">alpha =</span> <span class="fl">0.8</span>, <span class="at">scale =</span> <span class="dv">3</span>, <span class="at">rel_min_height =</span> <span class="fl">0.01</span>)</span></code></pre></div>
+<pre><code>## Picking joint bandwidth of 0.502</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+</div>
+<div id="使用主题和标签" class="section level4 hasAnchor" number="5.4.3.3">
+<h4><span class="header-section-number">5.4.3.3</span> 使用主题和标签<a href="其他绘图工具.html#使用主题和标签" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>为了提高图表的可读性和美观性，你可以添加标题、坐标轴标签，并使用<code>ggplot2</code>的<code>theme</code>功能定制图表主题：</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="其他绘图工具.html#cb34-1" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> value, <span class="at">y =</span> group, <span class="at">fill =</span> group)) <span class="sc">+</span></span>
+<span id="cb34-2"><a href="其他绘图工具.html#cb34-2" tabindex="-1"></a>  <span class="fu">geom_density_ridges_gradient</span>() <span class="sc">+</span></span>
+<span id="cb34-3"><a href="其他绘图工具.html#cb34-3" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Ridgeline Plot&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Value&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Group&quot;</span>) <span class="sc">+</span></span>
+<span id="cb34-4"><a href="其他绘图工具.html#cb34-4" tabindex="-1"></a>  <span class="fu">theme_ridges</span>()</span></code></pre></div>
+<pre><code>## Picking joint bandwidth of 0.502</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="关于图表的显示.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="高质量数据可视化案例.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/04-citations.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
